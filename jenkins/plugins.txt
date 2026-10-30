@@ -1,0 +1,12 @@
+git
+github
+github-branch-source
+workflow-aggregator
+pipeline-stage-view
+junit
+jacoco
+htmlpublisher
+warnings-ng
+credentials-binding
+timestamper
+ws-cleanup

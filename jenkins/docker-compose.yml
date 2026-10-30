@@ -1,0 +1,20 @@
+services:
+  jenkins:
+    build:
+      context: .
+    container_name: odsoft-jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    environment:
+      JENKINS_ADMIN_ID: admin
+      JENKINS_ADMIN_PASSWORD: odsoft
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false -Djava.awt.headless=true"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - ./init.groovy.d:/var/jenkins_home/init.groovy.d:ro
+      - ..:/workspace
+    restart: unless-stopped
+
+volumes:
+  jenkins_home:
