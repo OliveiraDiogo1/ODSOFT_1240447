@@ -9,6 +9,12 @@ ARQSOFT: o código base é o mesmo, mas o âmbito é diferente. O ODSOFT não pe
 novas funcionalidades de biblioteca; pede a evolução do processo de build,
 testes, integração, entrega e deployment.
 
+Repositório remoto:
+
+```
+https://github.com/OliveiraDiogo1/ODSOFT_1240447
+```
+
 ## Estado atual — Fases 1 e 2 (contexto local)
 
 Implementado:
