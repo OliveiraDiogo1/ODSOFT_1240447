@@ -29,12 +29,14 @@ Implementado:
 - job `odsoft-p1` criado por SCM e build **#4 com sucesso** (102 testes,
   90,4 s), com evidências em `evidence/jenkins/`;
 - deployment local para `dev`, `staging` e `prod` em contentores Docker
-  separados, com health checks e evidências em `evidence/deploy/`.
+  separados, com health checks e evidências em `evidence/deploy/`;
+- deployment na VM DEI (`vs264`) com JAR + systemd, validado em `dev`,
+  `staging` e `prod`, com health checks públicos e login em staging;
+- Jenkins na VM com job `odsoft-p1` por SCM, com build do pipeline concluído.
 
 Ainda não implementado:
 
-- segundo contexto Jenkins na VM DEI (falta acesso/credenciais);
-- repositório GitHub remoto e webhook automático (recomendado para C1.2);
+- webhook automático do GitHub para o Jenkins;
 - testes de mutação, testes de sistema e quality gates finais (Fase 3);
 - relatório final de avaliação antes/depois e rastreabilidade completa (Fase 4).
 
@@ -272,7 +274,8 @@ projeto_odsoft_1240447/
 ├── evidence/
 │   ├── baseline/
 │   ├── deploy/
-│   └── jenkins/
+│   ├── jenkins/
+│   └── vm/
 ├── src/
 └── README.md
 ```
@@ -281,6 +284,25 @@ projeto_odsoft_1240447/
 
 Como a VM é um contentor LXC com 1,9 GB de RAM, o deployment na VM usa JARs
 com `systemd`, não Docker.
+
+O deployment foi validado na VM `vs264`:
+
+| Ambiente | URL pública | Resultado |
+|---|---|---|
+| dev | `http://vsgate-http.dei.isep.ipp.pt:10264` | `/actuator/health` = 200 |
+| staging | `http://vsgate-s2.dei.isep.ipp.pt:10264` | `/actuator/health` = 200; login = 200 |
+| prod | `https://vs-gate.dei.isep.ipp.pt:30264` | `/actuator/health` = 200 |
+| Jenkins | `https://vs-gate.dei.isep.ipp.pt:10264` | login = 200 |
+
+Evidências:
+
+```
+evidence/vm/summary.txt
+evidence/vm/health-dev.json
+evidence/vm/health-staging.json
+evidence/vm/health-prod.json
+evidence/vm/login-staging.json
+```
 
 ### Instalar os serviços
 
@@ -381,8 +403,8 @@ memória disponível.
 | C1.1 Jenkins em dois contextos | Local implementado; VM DEI com Jenkins e build do pipeline validado |
 | C1.2 Integração SCM e execução automática | `Jenkinsfile` versionado; job `odsoft-p1` por SCM executado na VM |
 | C1.3 Build, análise estática, packaging e testes | Implementado no pipeline; build na VM com 102 testes verdes |
-| C1.4 Deployment em destinos distintos | Docker local validado; VM preparada com JAR + systemd |
-| C1.5 Ambientes dev/staging/prod | Perfis separados; Docker local validado; systemd da VM preparado |
+| C1.4 Deployment em destinos distintos | Validado em Docker local e na VM com JAR + systemd |
+| C1.5 Ambientes dev/staging/prod | Validado nos três ambientes, com health checks públicos |
 | C2.1–C2.5 Testes | Suite base existe; melhoria na Fase 3 |
 | C3.1 System-as-is | Baseline e logs iniciais |
 | C3.2 System-to-be | Pipeline e decisões iniciais |
