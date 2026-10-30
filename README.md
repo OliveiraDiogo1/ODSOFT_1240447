@@ -19,7 +19,9 @@ Implementado:
 - `Jenkinsfile` declarativo com checkout, build, análise estática, testes,
   cobertura e packaging;
 - Jenkins local em Docker (`jenkins/`);
-- relatórios de testes, cobertura e análise estática arquivados pelo pipeline.
+- relatórios de testes, cobertura e análise estática arquivados pelo pipeline;
+- job `odsoft-p1` criado por SCM e build **#3 com sucesso** (102 testes,
+  173,5 s), com evidências em `evidence/jenkins/`.
 
 Ainda não implementado:
 
@@ -80,6 +82,19 @@ O Jenkins local está preparado em `jenkins/`:
 cd jenkins
 docker compose build
 docker compose up -d
+```
+
+O job `odsoft-p1` já foi criado e executado com sucesso contra o repositório
+montado em `/workspace`. O build #3 demorou 173,5 s e produziu os relatórios de
+testes, cobertura e Checkstyle. As evidências estão em:
+
+```
+evidence/jenkins/build-summary.txt
+evidence/jenkins/build-console.txt
+evidence/jenkins/build-api.json
+evidence/jenkins/jenkinsfile-validation.txt
+evidence/jenkins/version.txt
+evidence/jenkins/plugins.txt
 ```
 
 Abrir:
@@ -148,8 +163,11 @@ projeto_odsoft_1240447/
 │   ├── Dockerfile
 │   ├── docker-compose.yml
 │   ├── plugins.txt
+│   ├── odsoft-p1-job.xml
 │   └── init.groovy.d/01-security.groovy
-├── evidence/baseline/
+├── evidence/
+│   ├── baseline/
+│   └── jenkins/
 ├── src/
 └── README.md
 ```
@@ -158,9 +176,9 @@ projeto_odsoft_1240447/
 
 | Critério | Estado na Fase 1 |
 |---|---|
-| C1.1 Jenkins em dois contextos | Local implementado; VM DEI pendente |
-| C1.2 Integração SCM e execução automática | `Jenkinsfile` versionado; job por SCM preparado |
-| C1.3 Build, análise estática, packaging e testes | Implementado no pipeline |
+| C1.1 Jenkins em dois contextos | Local implementado e validado; VM DEI pendente |
+| C1.2 Integração SCM e execução automática | `Jenkinsfile` versionado; job `odsoft-p1` por SCM executado |
+| C1.3 Build, análise estática, packaging e testes | Implementado no pipeline; build #3 SUCCESS |
 | C1.4 Deployment em destinos distintos | Fase 2 |
 | C1.5 Ambientes dev/staging/prod | Fase 2 |
 | C2.1–C2.5 Testes | Suite base existe; melhoria na Fase 3 |

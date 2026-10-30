@@ -1,0 +1,648 @@
+Started by user admin
+Obtained Jenkinsfile from git file:///workspace
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/odsoft-p1
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository file:///workspace
+ > git init /var/jenkins_home/workspace/odsoft-p1 # timeout=10
+Fetching upstream changes from file:///workspace
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- file:///workspace +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url file:///workspace # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 906aac2115d9280a36b07a2643029f08b749a055 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 906aac2115d9280a36b07a2643029f08b749a055 # timeout=10
+Commit message: "Implementa pipeline Jenkins e baseline da fase 1 ODSOFT"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] timeout
+[2026-10-29T22:55:15.954Z] Timeout set to expire in 30 min
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+[2026-10-29T22:55:16.175Z] Selected Git installation does not exist. Using Default
+[2026-10-29T22:55:16.175Z] The recommended git tool is: NONE
+[2026-10-29T22:55:16.175Z] No credentials specified
+[2026-10-29T22:55:16.176Z]  > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/odsoft-p1/.git # timeout=10
+[2026-10-29T22:55:16.185Z] Fetching changes from the remote Git repository
+[2026-10-29T22:55:16.188Z]  > git config remote.origin.url file:///workspace # timeout=10
+[2026-10-29T22:55:16.200Z] Fetching upstream changes from file:///workspace
+[2026-10-29T22:55:16.200Z]  > git --version # timeout=10
+[2026-10-29T22:55:16.210Z]  > git --version # 'git version 2.47.3'
+[2026-10-29T22:55:16.210Z]  > git fetch --tags --force --progress -- file:///workspace +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2026-10-29T22:55:16.304Z]  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+[2026-10-29T22:55:16.315Z] Checking out Revision 906aac2115d9280a36b07a2643029f08b749a055 (refs/remotes/origin/main)
+[2026-10-29T22:55:16.316Z]  > git config core.sparsecheckout # timeout=10
+[2026-10-29T22:55:16.323Z]  > git checkout -f 906aac2115d9280a36b07a2643029f08b749a055 # timeout=10
+[2026-10-29T22:55:16.343Z] Commit message: "Implementa pipeline Jenkins e baseline da fase 1 ODSOFT"
+[Pipeline] script
+[Pipeline] {
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
+[2026-10-29T22:55:17.068Z] + mvn -B -ntp clean compile
+[2026-10-29T22:55:18.934Z] [INFO] Scanning for projects...
+[2026-10-29T22:55:26.966Z] [INFO] 
+[2026-10-29T22:55:26.966Z] [INFO] -----------------< pt.psoft.g1:projeto-odsoft-1240447 >-----------------
+[2026-10-29T22:55:26.966Z] [INFO] Building projeto_odsoft_1240447 0.0.1-SNAPSHOT
+[2026-10-29T22:55:26.966Z] [INFO]   from pom.xml
+[2026-10-29T22:55:26.966Z] [INFO] --------------------------------[ jar ]---------------------------------
+[2026-10-29T22:55:58.901Z] [INFO] 
+[2026-10-29T22:55:58.901Z] [INFO] --- clean:3.3.2:clean (default-clean) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:55:58.901Z] [INFO] 
+[2026-10-29T22:55:58.901Z] [INFO] --- enforcer:3.5.0:enforce (enforce-toolchain) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:55:58.901Z] [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[2026-10-29T22:55:58.901Z] [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[2026-10-29T22:55:58.901Z] [INFO] 
+[2026-10-29T22:55:58.901Z] [INFO] --- jacoco:0.8.12:prepare-agent (prepare-agent) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:55:58.901Z] [INFO] argLine set to -javaagent:/var/jenkins_home/.m2/repository/org/jacoco/org.jacoco.agent/0.8.12/org.jacoco.agent-0.8.12-runtime.jar=destfile=/var/jenkins_home/workspace/odsoft-p1/target/jacoco.exec
+[2026-10-29T22:55:58.901Z] [INFO] 
+[2026-10-29T22:55:58.901Z] [INFO] --- resources:3.3.1:resources (default-resources) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:55:59.814Z] [INFO] Copying 1 resource from src/main/resources to target/classes
+[2026-10-29T22:55:59.814Z] [INFO] Copying 10 resources from src/main/resources to target/classes
+[2026-10-29T22:55:59.814Z] [INFO] 
+[2026-10-29T22:55:59.814Z] [INFO] --- compiler:3.11.0:compile (default-compile) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:56:03.941Z] [INFO] Changes detected - recompiling the module! :dependency
+[2026-10-29T22:56:03.941Z] [INFO] Compiling 144 source files with javac [debug release 17] to target/classes
+[2026-10-29T22:56:13.827Z] [WARNING] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/api/ReaderViewMapper.java:[38,37] Unmapped target property: "quote".
+[2026-10-29T22:56:13.827Z] [WARNING] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/api/ReaderViewMapper.java:[41,38] Unmapped target properties: "email, fullName". Mapping from Collection element "ReaderDetails readerDetails" to "ReaderView readerView".
+[2026-10-29T22:56:13.828Z] [WARNING] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/api/ReaderViewMapper.java:[44,37] Unmapped target properties: "email, fullName". Mapping from property "ReaderDetails readerDetails" to "ReaderView readerView".
+[2026-10-29T22:56:13.828Z] [WARNING] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/services/ReaderMapper.java:[26,28] Unmapped target properties: "enabled, authorities".
+[2026-10-29T22:56:13.828Z] [WARNING] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/services/ReaderMapper.java:[30,35] Unmapped target properties: "gdprConsent, marketingConsent, thirdPartySharingConsent, photoURI".
+[2026-10-29T22:56:13.828Z] [WARNING] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/usermanagement/services/EditUserMapper.java:[48,30] Unmapped target property: "enabled".
+[2026-10-29T22:56:13.828Z] [WARNING] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/usermanagement/services/EditUserMapper.java:[53,30] Unmapped target property: "enabled".
+[2026-10-29T22:56:13.828Z] [WARNING] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/configuration/SecurityConfig.java:[110,13] authorizeHttpRequests() in org.springframework.security.config.annotation.web.builders.HttpSecurity has been deprecated and marked for removal
+[2026-10-29T22:56:13.828Z] [WARNING] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/configuration/SecurityConfig.java:[174,17] and() in org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer.AuthorizationManagerRequestMatcherRegistry has been deprecated and marked for removal
+[2026-10-29T22:56:13.828Z] [WARNING] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/configuration/SecurityConfig.java:[174,60] oauth2ResourceServer() in org.springframework.security.config.annotation.web.builders.HttpSecurity has been deprecated and marked for removal
+[2026-10-29T22:56:13.828Z] [WARNING] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/configuration/SecurityConfig.java:[174,83] jwt() in org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer has been deprecated and marked for removal
+[2026-10-29T22:56:13.828Z] [INFO] ------------------------------------------------------------------------
+[2026-10-29T22:56:13.828Z] [INFO] BUILD SUCCESS
+[2026-10-29T22:56:13.828Z] [INFO] ------------------------------------------------------------------------
+[2026-10-29T22:56:13.828Z] [INFO] Total time:  53.295 s
+[2026-10-29T22:56:13.828Z] [INFO] Finished at: 2026-10-29T22:56:12Z
+[2026-10-29T22:56:13.828Z] [INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Static Analysis)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
+[2026-10-29T22:56:14.346Z] + mvn -B -ntp -DskipTests checkstyle:checkstyle spotbugs:spotbugs
+[2026-10-29T22:56:16.210Z] [INFO] Scanning for projects...
+[2026-10-29T22:56:18.695Z] [INFO] 
+[2026-10-29T22:56:18.695Z] [INFO] -----------------< pt.psoft.g1:projeto-odsoft-1240447 >-----------------
+[2026-10-29T22:56:18.696Z] [INFO] Building projeto_odsoft_1240447 0.0.1-SNAPSHOT
+[2026-10-29T22:56:18.696Z] [INFO]   from pom.xml
+[2026-10-29T22:56:18.696Z] [INFO] --------------------------------[ jar ]---------------------------------
+[2026-10-29T22:56:18.696Z] [WARNING] Parameter 'encoding' is unknown for plugin 'maven-checkstyle-plugin:3.6.0:checkstyle (default-cli)'
+[2026-10-29T22:56:20.042Z] [INFO] 
+[2026-10-29T22:56:20.042Z] [INFO] --- checkstyle:3.6.0:checkstyle (default-cli) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:56:28.069Z] [WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
+[2026-10-29T22:56:28.321Z] [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
+[2026-10-29T22:56:31.558Z] [INFO] Starting audit...
+[2026-10-29T22:56:31.558Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/genremanagement/services/GetAverageLendingsQuery.java:5:14: Using the '.*' form of import should be avoided - lombok.*. [AvoidStarImport]
+[2026-10-29T22:56:31.558Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/genremanagement/api/GenreController.java:6:47: Using the '.*' form of import should be avoided - org.springframework.web.bind.annotation.*. [AvoidStarImport]
+[2026-10-29T22:56:31.558Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/genremanagement/api/GenreView.java:7:8: Unused import - java.util.List. [UnusedImports]
+[2026-10-29T22:56:31.558Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/genremanagement/infrastructure/repositories/impl/SpringDataGenreRepository.java:6:36: Using the '.*' form of import should be avoided - jakarta.persistence.criteria.*. [AvoidStarImport]
+[2026-10-29T22:56:31.558Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/genremanagement/infrastructure/repositories/impl/SpringDataGenreRepository.java:23:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
+[2026-10-29T22:56:31.558Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/genremanagement/model/Genre.java:3:27: Using the '.*' form of import should be avoided - jakarta.persistence.*. [AvoidStarImport]
+[2026-10-29T22:56:31.558Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/bootstrapping/Bootstrapper.java:22:8: Unused import - pt.psoft.g1.psoftg1.shared.model.Photo. [UnusedImports]
+[2026-10-29T22:56:31.558Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/api/FineViewMapper.java:3:21: Using the '.*' form of import should be avoided - org.mapstruct.*. [AvoidStarImport]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/api/FineViewMapper.java:4:8: Unused import - pt.psoft.g1.psoftg1.lendingmanagement.model.Fine. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/api/FineViewMapper.java:5:8: Unused import - pt.psoft.g1.psoftg1.lendingmanagement.model.Lending. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/api/FineViewMapper.java:6:8: Unused import - pt.psoft.g1.psoftg1.lendingmanagement.model.LendingNumber. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/api/FineViewMapper.java:8:8: Unused import - java.util.Optional. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/api/LendingViewMapper.java:5:8: Unused import - org.mapstruct.Named. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/api/LendingViewMapper.java:6:8: Unused import - org.springframework.web.servlet.support.ServletUriComponentsBuilder. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/api/LendingViewMapper.java:10:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/api/LendingController.java:13:47: Using the '.*' form of import should be avoided - org.springframework.web.bind.annotation.*. [AvoidStarImport]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/api/LendingController.java:23:8: Unused import - pt.psoft.g1.psoftg1.readermanagement.api.ReaderLendingsAvgPerMonthView. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/api/FineView.java:7:8: Unused import - lombok.Value. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/infrastructure/repositories/impl/SpringDataLendingRepository.java:4:8: Unused import - jakarta.persistence.Tuple. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/infrastructure/repositories/impl/SpringDataLendingRepository.java:6:36: Using the '.*' form of import should be avoided - jakarta.persistence.criteria.*. [AvoidStarImport]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/infrastructure/repositories/impl/SpringDataLendingRepository.java:13:8: Unused import - pt.psoft.g1.psoftg1.genremanagement.services.GenreLendingsDTO. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/infrastructure/repositories/impl/SpringDataLendingRepository.java:14:8: Unused import - pt.psoft.g1.psoftg1.genremanagement.services.GenreLendingsPerMonthDTO. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/infrastructure/repositories/impl/SpringDataLendingRepository.java:18:8: Unused import - pt.psoft.g1.psoftg1.readermanagement.services.ReaderAverageDto. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/infrastructure/repositories/impl/SpringDataLendingRepository.java:19:8: Unused import - pt.psoft.g1.psoftg1.readermanagement.services.ReaderLendingsAvgPerMonthDto. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/infrastructure/repositories/impl/SpringDataLendingRepository.java:21:8: Unused import - pt.psoft.g1.psoftg1.usermanagement.model.User. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/infrastructure/repositories/impl/SpringDataLendingRepository.java:24:8: Unused import - java.time.LocalDateTime. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/infrastructure/repositories/impl/SpringDataLendingRepository.java:25:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/model/Lending.java:3:27: Using the '.*' form of import should be avoided - jakarta.persistence.*. [AvoidStarImport]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/model/Lending.java:4:8: Unused import - jakarta.validation.constraints.NotBlank. [UnusedImports]
+[2026-10-29T22:56:31.559Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/lendingmanagement/model/Fine.java:3:27: Using the '.*' form of import should be avoided - jakarta.persistence.*. [AvoidStarImport]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/usermanagement/services/CreateUserRequest.java:29:14: Using the '.*' form of import should be avoided - lombok.*. [AvoidStarImport]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/usermanagement/services/EditUserRequest.java:25:8: Unused import - jakarta.validation.constraints.NotBlank. [UnusedImports]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/usermanagement/api/UserAdminApi.java:27:47: Using the '.*' form of import should be avoided - org.springframework.web.bind.annotation.*. [AvoidStarImport]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/usermanagement/infrastructure/repositories/impl/SpringDataUserRepository.java:29:36: Using the '.*' form of import should be avoided - jakarta.persistence.criteria.*. [AvoidStarImport]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/usermanagement/model/User.java:27:27: Using the '.*' form of import should be avoided - jakarta.persistence.*. [AvoidStarImport]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/usermanagement/model/Password.java:3:8: Unused import - java.beans.Transient. [UnusedImports]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/usermanagement/model/Librarian.java:4:8: Unused import - pt.psoft.g1.psoftg1.shared.model.Name. [UnusedImports]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/bookmanagement/services/BookServiceImpl.java:11:48: Using the '.*' form of import should be avoided - pt.psoft.g1.psoftg1.bookmanagement.model.*. [AvoidStarImport]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/bookmanagement/services/CreateBookRequest.java:7:14: Using the '.*' form of import should be avoided - lombok.*. [AvoidStarImport]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/bookmanagement/services/UpdateBookRequest.java:4:14: Using the '.*' form of import should be avoided - lombok.*. [AvoidStarImport]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/bookmanagement/api/BookController.java:12:47: Using the '.*' form of import should be avoided - org.springframework.web.bind.annotation.*. [AvoidStarImport]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/bookmanagement/infrastructure/repositories/impl/SpringDataBookRepository.java:5:36: Using the '.*' form of import should be avoided - jakarta.persistence.criteria.*. [AvoidStarImport]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/bookmanagement/model/Book.java:4:27: Using the '.*' form of import should be avoided - jakarta.persistence.*. [AvoidStarImport]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/authormanagement/services/CreateAuthorRequest.java:6:14: Using the '.*' form of import should be avoided - lombok.*. [AvoidStarImport]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/authormanagement/services/UpdateAuthorRequest.java:5:14: Using the '.*' form of import should be avoided - lombok.*. [AvoidStarImport]
+[2026-10-29T22:56:31.560Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorController.java:13:8: Unused import - org.springframework.security.core.Authentication. [UnusedImports]
+[2026-10-29T22:56:31.561Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorController.java:14:47: Using the '.*' form of import should be avoided - org.springframework.web.bind.annotation.*. [AvoidStarImport]
+[2026-10-29T22:56:31.561Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorController.java:25:8: Unused import - pt.psoft.g1.psoftg1.bookmanagement.model.Book. [UnusedImports]
+[2026-10-29T22:56:31.561Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorController.java:27:8: Unused import - pt.psoft.g1.psoftg1.readermanagement.model.ReaderDetails. [UnusedImports]
+[2026-10-29T22:56:31.561Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorController.java:31:8: Unused import - pt.psoft.g1.psoftg1.usermanagement.model.User. [UnusedImports]
+[2026-10-29T22:56:31.561Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/authormanagement/model/Author.java:3:27: Using the '.*' form of import should be avoided - jakarta.persistence.*. [AvoidStarImport]
+[2026-10-29T22:56:31.561Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/services/CreateReaderRequest.java:6:14: Using the '.*' form of import should be avoided - lombok.*. [AvoidStarImport]
+[2026-10-29T22:56:31.561Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/services/CreateReaderRequest.java:9:8: Unused import - pt.psoft.g1.psoftg1.genremanagement.model.Genre. [UnusedImports]
+[2026-10-29T22:56:31.561Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/services/ReaderAverageDto.java:6:8: Unused import - pt.psoft.g1.psoftg1.readermanagement.api.ReaderView. [UnusedImports]
+[2026-10-29T22:56:31.561Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/services/ReaderMapper.java:5:8: Unused import - org.mapstruct.Named. [UnusedImports]
+[2026-10-29T22:56:31.561Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/services/ReaderMapper.java:6:8: Unused import - org.springframework.web.multipart.MultipartFile. [UnusedImports]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/services/ReaderMapper.java:9:8: Unused import - pt.psoft.g1.psoftg1.shared.model.Photo. [UnusedImports]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/services/ReaderMapper.java:13:8: Unused import - java.nio.file.Paths. [UnusedImports]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/services/UpdateReaderRequest.java:4:8: Unused import - jakarta.validation.constraints.NotBlank. [UnusedImports]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/services/UpdateReaderRequest.java:5:14: Using the '.*' form of import should be avoided - lombok.*. [AvoidStarImport]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/services/UpdateReaderRequest.java:7:8: Unused import - pt.psoft.g1.psoftg1.genremanagement.model.Genre. [UnusedImports]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/infraestructure/repositories/impl/SpringDataReaderRepositoryImpl.java:5:36: Using the '.*' form of import should be avoided - jakarta.persistence.criteria.*. [AvoidStarImport]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/api/ReaderLendingsAvgPerMonthView.java:6:8: Unused import - pt.psoft.g1.psoftg1.genremanagement.api.GenreLendingsView. [UnusedImports]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/api/TestBody.java:4:14: Using the '.*' form of import should be avoided - lombok.*. [AvoidStarImport]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/api/ReaderView.java:5:8: Unused import - lombok.Setter. [UnusedImports]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/api/ReaderController.java:20:47: Using the '.*' form of import should be avoided - org.springframework.web.bind.annotation.*. [AvoidStarImport]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/model/ReaderDetails.java:3:8: Unused import - jakarta.annotation.Nullable. [UnusedImports]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/model/ReaderDetails.java:4:27: Using the '.*' form of import should be avoided - jakarta.persistence.*. [AvoidStarImport]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/readermanagement/model/BirthDate.java:4:27: Using the '.*' form of import should be avoided - jakarta.persistence.*. [AvoidStarImport]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/exceptions/GlobalExceptionHandler.java:30:8: Unused import - org.apache.coyote.BadRequestException. [UnusedImports]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/shared/infrastructure/repositories/impl/SpringDataPhotoRepository.java:6:8: Unused import - org.springframework.data.repository.query.Param. [UnusedImports]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/shared/infrastructure/repositories/impl/SpringDataPhotoRepository.java:11:8: Unused import - java.util.List. [UnusedImports]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/shared/infrastructure/repositories/impl/SpringDataPhotoRepository.java:12:8: Unused import - java.util.Optional. [UnusedImports]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/shared/repositories/PhotoRepository.java:3:8: Unused import - org.springframework.data.repository.query.Param. [UnusedImports]
+[2026-10-29T22:56:31.562Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/shared/repositories/PhotoRepository.java:4:8: Unused import - pt.psoft.g1.psoftg1.shared.model.Photo. [UnusedImports]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/shared/repositories/PhotoRepository.java:5:8: Unused import - java.util.Optional. [UnusedImports]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/shared/model/ForbiddenName.java:3:27: Using the '.*' form of import should be avoided - jakarta.persistence.*. [AvoidStarImport]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/main/java/pt/psoft/g1/psoftg1/shared/model/StringUtilsCustom.java:4:8: Unused import - org.springframework.util.StringUtils. [UnusedImports]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/genremanagement/model/GenreTest.java:4:1: Redundant import from the same package - pt.psoft.g1.psoftg1.genremanagement.model.Genre. [RedundantImport]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/genremanagement/model/GenreTest.java:6:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/lendingmanagement/services/LendingServiceImplTest.java:28:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/lendingmanagement/repositories/LendingRepositoryIntegrationTest.java:28:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/lendingmanagement/model/LendingTest.java:17:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/lendingmanagement/model/LendingNumberTest.java:7:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/bookmanagement/model/DescriptionTest.java:4:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/bookmanagement/model/BookTest.java:10:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/bookmanagement/model/IsbnTest.java:5:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorControllerIntegrationTest.java:4:8: Unused import - org.junit.jupiter.api.Test. [UnusedImports]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorControllerIntegrationTest.java:7:8: Unused import - org.springframework.beans.factory.annotation.Autowired. [UnusedImports]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorControllerIntegrationTest.java:10:8: Unused import - org.springframework.boot.test.mock.mockito.MockBean. [UnusedImports]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorControllerIntegrationTest.java:11:8: Unused import - org.springframework.http.MediaType. [UnusedImports]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorControllerIntegrationTest.java:13:8: Unused import - org.springframework.test.web.servlet.MockMvc. [UnusedImports]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorControllerIntegrationTest.java:14:8: Unused import - pt.psoft.g1.psoftg1.authormanagement.model.Author. [UnusedImports]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorControllerIntegrationTest.java:15:8: Unused import - pt.psoft.g1.psoftg1.authormanagement.services.AuthorService. [UnusedImports]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorControllerIntegrationTest.java:17:8: Unused import - java.util.List. [UnusedImports]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorControllerIntegrationTest.java:19:15: Unused import - org.mockito.BDDMockito.given. [UnusedImports]
+[2026-10-29T22:56:31.563Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorControllerIntegrationTest.java:20:15: Unused import - org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get. [UnusedImports]
+[2026-10-29T22:56:31.564Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/authormanagement/api/AuthorControllerIntegrationTest.java:21:15: Unused import - org.springframework.test.web.servlet.result.MockMvcResultMatchers.status. [UnusedImports]
+[2026-10-29T22:56:31.564Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/authormanagement/model/AuthorTest.java:12:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.564Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/readermanagement/model/BirthDateTest.java:3:8: Unused import - org.junit.jupiter.api.BeforeEach. [UnusedImports]
+[2026-10-29T22:56:31.564Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/readermanagement/model/BirthDateTest.java:5:8: Unused import - org.springframework.test.util.ReflectionTestUtils. [UnusedImports]
+[2026-10-29T22:56:31.564Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/readermanagement/model/BirthDateTest.java:7:8: Unused import - java.nio.file.AccessDeniedException. [UnusedImports]
+[2026-10-29T22:56:31.564Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/readermanagement/model/BirthDateTest.java:8:8: Unused import - java.time.LocalDate. [UnusedImports]
+[2026-10-29T22:56:31.564Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/readermanagement/model/BirthDateTest.java:10:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.564Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/readermanagement/model/PhoneNumberTest.java:5:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.564Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/readermanagement/model/ReaderTest.java:11:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.564Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/shared/model/PhotoTest.java:4:8: Unused import - org.springframework.boot.context.properties.ConfigurationProperties. [UnusedImports]
+[2026-10-29T22:56:31.564Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/shared/model/PhotoTest.java:9:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.564Z] [ERROR] /var/jenkins_home/workspace/odsoft-p1/src/test/java/pt/psoft/g1/psoftg1/shared/model/NameTest.java:5:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[2026-10-29T22:56:31.564Z] Audit done.
+[2026-10-29T22:56:31.564Z] [INFO] There are 109 errors reported by Checkstyle 9.3 with /var/jenkins_home/workspace/odsoft-p1/config/checkstyle/checkstyle.xml ruleset.
+[2026-10-29T22:56:31.564Z] [WARNING] Unable to locate Source XRef to link to -- DISABLED
+[2026-10-29T22:56:31.564Z] [WARNING] Unable to locate Test Source XRef to link to -- DISABLED
+[2026-10-29T22:56:31.816Z] [INFO] 
+[2026-10-29T22:56:31.817Z] [INFO] --- spotbugs:4.8.6.6:spotbugs (default-cli) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:56:49.782Z] [INFO] Fork Value is true
+[2026-10-29T22:57:04.551Z] [INFO] Done SpotBugs Analysis....
+[2026-10-29T22:57:04.552Z] [INFO] ------------------------------------------------------------------------
+[2026-10-29T22:57:04.552Z] [INFO] BUILD SUCCESS
+[2026-10-29T22:57:04.552Z] [INFO] ------------------------------------------------------------------------
+[2026-10-29T22:57:04.552Z] [INFO] Total time:  48.252 s
+[2026-10-29T22:57:04.552Z] [INFO] Finished at: 2026-10-29T22:57:04Z
+[2026-10-29T22:57:04.552Z] [INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Unit Tests)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
+[2026-10-29T22:57:05.105Z] + mvn -B -ntp test
+[2026-10-29T22:57:06.968Z] [INFO] Scanning for projects...
+[2026-10-29T22:57:06.968Z] [INFO] 
+[2026-10-29T22:57:06.968Z] [INFO] -----------------< pt.psoft.g1:projeto-odsoft-1240447 >-----------------
+[2026-10-29T22:57:06.968Z] [INFO] Building projeto_odsoft_1240447 0.0.1-SNAPSHOT
+[2026-10-29T22:57:06.968Z] [INFO]   from pom.xml
+[2026-10-29T22:57:06.968Z] [INFO] --------------------------------[ jar ]---------------------------------
+[2026-10-29T22:57:09.454Z] [INFO] 
+[2026-10-29T22:57:09.454Z] [INFO] --- enforcer:3.5.0:enforce (enforce-toolchain) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:09.454Z] [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[2026-10-29T22:57:09.454Z] [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[2026-10-29T22:57:09.454Z] [INFO] 
+[2026-10-29T22:57:09.454Z] [INFO] --- jacoco:0.8.12:prepare-agent (prepare-agent) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:09.454Z] [INFO] argLine set to -javaagent:/var/jenkins_home/.m2/repository/org/jacoco/org.jacoco.agent/0.8.12/org.jacoco.agent-0.8.12-runtime.jar=destfile=/var/jenkins_home/workspace/odsoft-p1/target/jacoco.exec
+[2026-10-29T22:57:09.454Z] [INFO] 
+[2026-10-29T22:57:09.454Z] [INFO] --- resources:3.3.1:resources (default-resources) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:09.454Z] [INFO] Copying 1 resource from src/main/resources to target/classes
+[2026-10-29T22:57:09.454Z] [INFO] Copying 10 resources from src/main/resources to target/classes
+[2026-10-29T22:57:09.454Z] [INFO] 
+[2026-10-29T22:57:09.454Z] [INFO] --- compiler:3.11.0:compile (default-compile) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:09.705Z] [INFO] Nothing to compile - all classes are up to date
+[2026-10-29T22:57:09.705Z] [INFO] 
+[2026-10-29T22:57:09.705Z] [INFO] --- resources:3.3.1:testResources (default-testResources) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:09.705Z] [INFO] Copying 2 resources from src/test/resources to target/test-classes
+[2026-10-29T22:57:09.705Z] [INFO] 
+[2026-10-29T22:57:09.705Z] [INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:09.705Z] [INFO] Changes detected - recompiling the module! :source
+[2026-10-29T22:57:09.706Z] [INFO] Compiling 23 source files with javac [debug release 17] to target/test-classes
+[2026-10-29T22:57:12.938Z] [INFO] 
+[2026-10-29T22:57:12.938Z] [INFO] --- surefire:3.1.2:test (default-test) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:16.169Z] [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[2026-10-29T22:57:17.081Z] [INFO] 
+[2026-10-29T22:57:17.081Z] [INFO] -------------------------------------------------------
+[2026-10-29T22:57:17.081Z] [INFO]  T E S T S
+[2026-10-29T22:57:17.081Z] [INFO] -------------------------------------------------------
+[2026-10-29T22:57:18.946Z] [INFO] Running pt.psoft.g1.psoftg1.genremanagement.model.GenreTest
+[2026-10-29T22:57:18.946Z] [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.200 s -- in pt.psoft.g1.psoftg1.genremanagement.model.GenreTest
+[2026-10-29T22:57:18.946Z] [INFO] Running pt.psoft.g1.psoftg1.lendingmanagement.services.LendingServiceImplTest
+[2026-10-29T22:57:19.859Z] 22:57:19.425 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.lendingmanagement.services.LendingServiceImplTest]: LendingServiceImplTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[2026-10-29T22:57:19.859Z] 22:57:19.685 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.lendingmanagement.services.LendingServiceImplTest
+[2026-10-29T22:57:20.771Z] 
+[2026-10-29T22:57:20.771Z]   .   ____          _            __ _ _
+[2026-10-29T22:57:20.771Z]  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+[2026-10-29T22:57:20.771Z] ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+[2026-10-29T22:57:20.771Z]  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+[2026-10-29T22:57:20.771Z]   '  |____| .__|_| |_|_| |_\__, | / / / /
+[2026-10-29T22:57:20.771Z]  =========|_|==============|___/=/_/_/_/
+[2026-10-29T22:57:20.771Z]  :: Spring Boot ::                (v3.2.5)
+[2026-10-29T22:57:20.771Z] 
+[2026-10-29T22:57:20.771Z] 2026-10-29T22:57:20.570Z  INFO 1930 --- [           main] p.p.g.p.l.s.LendingServiceImplTest       : Starting LendingServiceImplTest using Java 17.0.18 with PID 1930 (started by jenkins in /var/jenkins_home/workspace/odsoft-p1)
+[2026-10-29T22:57:20.771Z] 2026-10-29T22:57:20.573Z  INFO 1930 --- [           main] p.p.g.p.l.s.LendingServiceImplTest       : No active profile set, falling back to 1 default profile: "default"
+[2026-10-29T22:57:23.258Z] 2026-10-29T22:57:22.635Z  INFO 1930 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2026-10-29T22:57:23.258Z] 2026-10-29T22:57:23.017Z  INFO 1930 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 367 ms. Found 9 JPA repository interfaces.
+[2026-10-29T22:57:24.604Z] 2026-10-29T22:57:24.231Z  INFO 1930 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+[2026-10-29T22:57:24.604Z] 2026-10-29T22:57:24.331Z  INFO 1930 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+[2026-10-29T22:57:24.604Z] 2026-10-29T22:57:24.390Z  INFO 1930 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+[2026-10-29T22:57:24.855Z] 2026-10-29T22:57:24.748Z  INFO 1930 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+[2026-10-29T22:57:24.855Z] 2026-10-29T22:57:24.826Z  INFO 1930 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+[2026-10-29T22:57:25.767Z] 2026-10-29T22:57:25.358Z  INFO 1930 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=MYSQLUSER
+[2026-10-29T22:57:25.767Z] 2026-10-29T22:57:25.362Z  INFO 1930 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+[2026-10-29T22:57:25.768Z] 2026-10-29T22:57:25.401Z  WARN 1930 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2026-10-29T22:57:27.631Z] 2026-10-29T22:57:27.505Z  INFO 1930 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2026-10-29T22:57:27.883Z] 2026-10-29T22:57:27.666Z  INFO 1930 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2026-10-29T22:57:28.435Z] 2026-10-29T22:57:28.281Z  INFO 1930 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+[2026-10-29T22:57:30.921Z] 2026-10-29T22:57:30.801Z  WARN 1930 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2026-10-29T22:57:31.834Z] 2026-10-29T22:57:31.733Z  INFO 1930 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2cc5ba71, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@43cc4c12, org.springframework.security.web.context.SecurityContextHolderFilter@4c9caea1, org.springframework.security.web.header.HeaderWriterFilter@47cb0512, org.springframework.web.filter.CorsFilter@40e86be7, org.springframework.security.web.authentication.logout.LogoutFilter@654948db, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@4effe09e, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@a9fa77, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@36dce48d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@736a574a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7206bfe5, org.springframework.security.web.session.SessionManagementFilter@3cd95b79, org.springframework.security.web.access.ExceptionTranslationFilter@42e7696c, org.springframework.security.web.access.intercept.AuthorizationFilter@1b91cbb]
+[2026-10-29T22:57:32.746Z] 2026-10-29T22:57:32.380Z  INFO 1930 --- [           main] p.p.g.p.l.s.LendingServiceImplTest       : Started LendingServiceImplTest in 12.364 seconds (process running for 15.422)
+[2026-10-29T22:57:34.090Z] [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.04 s -- in pt.psoft.g1.psoftg1.lendingmanagement.services.LendingServiceImplTest
+[2026-10-29T22:57:34.090Z] [INFO] Running pt.psoft.g1.psoftg1.lendingmanagement.repositories.LendingRepositoryIntegrationTest
+[2026-10-29T22:57:34.090Z] 2026-10-29T22:57:33.938Z  INFO 1930 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.lendingmanagement.repositories.LendingRepositoryIntegrationTest]: LendingRepositoryIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[2026-10-29T22:57:34.091Z] 2026-10-29T22:57:33.957Z  INFO 1930 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.lendingmanagement.repositories.LendingRepositoryIntegrationTest
+[2026-10-29T22:57:35.003Z] [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.831 s -- in pt.psoft.g1.psoftg1.lendingmanagement.repositories.LendingRepositoryIntegrationTest
+[2026-10-29T22:57:35.003Z] [INFO] Running pt.psoft.g1.psoftg1.lendingmanagement.model.LendingTest
+[2026-10-29T22:57:35.003Z] [INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.086 s -- in pt.psoft.g1.psoftg1.lendingmanagement.model.LendingTest
+[2026-10-29T22:57:35.003Z] [INFO] Running pt.psoft.g1.psoftg1.lendingmanagement.model.LendingNumberTest
+[2026-10-29T22:57:35.003Z] [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in pt.psoft.g1.psoftg1.lendingmanagement.model.LendingNumberTest
+[2026-10-29T22:57:35.003Z] [INFO] Running pt.psoft.g1.psoftg1.bookmanagement.model.TitleTest
+[2026-10-29T22:57:35.003Z] [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in pt.psoft.g1.psoftg1.bookmanagement.model.TitleTest
+[2026-10-29T22:57:35.003Z] [INFO] Running pt.psoft.g1.psoftg1.bookmanagement.model.BookTest
+[2026-10-29T22:57:35.003Z] [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in pt.psoft.g1.psoftg1.bookmanagement.model.BookTest
+[2026-10-29T22:57:35.003Z] [INFO] Running pt.psoft.g1.psoftg1.bookmanagement.model.IsbnTest
+[2026-10-29T22:57:35.003Z] [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in pt.psoft.g1.psoftg1.bookmanagement.model.IsbnTest
+[2026-10-29T22:57:35.003Z] [INFO] Running pt.psoft.g1.psoftg1.bookmanagement.model.DescriptionTest
+[2026-10-29T22:57:35.003Z] [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in pt.psoft.g1.psoftg1.bookmanagement.model.DescriptionTest
+[2026-10-29T22:57:35.003Z] [INFO] Running pt.psoft.g1.psoftg1.authormanagement.services.AuthorServiceImplIntegrationTest
+[2026-10-29T22:57:35.254Z] 2026-10-29T22:57:34.935Z  INFO 1930 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.authormanagement.services.AuthorServiceImplIntegrationTest]: AuthorServiceImplIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[2026-10-29T22:57:35.254Z] 2026-10-29T22:57:34.946Z  INFO 1930 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.authormanagement.services.AuthorServiceImplIntegrationTest
+[2026-10-29T22:57:35.254Z] 
+[2026-10-29T22:57:35.254Z]   .   ____          _            __ _ _
+[2026-10-29T22:57:35.254Z]  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+[2026-10-29T22:57:35.254Z] ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+[2026-10-29T22:57:35.254Z]  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+[2026-10-29T22:57:35.254Z]   '  |____| .__|_| |_|_| |_\__, | / / / /
+[2026-10-29T22:57:35.254Z]  =========|_|==============|___/=/_/_/_/
+[2026-10-29T22:57:35.254Z]  :: Spring Boot ::                (v3.2.5)
+[2026-10-29T22:57:35.254Z] 
+[2026-10-29T22:57:35.254Z] 2026-10-29T22:57:34.975Z  INFO 1930 --- [           main] g.p.a.s.AuthorServiceImplIntegrationTest : Starting AuthorServiceImplIntegrationTest using Java 17.0.18 with PID 1930 (started by jenkins in /var/jenkins_home/workspace/odsoft-p1)
+[2026-10-29T22:57:35.254Z] 2026-10-29T22:57:34.976Z  INFO 1930 --- [           main] g.p.a.s.AuthorServiceImplIntegrationTest : No active profile set, falling back to 1 default profile: "default"
+[2026-10-29T22:57:35.505Z] 2026-10-29T22:57:35.255Z  INFO 1930 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2026-10-29T22:57:35.505Z] 2026-10-29T22:57:35.307Z  INFO 1930 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 9 JPA repository interfaces.
+[2026-10-29T22:57:36.417Z] 2026-10-29T22:57:36.263Z  INFO 1930 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+[2026-10-29T22:57:36.417Z] 2026-10-29T22:57:36.277Z  INFO 1930 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+[2026-10-29T22:57:36.417Z] 2026-10-29T22:57:36.297Z  INFO 1930 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+[2026-10-29T22:57:36.417Z] 2026-10-29T22:57:36.300Z  INFO 1930 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+[2026-10-29T22:57:36.417Z] 2026-10-29T22:57:36.303Z  INFO 1930 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:testdb user=MYSQLUSER
+[2026-10-29T22:57:36.417Z] 2026-10-29T22:57:36.305Z  INFO 1930 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+[2026-10-29T22:57:36.418Z] 2026-10-29T22:57:36.309Z  WARN 1930 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2026-10-29T22:57:37.330Z] 2026-10-29T22:57:36.990Z  INFO 1930 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2026-10-29T22:57:37.330Z] 2026-10-29T22:57:37.082Z  INFO 1930 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2026-10-29T22:57:38.242Z] 2026-10-29T22:57:37.910Z  WARN 1930 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2026-10-29T22:57:38.493Z] 2026-10-29T22:57:38.221Z  INFO 1930 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@388489e9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6b221aa4, org.springframework.security.web.context.SecurityContextHolderFilter@443e2c5e, org.springframework.security.web.header.HeaderWriterFilter@3050879c, org.springframework.web.filter.CorsFilter@3676e544, org.springframework.security.web.authentication.logout.LogoutFilter@6eb3c192, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@626a78e7, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@63b7ed10, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@383c0424, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@c6408d8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3721b5bd, org.springframework.security.web.session.SessionManagementFilter@1ff91205, org.springframework.security.web.access.ExceptionTranslationFilter@64f5633, org.springframework.security.web.access.intercept.AuthorizationFilter@137801bc]
+[2026-10-29T22:57:38.744Z] 2026-10-29T22:57:38.563Z  INFO 1930 --- [           main] g.p.a.s.AuthorServiceImplIntegrationTest : Started AuthorServiceImplIntegrationTest in 3.613 seconds (process running for 21.606)
+[2026-10-29T22:57:38.744Z] [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.735 s -- in pt.psoft.g1.psoftg1.authormanagement.services.AuthorServiceImplIntegrationTest
+[2026-10-29T22:57:38.744Z] [INFO] Running pt.psoft.g1.psoftg1.authormanagement.repository.AuthorRepositoryIntegrationTest
+[2026-10-29T22:57:38.744Z] 2026-10-29T22:57:38.683Z  INFO 1930 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.authormanagement.repository.AuthorRepositoryIntegrationTest]: AuthorRepositoryIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[2026-10-29T22:57:38.995Z] 2026-10-29T22:57:38.747Z  INFO 1930 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.authormanagement.repository.AuthorRepositoryIntegrationTest
+[2026-10-29T22:57:38.995Z] 
+[2026-10-29T22:57:38.995Z]   .   ____          _            __ _ _
+[2026-10-29T22:57:38.995Z]  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+[2026-10-29T22:57:38.995Z] ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+[2026-10-29T22:57:38.995Z]  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+[2026-10-29T22:57:38.995Z]   '  |____| .__|_| |_|_| |_\__, | / / / /
+[2026-10-29T22:57:38.995Z]  =========|_|==============|___/=/_/_/_/
+[2026-10-29T22:57:38.995Z]  :: Spring Boot ::                (v3.2.5)
+[2026-10-29T22:57:38.995Z] 
+[2026-10-29T22:57:38.995Z] 2026-10-29T22:57:38.813Z  INFO 1930 --- [           main] .g.p.a.r.AuthorRepositoryIntegrationTest : Starting AuthorRepositoryIntegrationTest using Java 17.0.18 with PID 1930 (started by jenkins in /var/jenkins_home/workspace/odsoft-p1)
+[2026-10-29T22:57:38.995Z] 2026-10-29T22:57:38.813Z  INFO 1930 --- [           main] .g.p.a.r.AuthorRepositoryIntegrationTest : No active profile set, falling back to 1 default profile: "default"
+[2026-10-29T22:57:39.246Z] 2026-10-29T22:57:39.043Z  INFO 1930 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2026-10-29T22:57:39.246Z] 2026-10-29T22:57:39.102Z  INFO 1930 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 9 JPA repository interfaces.
+[2026-10-29T22:57:39.246Z] 2026-10-29T22:57:39.141Z  INFO 1930 --- [           main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+[2026-10-29T22:57:39.497Z] 2026-10-29T22:57:39.207Z  INFO 1930 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:359ae645-9c49-47c8-95c9-5697bb335664;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+[2026-10-29T22:57:39.497Z] 2026-10-29T22:57:39.248Z  INFO 1930 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+[2026-10-29T22:57:39.497Z] 2026-10-29T22:57:39.251Z  INFO 1930 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+[2026-10-29T22:57:39.497Z] 2026-10-29T22:57:39.258Z  INFO 1930 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+[2026-10-29T22:57:39.497Z] 2026-10-29T22:57:39.262Z  WARN 1930 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[2026-10-29T22:57:39.748Z] 2026-10-29T22:57:39.666Z  INFO 1930 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2026-10-29T22:57:39.748Z] Hibernate: create table author (author_number bigint not null, bio varchar(4096) not null, name varchar(150), version bigint not null, photo_id bigint, primary key (author_number))
+[2026-10-29T22:57:39.748Z] Hibernate: create table book (pk bigint not null, description varchar(4096), isbn varchar(16), title varchar(128), version bigint, photo_id bigint, genre_pk bigint not null, primary key (pk))
+[2026-10-29T22:57:39.748Z] Hibernate: create table book_authors (book_pk bigint not null, authors_author_number bigint not null)
+[2026-10-29T22:57:39.748Z] Hibernate: create table fine (pk bigint not null, cents_value integer not null, fine_value_per_day_in_cents integer, lending_pk bigint not null, primary key (pk))
+[2026-10-29T22:57:39.748Z] Hibernate: create table forbidden_name (pk bigint not null, forbidden_name varchar(255) not null, primary key (pk))
+[2026-10-29T22:57:40.000Z] Hibernate: create table genre (pk bigint not null, genre varchar(100) not null, primary key (pk))
+[2026-10-29T22:57:40.000Z] Hibernate: create table lending (pk bigint not null, commentary varchar(1024), fine_value_per_day_in_cents integer not null, lending_number varchar(32), limit_date date not null, returned_date date, start_date date not null, version bigint not null, book_pk bigint not null, reader_details_pk bigint not null, primary key (pk))
+[2026-10-29T22:57:40.000Z] Hibernate: create table photo (pk bigint not null, photo_file varchar(255) not null, primary key (pk))
+[2026-10-29T22:57:40.000Z] Hibernate: create table reader_details (pk bigint not null, birth_date date not null, gdpr_consent boolean, marketing_consent boolean, phone_number varchar(255), reader_number varchar(255), third_party_sharing_consent boolean, version bigint, photo_id bigint, reader_user_id bigint, primary key (pk))
+[2026-10-29T22:57:40.000Z] Hibernate: create table reader_details_interest_list (reader_details_pk bigint not null, interest_list_pk bigint not null)
+[2026-10-29T22:57:40.000Z] Hibernate: create table t_user (dtype varchar(31) not null, user_id bigint not null, created_at timestamp(6) not null, created_by varchar(255) not null, enabled boolean not null, modified_at timestamp(6) not null, modified_by varchar(255) not null, name varchar(150), password varchar(255) not null, username varchar(255) not null, version bigint, primary key (user_id))
+[2026-10-29T22:57:40.000Z] Hibernate: create table user_authorities (user_user_id bigint not null, authorities varbinary(255))
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists author drop constraint if exists UK_8ohfehogmsk0lvd215had37h1
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists author add constraint UK_8ohfehogmsk0lvd215had37h1 unique (photo_id)
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists book drop constraint if exists uc_book_isbn
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists book add constraint uc_book_isbn unique (isbn)
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists book drop constraint if exists UK_iht4edf5qjsosvs5wh329vsis
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists book add constraint UK_iht4edf5qjsosvs5wh329vsis unique (photo_id)
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists fine drop constraint if exists UK_i5vn483xq5sb1ulcusavk5hnc
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists fine add constraint UK_i5vn483xq5sb1ulcusavk5hnc unique (lending_pk)
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists genre drop constraint if exists UK_89b48lwadspmkos0rx7hidlty
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists genre add constraint UK_89b48lwadspmkos0rx7hidlty unique (genre)
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists lending drop constraint if exists UKb1kindqejxfb0yx241lm29e2n
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists lending add constraint UKb1kindqejxfb0yx241lm29e2n unique (lending_number)
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists reader_details drop constraint if exists UK_7cbncm4p1o5bxhttg848dl5dc
+[2026-10-29T22:57:40.000Z] Hibernate: alter table if exists reader_details add constraint UK_7cbncm4p1o5bxhttg848dl5dc unique (photo_id)
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists reader_details drop constraint if exists UK_b2x6thvymexlbt9itvundg84p
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists reader_details add constraint UK_b2x6thvymexlbt9itvundg84p unique (reader_user_id)
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists t_user drop constraint if exists UK_jhib4legehrm4yscx9t3lirqi
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists t_user add constraint UK_jhib4legehrm4yscx9t3lirqi unique (username)
+[2026-10-29T22:57:40.001Z] Hibernate: create sequence author_seq start with 1 increment by 50
+[2026-10-29T22:57:40.001Z] Hibernate: create sequence book_seq start with 1 increment by 50
+[2026-10-29T22:57:40.001Z] Hibernate: create sequence fine_seq start with 1 increment by 50
+[2026-10-29T22:57:40.001Z] Hibernate: create sequence forbidden_name_seq start with 1 increment by 50
+[2026-10-29T22:57:40.001Z] Hibernate: create sequence genre_seq start with 1 increment by 50
+[2026-10-29T22:57:40.001Z] Hibernate: create sequence lending_seq start with 1 increment by 50
+[2026-10-29T22:57:40.001Z] Hibernate: create sequence photo_seq start with 1 increment by 50
+[2026-10-29T22:57:40.001Z] Hibernate: create sequence reader_details_seq start with 1 increment by 50
+[2026-10-29T22:57:40.001Z] Hibernate: create sequence t_user_seq start with 1 increment by 50
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists author add constraint FKlcc5qir879nsu8vjhfflfl3vm foreign key (photo_id) references photo
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists book add constraint FKc4kkvusmioiqpnhuhic8wsjsv foreign key (photo_id) references photo
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists book add constraint FKb2b9ofh06sbwdxvvhepcec7 foreign key (genre_pk) references genre
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists book_authors add constraint FKkhnivov03734cv65f093rbnqk foreign key (authors_author_number) references author
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists book_authors add constraint FKey9jk2is5wfykignfdwiqcnh3 foreign key (book_pk) references book
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists fine add constraint FK86ehbbpfbm1rowx2ef2npe6iu foreign key (lending_pk) references lending
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists lending add constraint FKpg16261b2ws5fy4qblkhog13a foreign key (book_pk) references book
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists lending add constraint FKt045xcbmbhiyrxpucs8csbrrm foreign key (reader_details_pk) references reader_details
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists reader_details add constraint FKarvajm1nx7uca9462u5cswosy foreign key (photo_id) references photo
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists reader_details add constraint FKcwr89cy78vobvmxriafrr0elc foreign key (reader_user_id) references t_user
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists reader_details_interest_list add constraint FKs5hbn8qk95hlivueobu34p78r foreign key (interest_list_pk) references genre
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists reader_details_interest_list add constraint FK4s9ktg7b14jstci1r8sspj99 foreign key (reader_details_pk) references reader_details
+[2026-10-29T22:57:40.001Z] Hibernate: alter table if exists user_authorities add constraint FKg3ms6twsd5wemq30u2bvhj7if foreign key (user_user_id) references t_user
+[2026-10-29T22:57:40.001Z] 2026-10-29T22:57:39.792Z  INFO 1930 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2026-10-29T22:57:40.252Z] 2026-10-29T22:57:40.219Z  INFO 1930 --- [           main] .g.p.a.r.AuthorRepositoryIntegrationTest : Started AuthorRepositoryIntegrationTest in 1.465 seconds (process running for 23.261)
+[2026-10-29T22:57:40.503Z] Hibernate: select next value for author_seq
+[2026-10-29T22:57:40.504Z] Hibernate: insert into author (bio,name,photo_id,version,author_number) values (?,?,?,?,?)
+[2026-10-29T22:57:40.504Z] Hibernate: select a1_0.author_number,a1_0.bio,a1_0.name,a1_0.photo_id,a1_0.version from author a1_0 where a1_0.name=?
+[2026-10-29T22:57:40.504Z] [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.617 s -- in pt.psoft.g1.psoftg1.authormanagement.repository.AuthorRepositoryIntegrationTest
+[2026-10-29T22:57:40.504Z] [INFO] Running pt.psoft.g1.psoftg1.authormanagement.model.BioTest
+[2026-10-29T22:57:40.504Z] [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in pt.psoft.g1.psoftg1.authormanagement.model.BioTest
+[2026-10-29T22:57:40.504Z] [INFO] Running pt.psoft.g1.psoftg1.authormanagement.model.AuthorTest
+[2026-10-29T22:57:40.504Z] [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.050 s -- in pt.psoft.g1.psoftg1.authormanagement.model.AuthorTest
+[2026-10-29T22:57:40.504Z] [INFO] Running pt.psoft.g1.psoftg1.readermanagement.model.BirthDateTest
+[2026-10-29T22:57:40.504Z] [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.020 s -- in pt.psoft.g1.psoftg1.readermanagement.model.BirthDateTest
+[2026-10-29T22:57:40.504Z] [INFO] Running pt.psoft.g1.psoftg1.readermanagement.model.ReaderTest
+[2026-10-29T22:57:41.056Z] [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.393 s -- in pt.psoft.g1.psoftg1.readermanagement.model.ReaderTest
+[2026-10-29T22:57:41.057Z] [INFO] Running pt.psoft.g1.psoftg1.readermanagement.model.PhoneNumberTest
+[2026-10-29T22:57:41.057Z] [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in pt.psoft.g1.psoftg1.readermanagement.model.PhoneNumberTest
+[2026-10-29T22:57:41.057Z] [INFO] Running pt.psoft.g1.psoftg1.PsoftG1ApplicationTests
+[2026-10-29T22:57:41.057Z] 2026-10-29T22:57:40.845Z  INFO 1930 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.PsoftG1ApplicationTests]: PsoftG1ApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[2026-10-29T22:57:41.057Z] 2026-10-29T22:57:40.871Z  INFO 1930 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.PsoftG1ApplicationTests
+[2026-10-29T22:57:41.057Z] [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 s -- in pt.psoft.g1.psoftg1.PsoftG1ApplicationTests
+[2026-10-29T22:57:41.057Z] [INFO] Running pt.psoft.g1.psoftg1.shared.model.PhotoTest
+[2026-10-29T22:57:41.057Z] [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in pt.psoft.g1.psoftg1.shared.model.PhotoTest
+[2026-10-29T22:57:41.057Z] [INFO] Running pt.psoft.g1.psoftg1.shared.model.NameTest
+[2026-10-29T22:57:41.057Z] [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in pt.psoft.g1.psoftg1.shared.model.NameTest
+[2026-10-29T22:57:41.308Z] [INFO] 
+[2026-10-29T22:57:41.308Z] [INFO] Results:
+[2026-10-29T22:57:41.308Z] [INFO] 
+[2026-10-29T22:57:41.308Z] [INFO] Tests run: 102, Failures: 0, Errors: 0, Skipped: 0
+[2026-10-29T22:57:41.308Z] [INFO] 
+[2026-10-29T22:57:41.308Z] [INFO] ------------------------------------------------------------------------
+[2026-10-29T22:57:41.308Z] [INFO] BUILD SUCCESS
+[2026-10-29T22:57:41.308Z] [INFO] ------------------------------------------------------------------------
+[2026-10-29T22:57:41.308Z] [INFO] Total time:  34.837 s
+[2026-10-29T22:57:41.308Z] [INFO] Finished at: 2026-10-29T22:57:41Z
+[2026-10-29T22:57:41.308Z] [INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Coverage)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
+[2026-10-29T22:57:42.050Z] + mvn -B -ntp jacoco:report
+[2026-10-29T22:57:43.395Z] [INFO] Scanning for projects...
+[2026-10-29T22:57:43.947Z] [INFO] 
+[2026-10-29T22:57:43.947Z] [INFO] -----------------< pt.psoft.g1:projeto-odsoft-1240447 >-----------------
+[2026-10-29T22:57:43.947Z] [INFO] Building projeto_odsoft_1240447 0.0.1-SNAPSHOT
+[2026-10-29T22:57:43.947Z] [INFO]   from pom.xml
+[2026-10-29T22:57:43.947Z] [INFO] --------------------------------[ jar ]---------------------------------
+[2026-10-29T22:57:43.947Z] [INFO] 
+[2026-10-29T22:57:43.947Z] [INFO] --- jacoco:0.8.12:report (default-cli) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:44.198Z] [INFO] Loading execution data file /var/jenkins_home/workspace/odsoft-p1/target/jacoco.exec
+[2026-10-29T22:57:44.749Z] [INFO] Analyzed bundle 'projeto_odsoft_1240447' with 139 classes
+[2026-10-29T22:57:45.302Z] [INFO] ------------------------------------------------------------------------
+[2026-10-29T22:57:45.302Z] [INFO] BUILD SUCCESS
+[2026-10-29T22:57:45.302Z] [INFO] ------------------------------------------------------------------------
+[2026-10-29T22:57:45.302Z] [INFO] Total time:  1.711 s
+[2026-10-29T22:57:45.302Z] [INFO] Finished at: 2026-10-29T22:57:45Z
+[2026-10-29T22:57:45.302Z] [INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Package)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
+[2026-10-29T22:57:45.791Z] + mvn -B -ntp -DskipTests package
+[2026-10-29T22:57:47.136Z] [INFO] Scanning for projects...
+[2026-10-29T22:57:47.688Z] [INFO] 
+[2026-10-29T22:57:47.688Z] [INFO] -----------------< pt.psoft.g1:projeto-odsoft-1240447 >-----------------
+[2026-10-29T22:57:47.688Z] [INFO] Building projeto_odsoft_1240447 0.0.1-SNAPSHOT
+[2026-10-29T22:57:47.688Z] [INFO]   from pom.xml
+[2026-10-29T22:57:47.688Z] [INFO] --------------------------------[ jar ]---------------------------------
+[2026-10-29T22:57:49.552Z] [INFO] 
+[2026-10-29T22:57:49.552Z] [INFO] --- enforcer:3.5.0:enforce (enforce-toolchain) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:50.103Z] [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[2026-10-29T22:57:50.103Z] [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[2026-10-29T22:57:50.103Z] [INFO] 
+[2026-10-29T22:57:50.103Z] [INFO] --- jacoco:0.8.12:prepare-agent (prepare-agent) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:50.103Z] [INFO] argLine set to -javaagent:/var/jenkins_home/.m2/repository/org/jacoco/org.jacoco.agent/0.8.12/org.jacoco.agent-0.8.12-runtime.jar=destfile=/var/jenkins_home/workspace/odsoft-p1/target/jacoco.exec
+[2026-10-29T22:57:50.103Z] [INFO] 
+[2026-10-29T22:57:50.103Z] [INFO] --- resources:3.3.1:resources (default-resources) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:50.103Z] [INFO] Copying 1 resource from src/main/resources to target/classes
+[2026-10-29T22:57:50.103Z] [INFO] Copying 10 resources from src/main/resources to target/classes
+[2026-10-29T22:57:50.104Z] [INFO] 
+[2026-10-29T22:57:50.104Z] [INFO] --- compiler:3.11.0:compile (default-compile) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:50.355Z] [INFO] Nothing to compile - all classes are up to date
+[2026-10-29T22:57:50.355Z] [INFO] 
+[2026-10-29T22:57:50.355Z] [INFO] --- resources:3.3.1:testResources (default-testResources) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:50.355Z] [INFO] Copying 2 resources from src/test/resources to target/test-classes
+[2026-10-29T22:57:50.355Z] [INFO] 
+[2026-10-29T22:57:50.355Z] [INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:50.606Z] [INFO] Changes detected - recompiling the module! :source
+[2026-10-29T22:57:50.606Z] [INFO] Compiling 23 source files with javac [debug release 17] to target/test-classes
+[2026-10-29T22:57:53.835Z] [INFO] 
+[2026-10-29T22:57:53.835Z] [INFO] --- surefire:3.1.2:test (default-test) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:53.835Z] [INFO] Tests are skipped.
+[2026-10-29T22:57:53.835Z] [INFO] 
+[2026-10-29T22:57:53.835Z] [INFO] --- jar:3.3.0:jar (default-jar) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:54.747Z] [INFO] Building jar: /var/jenkins_home/workspace/odsoft-p1/target/projeto-odsoft-1240447-0.0.1-SNAPSHOT.jar
+[2026-10-29T22:57:54.747Z] [INFO] 
+[2026-10-29T22:57:54.747Z] [INFO] --- spring-boot:3.2.5:repackage (repackage) @ projeto-odsoft-1240447 ---
+[2026-10-29T22:57:58.871Z] [INFO] Replacing main artifact /var/jenkins_home/workspace/odsoft-p1/target/projeto-odsoft-1240447-0.0.1-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[2026-10-29T22:57:58.872Z] [INFO] The original artifact has been renamed to /var/jenkins_home/workspace/odsoft-p1/target/projeto-odsoft-1240447-0.0.1-SNAPSHOT.jar.original
+[2026-10-29T22:57:58.872Z] [INFO] ------------------------------------------------------------------------
+[2026-10-29T22:57:58.872Z] [INFO] BUILD SUCCESS
+[2026-10-29T22:57:58.872Z] [INFO] ------------------------------------------------------------------------
+[2026-10-29T22:57:58.872Z] [INFO] Total time:  10.910 s
+[2026-10-29T22:57:58.872Z] [INFO] Finished at: 2026-10-29T22:57:58Z
+[2026-10-29T22:57:58.872Z] [INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] junit
+[2026-10-29T22:57:59.094Z] Recording test results
+[2026-10-29T22:57:59.214Z] [Checks API] No suitable checks publisher found.
+[Pipeline] jacoco
+[2026-10-29T22:57:59.246Z] [JaCoCo plugin] Collecting JaCoCo coverage data...
+[2026-10-29T22:57:59.246Z] [JaCoCo plugin] Version: 3.3.7
+[2026-10-29T22:57:59.246Z] [JaCoCo plugin] target/jacoco.exec;target/classes;src/main/java; locations are configured
+[2026-10-29T22:57:59.248Z] [JaCoCo plugin] Number of found exec files for pattern target/jacoco.exec: 1
+[2026-10-29T22:57:59.254Z] [JaCoCo plugin] Saving matched execfiles:  /var/jenkins_home/workspace/odsoft-p1/target/jacoco.exec
+[2026-10-29T22:57:59.343Z] [JaCoCo plugin] Saving matched class directories for class-pattern: target/classes: 
+[2026-10-29T22:57:59.343Z] [JaCoCo plugin]  - /var/jenkins_home/workspace/odsoft-p1/target/classes 166 files
+[2026-10-29T22:57:59.343Z] [JaCoCo plugin] Saving matched source directories for source-pattern: src/main/java: 
+[2026-10-29T22:57:59.343Z] [JaCoCo plugin] Source Inclusions: **/*.java,**/*.groovy,**/*.kt,**/*.kts
+[2026-10-29T22:57:59.416Z] [JaCoCo plugin] Source Exclusions: 
+[2026-10-29T22:57:59.416Z] [JaCoCo plugin] - /var/jenkins_home/workspace/odsoft-p1/src/main/java 144 files
+[2026-10-29T22:57:59.416Z] [JaCoCo plugin] Loading inclusions files..
+[2026-10-29T22:57:59.416Z] [JaCoCo plugin] inclusions: []
+[2026-10-29T22:57:59.416Z] [JaCoCo plugin] exclusions: []
+[2026-10-29T22:57:59.634Z] [JaCoCo plugin] Thresholds: JacocoHealthReportThresholds [minClass=0, maxClass=0, minMethod=0, maxMethod=0, minLine=0, maxLine=0, minBranch=0, maxBranch=0, minInstruction=0, maxInstruction=0, minComplexity=0, maxComplexity=0]
+[2026-10-29T22:57:59.634Z] [JaCoCo plugin] Publishing the results..
+[2026-10-29T22:57:59.712Z] [JaCoCo plugin] Loading packages..
+[2026-10-29T22:57:59.724Z] [JaCoCo plugin] Done.
+[2026-10-29T22:57:59.731Z] [JaCoCo plugin] Overall coverage: class: 58.27338, method: 18.057922, line: 19.456068, branch: 4.536642, instruction: 13.304503, complexity: 10.430195
+[Pipeline] recordIssues
+[2026-10-29T22:58:00.110Z] [CheckStyle] Searching for all files in '/var/jenkins_home/workspace/odsoft-p1' that match the pattern 'target/checkstyle-result.xml'
+[2026-10-29T22:58:00.110Z] [CheckStyle] Traversing of symbolic links: enabled
+[2026-10-29T22:58:00.110Z] [CheckStyle] -> found 1 file
+[2026-10-29T22:58:00.110Z] [CheckStyle] Successfully parsed file /var/jenkins_home/workspace/odsoft-p1/target/checkstyle-result.xml
+[2026-10-29T22:58:00.110Z] [CheckStyle] -> found 109 issues (skipped 0 duplicates)
+[2026-10-29T22:58:00.110Z] [CheckStyle] Successfully processed file 'target/checkstyle-result.xml'
+[2026-10-29T22:58:00.570Z] [CheckStyle] Post processing issues on 'Master' with source code encoding 'UTF-8'
+[2026-10-29T22:58:00.571Z] [CheckStyle] Creating SCM blamer to obtain author and commit information for affected files
+[2026-10-29T22:58:00.571Z] [CheckStyle] -> No blamer installed yet. You need to install the 'git-forensics' plugin to enable blaming for Git.
+[2026-10-29T22:58:00.571Z] [CheckStyle] Resolving file names for all issues in workspace '/var/jenkins_home/workspace/odsoft-p1'
+[2026-10-29T22:58:00.571Z] [CheckStyle] -> resolved paths in source directory (61 found, 0 not found)
+[2026-10-29T22:58:00.571Z] [CheckStyle] Resolving module names from module definitions (build.xml, pom.xml, or Manifest.mf files)
+[2026-10-29T22:58:00.571Z] [CheckStyle] -> resolved module names for 109 issues
+[2026-10-29T22:58:00.571Z] [CheckStyle] Resolving package names (or namespaces) by parsing the affected files
+[2026-10-29T22:58:00.571Z] [CheckStyle] -> resolved package names of 61 affected files
+[2026-10-29T22:58:00.571Z] [CheckStyle] No filter has been set, publishing all 109 issues
+[2026-10-29T22:58:00.571Z] [CheckStyle] Creating fingerprints for all affected code blocks to track issues over different builds
+[2026-10-29T22:58:00.571Z] [CheckStyle] -> created fingerprints for 109 issues (skipped 0 issues)
+[2026-10-29T22:58:00.571Z] [CheckStyle] Copying affected files to Jenkins' build folder '/var/jenkins_home/jobs/odsoft-p1/builds/3/files-with-issues'
+[2026-10-29T22:58:00.571Z] [CheckStyle] -> 61 copied, 0 not in workspace, 0 not-found, 0 with I/O error
+[2026-10-29T22:58:00.571Z] [CheckStyle] Skipping cleaning of source code files in old builds
+[2026-10-29T22:58:00.571Z] [CheckStyle] Repository miner is not configured, skipping repository mining
+[2026-10-29T22:58:00.597Z] [CheckStyle] Reference build recorder is not configured
+[2026-10-29T22:58:00.597Z] [CheckStyle] No valid reference build found
+[2026-10-29T22:58:00.597Z] [CheckStyle] All reported issues will be considered outstanding
+[2026-10-29T22:58:00.597Z] [CheckStyle] No quality gates have been set - skipping
+[2026-10-29T22:58:00.597Z] [CheckStyle] Health report is disabled - skipping
+[2026-10-29T22:58:00.597Z] [CheckStyle] Created analysis result for 109 issues (found 0 new issues, fixed 0 issues)
+[2026-10-29T22:58:00.597Z] [CheckStyle] Attaching ResultAction with ID 'checkstyle' to build 'odsoft-p1 #3'.
+[2026-10-29T22:58:00.703Z] [Checks API] No suitable checks publisher found.
+[Pipeline] archiveArtifacts
+[2026-10-29T22:58:00.733Z] Archiving artifacts
+[Pipeline] publishHTML
+[2026-10-29T22:58:00.912Z] [htmlpublisher] Archiving HTML reports...
+[2026-10-29T22:58:00.915Z] [htmlpublisher] Archiving at BUILD level /var/jenkins_home/workspace/odsoft-p1/target/site/jacoco to JaCoCo_20Coverage
+[2026-10-29T22:58:00.915Z] [htmlpublisher] Copying recursive using current thread
+[Pipeline] echo
+[2026-10-29T22:58:01.062Z] Pipeline concluído com sucesso.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

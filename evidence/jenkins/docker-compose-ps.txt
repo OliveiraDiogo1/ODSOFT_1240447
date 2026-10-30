@@ -1,0 +1,2 @@
+NAME             IMAGE             COMMAND                  SERVICE   CREATED         STATUS         PORTS
+odsoft-jenkins   jenkins-jenkins   "/usr/bin/tini -- /uÔÇª"   jenkins   3 minutes ago   Up 3 minutes   0.0.0.0:8080->8080/tcp, 0.0.0.0:50000->50000/tcp

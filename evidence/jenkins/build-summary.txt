@@ -1,0 +1,6 @@
+build_number=3
+result=SUCCESS
+duration_ms=173491
+timestamp=1793314507867
+url=http://localhost:8080/job/odsoft-p1/3/
+commit=906aac2115d9280a36b07a2643029f08b749a055
