@@ -55,6 +55,8 @@ Os logs estão em:
 evidence/baseline/mvn-test.txt
 evidence/baseline/mvn-package.txt
 evidence/baseline/summary.txt
+evidence/baseline/quality-metrics.txt
+evidence/baseline/jacoco.csv
 ```
 
 ## Como validar localmente
