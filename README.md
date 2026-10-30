@@ -20,8 +20,8 @@ Implementado:
   cobertura e packaging;
 - Jenkins local em Docker (`jenkins/`);
 - relatórios de testes, cobertura e análise estática arquivados pelo pipeline;
-- job `odsoft-p1` criado por SCM e build **#3 com sucesso** (102 testes,
-  173,5 s), com evidências em `evidence/jenkins/`;
+- job `odsoft-p1` criado por SCM e build **#4 com sucesso** (102 testes,
+  90,4 s), com evidências em `evidence/jenkins/`;
 - deployment local para `dev`, `staging` e `prod` em contentores Docker
   separados, com health checks e evidências em `evidence/deploy/`.
 
@@ -89,7 +89,7 @@ docker compose up -d
 ```
 
 O job `odsoft-p1` já foi criado e executado com sucesso contra o repositório
-montado em `/workspace`. O build #3 demorou 173,5 s e produziu os relatórios de
+montado em `/workspace`. O build #4 demorou 90,4 s e produziu os relatórios de
 testes, cobertura e Checkstyle. As evidências estão em:
 
 ```
@@ -304,7 +304,7 @@ simulada como se estivesse concluída.
 |---|---|
 | C1.1 Jenkins em dois contextos | Local implementado e validado; VM DEI pendente |
 | C1.2 Integração SCM e execução automática | `Jenkinsfile` versionado; job `odsoft-p1` por SCM executado |
-| C1.3 Build, análise estática, packaging e testes | Implementado no pipeline; build #3 SUCCESS |
+| C1.3 Build, análise estática, packaging e testes | Implementado no pipeline; build #4 SUCCESS |
 | C1.4 Deployment em destinos distintos | Implementado localmente em três contentores; VM/remote pendente |
 | C1.5 Ambientes dev/staging/prod | Implementado localmente, com perfis e volumes separados |
 | C2.1–C2.5 Testes | Suite base existe; melhoria na Fase 3 |

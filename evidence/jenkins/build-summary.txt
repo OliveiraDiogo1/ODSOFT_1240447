@@ -1,6 +1,6 @@
-build_number=3
+build_number=4
 result=SUCCESS
-duration_ms=173491
-timestamp=1793314507867
-url=http://localhost:8080/job/odsoft-p1/3/
-commit=906aac2115d9280a36b07a2643029f08b749a055
+duration_ms=90370
+timestamp=1793315927920
+url=http://localhost:8080/job/odsoft-p1/4/
+commit=ea87d8452273bbd15fa6690d9f4d52bfcc971de8
