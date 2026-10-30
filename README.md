@@ -172,6 +172,40 @@ projeto_odsoft_1240447/
 └── README.md
 ```
 
+## Segundo contexto — VM DEI (pendente)
+
+Para fechar o C1.1 falta executar o pipeline na VM DEI. A instalação base,
+seguindo o material da unidade curricular, é:
+
+```bash
+sudo apt update
+sudo apt install -y openjdk-21-jdk maven git curl
+
+curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key \
+  | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/" \
+  | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt update
+sudo apt install -y jenkins
+
+# Ajustar a porta, se for necessario (o material usa 2226)
+sudo sed -i 's/JENKINS_PORT=8080/JENKINS_PORT=2226/' /lib/systemd/system/jenkins.service
+sudo systemctl daemon-reload
+sudo systemctl restart jenkins
+```
+
+Depois:
+
+1. instalar os mesmos plugins de `jenkins/plugins.txt`;
+2. configurar JDK 17 e Maven;
+3. criar o job `odsoft-p1` por SCM, com a URL do repositório ODSOFT;
+4. executar o pipeline e guardar os logs em `evidence/jenkins-vm/`;
+5. comparar os dois contextos (versão, plugins, permissões, conectividade,
+   tempo de build e limitações).
+
+Sem acesso/credenciais à VM, esta parte fica explicitamente pendente; não foi
+simulada como se estivesse concluída.
+
 ## Relação com a rubrica ODSOFT
 
 | Critério | Estado na Fase 1 |
