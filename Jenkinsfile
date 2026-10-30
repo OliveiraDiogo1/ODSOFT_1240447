@@ -190,9 +190,6 @@ pipeline {
     post {
         always {
             junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
-            jacoco execPattern: 'target/jacoco.exec',
-                   classPattern: 'target/classes',
-                   sourcePattern: 'src/main/java'
             recordIssues(tools: [checkStyle(pattern: 'target/checkstyle-result.xml')])
             archiveArtifacts artifacts: 'target/*.jar, target/site/jacoco/**/*, target/checkstyle-result.xml, target/spotbugsXml.xml',
                              allowEmptyArchive: true
