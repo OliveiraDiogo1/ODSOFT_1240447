@@ -1,0 +1,21 @@
+[Unit]
+Description=ODSOFT LMS - desenvolvimento
+After=network.target
+
+[Service]
+Type=simple
+User=odsoft
+Group=odsoft
+WorkingDirectory=/opt/odsoft
+Environment="SPRING_PROFILES_ACTIVE=bootstrap,dev"
+Environment="DATA_DIR=/opt/odsoft/data/dev"
+Environment="SERVER_PORT=2224"
+ExecStart=/usr/bin/java -Xms64m -Xmx128m -jar /opt/odsoft/current-dev/app.jar
+Restart=on-failure
+RestartSec=5
+SuccessExitStatus=143
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

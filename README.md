@@ -255,7 +255,14 @@ projeto_odsoft_1240447/
 │   ├── deploy.sh
 │   ├── deploy.ps1
 │   ├── smoke.sh
-│   └── smoke.ps1
+│   ├── smoke.ps1
+│   └── vm/
+│       ├── setup.sh
+│       ├── deploy.sh
+│       ├── smoke.sh
+│       ├── odsoft-dev.service
+│       ├── odsoft-staging.service
+│       └── odsoft-prod.service
 ├── jenkins/
 │   ├── Dockerfile
 │   ├── docker-compose.yml
@@ -270,10 +277,72 @@ projeto_odsoft_1240447/
 └── README.md
 ```
 
-## Segundo contexto — VM DEI (pendente)
+## Fase 2 na VM — JAR + systemd
 
-Para fechar o C1.1 falta executar o pipeline na VM DEI. A instalação base,
-seguindo o material da unidade curricular, é:
+Como a VM é um contentor LXC com 1,9 GB de RAM, o deployment na VM usa JARs
+com `systemd`, não Docker.
+
+### Instalar os serviços
+
+No VS, a partir de `/opt/odsoft/repo`:
+
+```bash
+git pull
+sudo bash deploy/vm/setup.sh
+```
+
+O setup cria:
+
+- utilizador de sistema `odsoft`;
+- `/opt/odsoft/{releases,data,logs}`;
+- serviços `odsoft-dev`, `odsoft-staging` e `odsoft-prod`;
+- comando `/usr/local/bin/odsoft-deploy`;
+- permissão `sudo` para o utilizador `jenkins` executar apenas esse comando.
+
+### Deploy manual
+
+```bash
+sudo /usr/local/bin/odsoft-deploy dev 1 \
+  /var/lib/jenkins/workspace/odsoft-p1/target/projeto-odsoft-1240447-0.0.1-SNAPSHOT.jar
+
+sudo /usr/local/bin/odsoft-deploy staging 1 \
+  /var/lib/jenkins/workspace/odsoft-p1/target/projeto-odsoft-1240447-0.0.1-SNAPSHOT.jar
+
+sudo /usr/local/bin/odsoft-deploy prod 1 \
+  /var/lib/jenkins/workspace/odsoft-p1/target/projeto-odsoft-1240447-0.0.1-SNAPSHOT.jar
+```
+
+### Verificar
+
+```bash
+systemctl status odsoft-dev odsoft-staging odsoft-prod --no-pager
+bash deploy/vm/smoke.sh dev
+bash deploy/vm/smoke.sh staging
+bash deploy/vm/smoke.sh prod
+```
+
+Portas internas:
+
+| Ambiente | Porta | URL pública |
+|---|---:|---|
+| dev | 2224 | `http://vsgate-http.dei.isep.ipp.pt:10264` |
+| staging | 2225 | `http://vsgate-s2.dei.isep.ipp.pt:10264` |
+| prod | 2228 | `https://vs-gate.dei.isep.ipp.pt:30264` |
+
+No Jenkins, o job pode fazer o deployment com:
+
+- `DEPLOY = true`;
+- `DEPLOY_MODE = vm`.
+
+O stage usa `sudo /usr/local/bin/odsoft-deploy`, que copia o JAR para
+`/opt/odsoft/releases/<build>`, atualiza o link do ambiente, reinicia o serviço
+e valida `/actuator/health`.
+
+## Segundo contexto — VM DEI
+
+O Jenkins está instalado no `vs264` e o build do pipeline já passou na VM.
+Para repetir a instalação base, seguindo o material da unidade curricular, os
+comandos são:
 
 ```bash
 sudo apt update
@@ -301,18 +370,19 @@ Depois:
 5. comparar os dois contextos (versão, plugins, permissões, conectividade,
    tempo de build e limitações).
 
-Sem acesso/credenciais à VM, esta parte fica explicitamente pendente; não foi
-simulada como se estivesse concluída.
+A VM está operacional; o deployment por JAR + systemd está preparado na secção
+anterior. O Docker não é usado na VM por causa das limitações do LXC e da
+memória disponível.
 
 ## Relação com a rubrica ODSOFT
 
 | Critério | Estado na Fase 1 |
 |---|---|
-| C1.1 Jenkins em dois contextos | Local implementado e validado; VM DEI pendente |
-| C1.2 Integração SCM e execução automática | `Jenkinsfile` versionado; job `odsoft-p1` por SCM executado |
-| C1.3 Build, análise estática, packaging e testes | Implementado no pipeline; build #4 SUCCESS |
-| C1.4 Deployment em destinos distintos | Implementado localmente em três contentores; VM/remote pendente |
-| C1.5 Ambientes dev/staging/prod | Implementado localmente, com perfis e volumes separados |
+| C1.1 Jenkins em dois contextos | Local implementado; VM DEI com Jenkins e build do pipeline validado |
+| C1.2 Integração SCM e execução automática | `Jenkinsfile` versionado; job `odsoft-p1` por SCM executado na VM |
+| C1.3 Build, análise estática, packaging e testes | Implementado no pipeline; build na VM com 102 testes verdes |
+| C1.4 Deployment em destinos distintos | Docker local validado; VM preparada com JAR + systemd |
+| C1.5 Ambientes dev/staging/prod | Perfis separados; Docker local validado; systemd da VM preparado |
 | C2.1–C2.5 Testes | Suite base existe; melhoria na Fase 3 |
 | C3.1 System-as-is | Baseline e logs iniciais |
 | C3.2 System-to-be | Pipeline e decisões iniciais |

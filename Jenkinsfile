@@ -7,7 +7,12 @@ def runMaven(String args) {
 }
 
 def runDeploy(String environment, String tag) {
-    if (isUnix()) {
+    if (params.DEPLOY_MODE == 'vm') {
+        sh """
+            JAR=\$(ls ${WORKSPACE}/target/*.jar | head -1)
+            sudo /usr/local/bin/odsoft-deploy ${environment} ${tag} "\$JAR"
+        """
+    } else if (isUnix()) {
         sh "bash deploy/deploy.sh ${environment} ${tag}"
     } else {
         bat "powershell -ExecutionPolicy Bypass -File deploy/deploy.ps1 -Env ${environment} -Tag ${tag}"
@@ -15,7 +20,9 @@ def runDeploy(String environment, String tag) {
 }
 
 def runSmoke(String environment) {
-    if (isUnix()) {
+    if (params.DEPLOY_MODE == 'vm') {
+        sh "bash deploy/vm/smoke.sh ${environment}"
+    } else if (isUnix()) {
         sh "bash deploy/smoke.sh ${environment}"
     } else {
         bat "powershell -ExecutionPolicy Bypass -File deploy/smoke.ps1 -Env ${environment}"
@@ -36,7 +43,12 @@ pipeline {
         booleanParam(
             name: 'DEPLOY',
             defaultValue: false,
-            description: 'Executar deployment para dev/staging/prod. Requer agente com Docker.'
+            description: 'Executar deployment para dev/staging/prod.'
+        )
+        choice(
+            name: 'DEPLOY_MODE',
+            choices: ['vm', 'docker'],
+            description: 'vm = JAR + systemd; docker = contentores locais.'
         )
     }
 
