@@ -1,0 +1,9 @@
+tests=102
+failures=0
+mvn_test_seconds=43.4
+mvn_package_seconds=14.5
+coverage_line_percent=19.5
+coverage_branch_percent=4.5
+checkstyle_issues=109
+spotbugs_issues=226
+measured_at=2026-10-29
