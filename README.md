@@ -9,7 +9,7 @@ ARQSOFT: o código base é o mesmo, mas o âmbito é diferente. O ODSOFT não pe
 novas funcionalidades de biblioteca; pede a evolução do processo de build,
 testes, integração, entrega e deployment.
 
-## Estado atual — Fase 1
+## Estado atual — Fases 1 e 2 (contexto local)
 
 Implementado:
 
@@ -21,12 +21,14 @@ Implementado:
 - Jenkins local em Docker (`jenkins/`);
 - relatórios de testes, cobertura e análise estática arquivados pelo pipeline;
 - job `odsoft-p1` criado por SCM e build **#3 com sucesso** (102 testes,
-  173,5 s), com evidências em `evidence/jenkins/`.
+  173,5 s), com evidências em `evidence/jenkins/`;
+- deployment local para `dev`, `staging` e `prod` em contentores Docker
+  separados, com health checks e evidências em `evidence/deploy/`.
 
 Ainda não implementado:
 
 - segundo contexto Jenkins na VM DEI (falta acesso/credenciais);
-- deployment para dev/staging/prod (Fase 2);
+- repositório GitHub remoto e webhook automático (recomendado para C1.2);
 - testes de mutação, testes de sistema e quality gates finais (Fase 3);
 - relatório final de avaliação antes/depois e rastreabilidade completa (Fase 4).
 
@@ -151,16 +153,103 @@ O `Jenkinsfile` também pode ser validado no Jenkins em
 | Unit Tests | `mvn test` | Surefire XML |
 | Coverage | `mvn jacoco:report` | JaCoCo HTML/XML/CSV |
 | Package | `mvn package` | JAR em `target/` |
+| Deploy/Smoke Dev, Staging, Prod | Só com `DEPLOY=true` | logs e health checks |
 
-O pipeline corre em qualquer agente. Para já não faz deployment; essa parte
-pertence à Fase 2.
+O parâmetro `DEPLOY` é `false` por defeito. O deployment a partir do Jenkins
+requer um agente com Docker; o Jenkins local em contentor não tem o socket do
+Docker montado. Por isso, a validação local do deployment foi feita a partir do
+host com os scripts de `deploy/`.
+
+## Fase 2 — Deployment local
+
+Foram criados três ambientes lógicos, cada um com o seu contentor, volume e
+configuração:
+
+| Ambiente | URL local | Perfil Spring | Dados | Uso |
+|---|---|---|---|---|
+| dev | `http://localhost:8091` | `bootstrap,dev` | volume `lms-dev-data` | desenvolvimento e demonstração |
+| staging | `http://localhost:8092` | `bootstrap,staging` | volume `lms-staging-data` | pré-produção e testes |
+| prod | `http://localhost:8093` | `prod` | volume `lms-prod-data` | produção local, sem dados de bootstrap |
+
+Os portos 8091/8092/8093 foram escolhidos para não colidir com o Adminer
+(8081) e com o Jenkins (8080).
+
+### Comandos
+
+```powershell
+powershell -ExecutionPolicy Bypass -File deploy\deploy.ps1 -Env dev -Tag local
+powershell -ExecutionPolicy Bypass -File deploy\deploy.ps1 -Env staging -Tag local
+powershell -ExecutionPolicy Bypass -File deploy\deploy.ps1 -Env prod -Tag local
+```
+
+Em Linux/VM:
+
+```bash
+bash deploy/deploy.sh dev local
+bash deploy/deploy.sh staging local
+bash deploy/deploy.sh prod local
+```
+
+Cada deployment:
+
+1. constrói a imagem `odsoft-lms:<tag>`;
+2. sobe o contentor do ambiente;
+3. espera pelo `/actuator/health`;
+4. guarda a tag anterior em `.deploy/<ambiente>.previous`;
+5. se o health check falhar, tenta reverter para a tag anterior.
+
+Validação rápida:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File deploy\smoke.ps1 -Env dev
+powershell -ExecutionPolicy Bypass -File deploy\smoke.ps1 -Env staging
+powershell -ExecutionPolicy Bypass -File deploy\smoke.ps1 -Env prod
+```
+
+Evidências locais:
+
+```
+evidence/deploy/summary.txt
+evidence/deploy/health-dev.json
+evidence/deploy/health-staging.json
+evidence/deploy/health-prod.json
+evidence/deploy/login-staging.json
+evidence/deploy/docker-compose-ps-final.txt
+```
+
+Resultado observado:
+
+- `dev`, `staging` e `prod` responderam `200` em `/actuator/health`;
+- o login de bibliotecário em staging respondeu `200`.
+
+O `prod` não usa o perfil `bootstrap`, por isso arranca sem dados de
+demonstração. `dev` e `staging` usam `bootstrap` para permitir testar a
+aplicação com os dados iniciais.
+
+### Configuração
+
+- `application-dev.properties`, `application-staging.properties` e
+  `application-prod.properties`;
+- chaves JWT externalizáveis por `JWT_PRIVATE_KEY`/`JWT_PUBLIC_KEY`;
+- chave Api Ninjas externalizada por `NINJAS_KEY`;
+- Actuator exposto apenas em `health` e `info`;
+- `/actuator/health` é público para o health check de deployment;
+- `spring.jpa.open-in-view=false`; as authorities do utilizador passaram a
+  `EAGER` para a autenticação funcionar sem sessão aberta.
 
 ## Estrutura
 
 ```
 projeto_odsoft_1240447/
 ├── Jenkinsfile
+├── Dockerfile
+├── docker-compose.yml
 ├── config/checkstyle/checkstyle.xml
+├── deploy/
+│   ├── deploy.sh
+│   ├── deploy.ps1
+│   ├── smoke.sh
+│   └── smoke.ps1
 ├── jenkins/
 │   ├── Dockerfile
 │   ├── docker-compose.yml
@@ -169,6 +258,7 @@ projeto_odsoft_1240447/
 │   └── init.groovy.d/01-security.groovy
 ├── evidence/
 │   ├── baseline/
+│   ├── deploy/
 │   └── jenkins/
 ├── src/
 └── README.md
@@ -215,8 +305,8 @@ simulada como se estivesse concluída.
 | C1.1 Jenkins em dois contextos | Local implementado e validado; VM DEI pendente |
 | C1.2 Integração SCM e execução automática | `Jenkinsfile` versionado; job `odsoft-p1` por SCM executado |
 | C1.3 Build, análise estática, packaging e testes | Implementado no pipeline; build #3 SUCCESS |
-| C1.4 Deployment em destinos distintos | Fase 2 |
-| C1.5 Ambientes dev/staging/prod | Fase 2 |
+| C1.4 Deployment em destinos distintos | Implementado localmente em três contentores; VM/remote pendente |
+| C1.5 Ambientes dev/staging/prod | Implementado localmente, com perfis e volumes separados |
 | C2.1–C2.5 Testes | Suite base existe; melhoria na Fase 3 |
 | C3.1 System-as-is | Baseline e logs iniciais |
 | C3.2 System-to-be | Pipeline e decisões iniciais |
@@ -225,8 +315,9 @@ simulada como se estivesse concluída.
 
 ## Próximas fases
 
-1. **Fase 2** — deployment para dev/staging/prod, artefactos versionados,
-   promoção, smoke tests e rollback.
+1. **Fase 2 (concluída no contexto local)** — deployment para dev/staging/prod,
+   artefactos versionados, promoção, smoke tests e rollback. Falta repetir na VM
+   DEI e configurar o SCM remoto/webhook.
 2. **Fase 3** — testes de mutação, testes de sistema, quality gates, melhoria
    da cobertura e comparação com o baseline.
 3. **Fase 4** — relatório final, diagramas, rastreabilidade, evidências e

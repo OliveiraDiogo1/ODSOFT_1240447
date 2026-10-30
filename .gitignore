@@ -23,6 +23,10 @@ dist/
 target/
 dist/
 
+# Deployment runtime state
+.deploy/
+jenkins_home/
+
 # JetBrains IDE
 .idea/
 

@@ -1,0 +1,4 @@
+dev health_http=200
+staging health_http=200
+prod health_http=200
+staging_login_http=200

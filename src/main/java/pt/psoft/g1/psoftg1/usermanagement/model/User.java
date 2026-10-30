@@ -110,7 +110,7 @@ public class User implements UserDetails {
 	@Embedded
 	private Name name;
 
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	@Getter
 	private final Set<Role> authorities = new HashSet<>();
 

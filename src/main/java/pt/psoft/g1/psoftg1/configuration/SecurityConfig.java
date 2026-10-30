@@ -113,6 +113,8 @@ public class SecurityConfig {
                 .requestMatchers(format("%s/**", swaggerPath)).permitAll()
                 // Our public endpoints
                 .requestMatchers("/api/public/**").permitAll() // public assets & end-points
+                .requestMatchers("/actuator/health").permitAll() // deployment health check
+                .requestMatchers("/actuator/info").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/readers").permitAll() //unregistered should be able to register
                 // Our private endpoints
                 //authors

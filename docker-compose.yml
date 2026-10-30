@@ -1,0 +1,61 @@
+name: odsoft-lms
+
+services:
+  lms-dev:
+    image: ${LMS_IMAGE:-odsoft-lms:local}
+    container_name: lms-dev
+    ports:
+      - "8091:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: bootstrap,dev
+      JAVA_OPTS: "-Xms256m -Xmx512m"
+    volumes:
+      - lms-dev-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    restart: unless-stopped
+
+  lms-staging:
+    image: ${LMS_IMAGE:-odsoft-lms:local}
+    container_name: lms-staging
+    ports:
+      - "8092:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: bootstrap,staging
+      JAVA_OPTS: "-Xms256m -Xmx512m"
+    volumes:
+      - lms-staging-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    restart: unless-stopped
+
+  lms-prod:
+    image: ${LMS_IMAGE:-odsoft-lms:local}
+    container_name: lms-prod
+    ports:
+      - "8093:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      JAVA_OPTS: "-Xms256m -Xmx512m"
+    volumes:
+      - lms-prod-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  lms-dev-data:
+  lms-staging-data:
+  lms-prod-data:

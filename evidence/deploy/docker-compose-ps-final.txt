@@ -1,0 +1,4 @@
+NAME          IMAGE                                                                     COMMAND                  SERVICE       CREATED              STATUS                        PORTS
+lms-dev       sha256:409dd63285e33ca96ee41324581e21edb6f4808f8567a70754ab7a3c510e7062   "sh -c 'java ${JAVA_ÔÇª"   lms-dev       About a minute ago   Up About a minute (healthy)   0.0.0.0:8091->8080/tcp
+lms-prod      odsoft-lms:local                                                          "sh -c 'java ${JAVA_ÔÇª"   lms-prod      38 seconds ago       Up 26 seconds (healthy)       0.0.0.0:8093->8080/tcp
+lms-staging   sha256:0964e06a265aeef6621c04103ebf60cc3caf6964e037bf1895778a0455d926fb   "sh -c 'java ${JAVA_ÔÇª"   lms-staging   About a minute ago   Up 57 seconds (healthy)       0.0.0.0:8092->8080/tcp

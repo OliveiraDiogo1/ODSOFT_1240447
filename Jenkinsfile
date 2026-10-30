@@ -6,6 +6,22 @@ def runMaven(String args) {
     }
 }
 
+def runDeploy(String environment, String tag) {
+    if (isUnix()) {
+        sh "bash deploy/deploy.sh ${environment} ${tag}"
+    } else {
+        bat "powershell -ExecutionPolicy Bypass -File deploy/deploy.ps1 -Env ${environment} -Tag ${tag}"
+    }
+}
+
+def runSmoke(String environment) {
+    if (isUnix()) {
+        sh "bash deploy/smoke.sh ${environment}"
+    } else {
+        bat "powershell -ExecutionPolicy Bypass -File deploy/smoke.ps1 -Env ${environment}"
+    }
+}
+
 pipeline {
     agent any
 
@@ -14,6 +30,14 @@ pipeline {
         timeout(time: 30, unit: 'MINUTES')
         buildDiscarder(logRotator(numToKeepStr: '20'))
         disableConcurrentBuilds()
+    }
+
+    parameters {
+        booleanParam(
+            name: 'DEPLOY',
+            defaultValue: false,
+            description: 'Executar deployment para dev/staging/prod. Requer agente com Docker.'
+        )
     }
 
     stages {
@@ -62,6 +86,102 @@ pipeline {
             steps {
                 script {
                     runMaven('-DskipTests package')
+                }
+            }
+        }
+
+        stage('Deploy Dev') {
+            when {
+                allOf {
+                    branch 'main'
+                    expression { params.DEPLOY }
+                }
+            }
+            steps {
+                script {
+                    runDeploy('dev', env.BUILD_NUMBER)
+                }
+            }
+        }
+
+        stage('Smoke Dev') {
+            when {
+                allOf {
+                    branch 'main'
+                    expression { params.DEPLOY }
+                }
+            }
+            steps {
+                script {
+                    runSmoke('dev')
+                }
+            }
+        }
+
+        stage('Deploy Staging') {
+            when {
+                allOf {
+                    branch 'main'
+                    expression { params.DEPLOY }
+                }
+            }
+            steps {
+                script {
+                    runDeploy('staging', env.BUILD_NUMBER)
+                }
+            }
+        }
+
+        stage('Smoke Staging') {
+            when {
+                allOf {
+                    branch 'main'
+                    expression { params.DEPLOY }
+                }
+            }
+            steps {
+                script {
+                    runSmoke('staging')
+                }
+            }
+        }
+
+        stage('Aprovar Prod') {
+            when {
+                allOf {
+                    branch 'main'
+                    expression { params.DEPLOY }
+                }
+            }
+            steps {
+                input message: 'Aprovar deployment para produção?', ok: 'Deploy'
+            }
+        }
+
+        stage('Deploy Prod') {
+            when {
+                allOf {
+                    branch 'main'
+                    expression { params.DEPLOY }
+                }
+            }
+            steps {
+                script {
+                    runDeploy('prod', env.BUILD_NUMBER)
+                }
+            }
+        }
+
+        stage('Smoke Prod') {
+            when {
+                allOf {
+                    branch 'main'
+                    expression { params.DEPLOY }
+                }
+            }
+            steps {
+                script {
+                    runSmoke('prod')
                 }
             }
         }

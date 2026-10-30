@@ -1,0 +1,27 @@
+/lms-dev odsoft-lms:local JAVA_OPTS=-Xms256m -Xmx512m
+SPRING_PROFILES_ACTIVE=bootstrap,dev
+PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+JAVA_HOME=/opt/java/openjdk
+LANG=en_US.UTF-8
+LANGUAGE=en_US:en
+LC_ALL=en_US.UTF-8
+JAVA_VERSION=jdk-17.0.20.1+1
+
+/lms-staging odsoft-lms:local SPRING_PROFILES_ACTIVE=bootstrap,staging
+JAVA_OPTS=-Xms256m -Xmx512m
+PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+JAVA_HOME=/opt/java/openjdk
+LANG=en_US.UTF-8
+LANGUAGE=en_US:en
+LC_ALL=en_US.UTF-8
+JAVA_VERSION=jdk-17.0.20.1+1
+
+/lms-prod odsoft-lms:local SPRING_PROFILES_ACTIVE=prod
+JAVA_OPTS=-Xms256m -Xmx512m
+PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+JAVA_HOME=/opt/java/openjdk
+LANG=en_US.UTF-8
+LANGUAGE=en_US:en
+LC_ALL=en_US.UTF-8
+JAVA_VERSION=jdk-17.0.20.1+1
+
