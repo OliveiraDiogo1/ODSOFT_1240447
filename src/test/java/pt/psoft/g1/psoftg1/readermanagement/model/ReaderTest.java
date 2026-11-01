@@ -5,6 +5,7 @@ import pt.psoft.g1.psoftg1.genremanagement.model.Genre;
 import pt.psoft.g1.psoftg1.shared.model.Photo;
 import pt.psoft.g1.psoftg1.usermanagement.model.Reader;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,5 +84,18 @@ public class ReaderTest {
 
         ReaderDetails readerDetails = new ReaderDetails(123, mockReader, "2010-01-01", "912345678", true, false, false,"readerPhotoTest.jpg",genreList);
         assertEquals(2, readerDetails.getInterestList().size());
+    }
+
+    @Test
+    void constructorExposesReaderDataAndConsents() {
+        Reader reader = Reader.newReader("reader@example.com", "Password123!", "Reader Name");
+        ReaderDetails details = new ReaderDetails(
+                123, reader, "2010-01-01", "912345678", true, true, true, null, null);
+
+        assertEquals(reader, details.getReader());
+        assertEquals(LocalDate.now().getYear() + "/123", details.getReaderNumber());
+        assertEquals("912345678", details.getPhoneNumber());
+        assertTrue(details.isMarketingConsent());
+        assertTrue(details.isThirdPartySharingConsent());
     }
 }

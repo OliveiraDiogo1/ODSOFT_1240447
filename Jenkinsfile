@@ -86,10 +86,34 @@ pipeline {
             }
         }
 
+        stage('System Tests') {
+            steps {
+                script {
+                    runMaven('-Dtest=SystemTest test')
+                }
+            }
+        }
+
         stage('Coverage') {
             steps {
                 script {
                     runMaven('jacoco:report')
+                }
+            }
+        }
+
+        stage('Coverage Gate') {
+            steps {
+                script {
+                    runMaven('jacoco:check')
+                }
+            }
+        }
+
+        stage('Mutation Testing') {
+            steps {
+                script {
+                    runMaven('org.pitest:pitest-maven:mutationCoverage')
                 }
             }
         }
@@ -203,7 +227,7 @@ pipeline {
         always {
             junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
             recordIssues(tools: [checkStyle(pattern: 'target/checkstyle-result.xml')])
-            archiveArtifacts artifacts: 'target/*.jar, target/site/jacoco/**/*, target/checkstyle-result.xml, target/spotbugsXml.xml',
+            archiveArtifacts artifacts: 'target/*.jar, target/site/jacoco/**/*, target/checkstyle-result.xml, target/spotbugsXml.xml, target/pit-reports/**/*',
                              allowEmptyArchive: true
             publishHTML(target: [
                 allowMissing: true,
@@ -212,6 +236,14 @@ pipeline {
                 reportDir: 'target/site/jacoco',
                 reportFiles: 'index.html',
                 reportName: 'JaCoCo Coverage'
+            ])
+            publishHTML(target: [
+                allowMissing: true,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'target/pit-reports',
+                reportFiles: 'index.html',
+                reportName: 'PIT Mutation'
             ])
         }
         success {

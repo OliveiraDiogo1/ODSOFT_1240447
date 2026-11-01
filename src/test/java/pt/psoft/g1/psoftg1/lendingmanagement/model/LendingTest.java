@@ -131,4 +131,42 @@ class LendingTest {
         assertNull(lending.getReturnedDate());
     }
 
+    @Test
+    void overdueLendingHasFine() {
+        Lending overdue = Lending.newBootstrappingLending(
+                book,
+                readerDetails,
+                LocalDate.now().getYear(),
+                2,
+                LocalDate.now().minusDays(20),
+                null,
+                15,
+                fineValuePerDayInCents);
+
+        assertEquals(5, overdue.getDaysDelayed());
+        assertEquals(Optional.of(5 * fineValuePerDayInCents), overdue.getFineValueInCents());
+
+        Fine fine = new Fine(overdue);
+        assertEquals(5 * fineValuePerDayInCents, fine.getCentsValue());
+        assertEquals(fineValuePerDayInCents, fine.getFineValuePerDayInCents());
+    }
+
+    @Test
+    void fineRejectsLendingThatIsNotOverdue() {
+        Lending notOverdue = new Lending(book, readerDetails, 1, lendingDurationInDays, fineValuePerDayInCents);
+        assertThrows(IllegalArgumentException.class, () -> new Fine(notOverdue));
+    }
+
+    @Test
+    void bootstrappingLendingPreservesDatesAndReturnedState() {
+        LocalDate start = LocalDate.now().minusDays(10);
+        LocalDate returned = start.plusDays(5);
+        Lending returnedLending = Lending.newBootstrappingLending(
+                book, readerDetails, LocalDate.now().getYear(), 3, start, returned,
+                lendingDurationInDays, fineValuePerDayInCents);
+
+        assertEquals(start, returnedLending.getStartDate());
+        assertEquals(start.plusDays(lendingDurationInDays), returnedLending.getLimitDate());
+        assertEquals(returned, returnedLending.getReturnedDate());
+    }
 }

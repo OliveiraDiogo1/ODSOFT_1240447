@@ -62,4 +62,15 @@ class IsbnTest {
     void ensureChecksum10IsCorrect() {
         assertThrows(IllegalArgumentException.class, () -> new Isbn("8175257667"));
     }
+
+    @Test
+    void ensureIsbn10WithXIsAccepted() {
+        assertEquals("043942089X", new Isbn("043942089X").toString());
+    }
+
+    @Test
+    void ensureInvalidLengthsAreRejected() {
+        assertThrows(IllegalArgumentException.class, () -> new Isbn("817525766"));
+        assertThrows(IllegalArgumentException.class, () -> new Isbn("978282601209"));
+    }
 }

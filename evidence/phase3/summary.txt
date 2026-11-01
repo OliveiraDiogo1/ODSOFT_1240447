@@ -1,0 +1,39 @@
+ODSOFT — Fase 3: evidências de testes e qualidade
+
+BASELINE (evidence/baseline)
+- Testes: 102
+- mvn clean test: 43,4 s
+- mvn package: 14,5 s
+- Cobertura de linhas: 19,5% (558/2868)
+- Cobertura de ramos: 4,5% (117/2579)
+- Checkstyle: 109 avisos
+- SpotBugs: 226 avisos
+
+APÓS A FASE 3
+- Testes: 116 (102 + 5 de sistema + 9 de domínio)
+- mvn clean test: 1 min 29 s
+- mvn clean verify: 1 min 33 s
+- Cobertura de linhas: 38,6% (1108/2871)
+- Cobertura de ramos: 10,0% (258/2579)
+- PIT: 301 mutantes, 152 mortos, 50% mutation score
+- PIT test strength: 79%
+- PIT line coverage: 70% (348/500 nas classes mutadas)
+- PIT: 439 testes executados durante a análise
+
+GATES
+- JaCoCo: linhas >= 35%, ramos >= 9%
+- PIT: mutation score >= 45%, coverage >= 65%
+- Checkstyle e SpotBugs: relatório; ainda não bloqueiam por causa da dívida do baseline
+
+COMANDOS
+- mvn clean verify
+- mvn -Dtest=SystemTest test
+- mvn org.pitest:pitest-maven:mutationCoverage
+
+FICHEIROS
+- evidence/phase3/mvn-verify.txt
+- evidence/phase3/mvn-test-final.txt
+- evidence/phase3/jacoco-final.csv
+- evidence/phase3/pit-final.txt
+- evidence/phase3/pit/mutations.xml
+- evidence/phase3/pit/index.html

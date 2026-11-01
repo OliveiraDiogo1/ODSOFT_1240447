@@ -51,4 +51,14 @@ class LendingNumberTest {
         assertThrows(IllegalArgumentException.class, () -> new LendingNumber(LocalDate.now().getYear()+1,1));
     }
 
+    @Test
+    void ensureYearBoundaryAndZeroSequentialAreAccepted() {
+        assertEquals("1970/0", new LendingNumber(1970, 0).toString());
+        assertThrows(IllegalArgumentException.class, () -> new LendingNumber(1969, 1));
+    }
+
+    @Test
+    void ensureSequentialZeroIsAccepted() {
+        assertEquals(LocalDate.now().getYear() + "/0", new LendingNumber(0).toString());
+    }
 }

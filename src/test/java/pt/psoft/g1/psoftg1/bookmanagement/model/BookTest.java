@@ -3,9 +3,11 @@ package pt.psoft.g1.psoftg1.bookmanagement.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.psoft.g1.psoftg1.authormanagement.model.Author;
+import pt.psoft.g1.psoftg1.bookmanagement.services.UpdateBookRequest;
 import pt.psoft.g1.psoftg1.genremanagement.model.Genre;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -58,4 +60,20 @@ class BookTest {
         assertDoesNotThrow(() -> new Book(validIsbn, validTitle, null, validGenre, authors, null));
     }
 
+    @Test
+    void applyPatchUpdatesFieldsAndGettersExposeThem() {
+        authors.add(validAuthor1);
+        var book = new Book(validIsbn, validTitle, null, validGenre, authors, null);
+        var request = new UpdateBookRequest(validIsbn, "Novo título", "Fantasia", List.of(1L), "Nova descrição");
+        request.setGenreObj(new Genre("Fantasia"));
+        request.setAuthorObjList(List.of(validAuthor2));
+        request.setPhotoURI("bookPhotoTest.jpg");
+
+        book.applyPatch(null, request);
+
+        assertEquals("Novo título", book.getTitle().toString());
+        assertEquals("Nova descrição", book.getDescription());
+        assertEquals("bookPhotoTest.jpg", book.getPhoto().getPhotoFile());
+        assertEquals(validIsbn, book.getIsbn());
+    }
 }

@@ -15,29 +15,33 @@ Repositório remoto:
 https://github.com/OliveiraDiogo1/ODSOFT_1240447
 ```
 
-## Estado atual — Fases 1 e 2 (contexto local)
+## Estado atual — Fases 1, 2 e 3 (contexto local)
 
 Implementado:
 
 - repositório independente com o baseline do LMS;
 - baseline de testes e de build medido e guardado;
-- Maven com JaCoCo, Checkstyle, SpotBugs e Maven Enforcer;
+- Maven com JaCoCo, Checkstyle, SpotBugs, Maven Enforcer e PIT;
 - `Jenkinsfile` declarativo com checkout, build, análise estática, testes,
-  cobertura e packaging;
+  testes de sistema, cobertura, mutation testing e packaging;
 - Jenkins local em Docker (`jenkins/`);
-- relatórios de testes, cobertura e análise estática arquivados pelo pipeline;
+- relatórios de testes, cobertura, análise estática e mutação arquivados pelo
+  pipeline;
 - job `odsoft-p1` criado por SCM e build **#4 com sucesso** (102 testes,
   90,4 s), com evidências em `evidence/jenkins/`;
 - deployment local para `dev`, `staging` e `prod` em contentores Docker
   separados, com health checks e evidências em `evidence/deploy/`;
 - deployment na VM DEI (`vs264`) com JAR + systemd, validado em `dev`,
   `staging` e `prod`, com health checks públicos e login em staging;
-- Jenkins na VM com job `odsoft-p1` por SCM, com build do pipeline concluído.
+- Jenkins na VM com job `odsoft-p1` por SCM, com build do pipeline concluído;
+- 5 testes de sistema com login, pesquisa autenticada e acesso sem token;
+- PIT sobre as classes de domínio, com 301 mutantes e 50% mutation score;
+- gates de cobertura JaCoCo (linhas 35%, ramos 9%) e PIT (mutação 45%,
+  cobertura 65%).
 
 Ainda não implementado:
 
 - webhook automático do GitHub para o Jenkins;
-- testes de mutação, testes de sistema e quality gates finais (Fase 3);
 - relatório final de avaliação antes/depois e rastreabilidade completa (Fase 4).
 
 ## Baseline medido
@@ -56,8 +60,9 @@ de comparação à rubrica C3.3.
 | Avisos Checkstyle | 109 |
 | Avisos SpotBugs | 226 |
 
-Estes valores são o ponto de partida; não são a qualidade final. A Fase 3 vai
-melhorar a suite e voltar a medir com as mesmas condições.
+Estes valores são o ponto de partida; não são a qualidade final. A Fase 3
+melhorou a suite e voltou a medir com as mesmas condições; os resultados estão
+na secção seguinte e em `evidence/phase3/`.
 
 Os logs estão em:
 
@@ -73,6 +78,9 @@ evidence/baseline/jacoco.csv
 
 ```bash
 mvn -B clean test
+mvn -B clean verify
+mvn -B -Dtest=SystemTest test
+mvn -B org.pitest:pitest-maven:mutationCoverage
 mvn -B clean test jacoco:report checkstyle:checkstyle spotbugs:spotbugs
 ```
 
@@ -159,7 +167,10 @@ O `Jenkinsfile` também pode ser validado no Jenkins em
 | Build | `mvn clean compile` | log Maven |
 | Static Analysis | Checkstyle + SpotBugs | XML e HTML |
 | Unit Tests | `mvn test` | Surefire XML |
+| System Tests | `mvn -Dtest=SystemTest test` | Surefire XML |
 | Coverage | `mvn jacoco:report` | JaCoCo HTML/XML/CSV |
+| Coverage Gate | `mvn jacoco:check` | falha se os limites não forem cumpridos |
+| Mutation Testing | `mvn pitest:mutationCoverage` | relatório PIT |
 | Package | `mvn package` | JAR em `target/` |
 | Deploy/Smoke Dev, Staging, Prod | Só com `DEPLOY=true` | logs e health checks |
 
@@ -245,6 +256,86 @@ aplicação com os dados iniciais.
 - `spring.jpa.open-in-view=false`; as authorities do utilizador passaram a
   `EAGER` para a autenticação funcionar sem sessão aberta.
 
+## Fase 3 — Testes, mutação e quality gates
+
+### Estratégia
+
+A Fase 3 cobre os cinco níveis da rubrica C2:
+
+- **C2.1 — caixa opaca em classes**: testes dos modelos e contratos públicos;
+- **C2.2 — caixa transparente no domínio**: casos de limites, ramos e erros;
+- **C2.3 — mutação**: PIT sobre as classes de domínio;
+- **C2.4 — integração de componentes**: testes de repositórios e serviços com
+  Spring e H2;
+- **C2.5 — sistema**: `SystemTest` com servidor HTTP real, login, pesquisa
+  autenticada e acesso sem token.
+
+A suite passou de 102 para **116 testes**. Os testes novos incluem 5 de sistema
+e 9 de domínio.
+
+### Resultados
+
+| Indicador | Baseline | Após Fase 3 |
+|---|---:|---:|
+| Testes | 102 | 116 |
+| `mvn clean test` | 43,4 s | 1 min 29 s |
+| `mvn clean verify` | — | 1 min 33 s |
+| Cobertura de linhas | 19,5% | 38,6% |
+| Cobertura de ramos | 4,5% | 10,0% |
+| Mutantes PIT | — | 301 |
+| Mutation score | — | 50% |
+| Test strength PIT | — | 79% |
+| PIT line coverage | — | 70% (classes mutadas) |
+
+O aumento do tempo de teste deve-se sobretudo ao contexto Spring dos testes de
+sistema e ao arranque da aplicação com o perfil `bootstrap`.
+
+### Gates
+
+- **JaCoCo**: linhas ≥35%, ramos ≥9%;
+- **PIT**: mutation score ≥45%, coverage ≥65%;
+- **Checkstyle/SpotBugs**: continuam em modo de relatório. O baseline tinha 109
+  e 226 avisos; não foram usados como gate para não bloquear a entrega por
+  dívida pré-existente. A dívida fica identificada para a Fase 4.
+
+### Comandos
+
+```bash
+mvn clean verify
+mvn -Dtest=SystemTest test
+mvn org.pitest:pitest-maven:mutationCoverage
+```
+
+### Jenkins
+
+O `Jenkinsfile` passou a ter os stages:
+
+- `System Tests`;
+- `Coverage Gate`;
+- `Mutation Testing`.
+
+Os relatórios PIT e JaCoCo são arquivados e publicados como HTML.
+
+### Evidências
+
+```
+evidence/phase3/summary.txt
+evidence/phase3/mvn-verify.txt
+evidence/phase3/mvn-test-final.txt
+evidence/phase3/jacoco-final.csv
+evidence/phase3/pit-final.txt
+evidence/phase3/pit/mutations.xml
+evidence/phase3/pit/index.html
+```
+
+### Limitações
+
+- PIT incide apenas nas classes de domínio; serviços e controllers não são
+  mutados nesta fase.
+- Os mutantes sem cobertura e os sobreviventes devem ser analisados na Fase 4
+  para decidir quais são equivalentes e quais exigem mais testes.
+- Checkstyle/SpotBugs ainda não são gates bloqueantes.
+
 ## Estrutura
 
 ```
@@ -275,8 +366,10 @@ projeto_odsoft_1240447/
 │   ├── baseline/
 │   ├── deploy/
 │   ├── jenkins/
+│   ├── phase3/
 │   └── vm/
 ├── src/
+│   └── test/java/.../system/SystemTest.java
 └── README.md
 ```
 
@@ -402,24 +495,23 @@ memória disponível.
 |---|---|
 | C1.1 Jenkins em dois contextos | Local implementado; VM DEI com Jenkins e build do pipeline validado |
 | C1.2 Integração SCM e execução automática | `Jenkinsfile` versionado; job `odsoft-p1` por SCM executado na VM |
-| C1.3 Build, análise estática, packaging e testes | Implementado no pipeline; build na VM com 102 testes verdes |
+| C1.3 Build, análise estática, packaging e testes | Pipeline com 116 testes, testes de sistema, mutação e gates |
 | C1.4 Deployment em destinos distintos | Validado em Docker local e na VM com JAR + systemd |
 | C1.5 Ambientes dev/staging/prod | Validado nos três ambientes, com health checks públicos |
-| C2.1–C2.5 Testes | Suite base existe; melhoria na Fase 3 |
-| C3.1 System-as-is | Baseline e logs iniciais |
-| C3.2 System-to-be | Pipeline e decisões iniciais |
-| C3.3 Análise crítica e melhoria | Fase 3/4, com comparação antes/depois |
+| C2.1–C2.5 Testes | 116 testes; C2.1/C2.2, C2.4 e C2.5 cobertos; PIT em C2.3 |
+| C3.1 System-as-is | Baseline, logs e métricas iniciais |
+| C3.2 System-to-be | Pipeline, testes e decisões documentados |
+| C3.3 Análise crítica e melhoria | Comparação antes/depois feita; relatório final na Fase 4 |
 | C4.1–C4.2 Consistência e rastreabilidade | A fechar na Fase 4 |
 
 ## Próximas fases
 
-1. **Fase 2 (concluída no contexto local)** — deployment para dev/staging/prod,
-   artefactos versionados, promoção, smoke tests e rollback. Falta repetir na VM
-   DEI e configurar o SCM remoto/webhook.
-2. **Fase 3** — testes de mutação, testes de sistema, quality gates, melhoria
-   da cobertura e comparação com o baseline.
+1. **Fase 2 (concluída)** — deployment para dev/staging/prod, artefactos
+   versionados, promoção, smoke tests e rollback, local e na VM DEI.
+2. **Fase 3 (concluída)** — testes de sistema, mutação PIT, cobertura, gates e
+   comparação com o baseline.
 3. **Fase 4** — relatório final, diagramas, rastreabilidade, evidências e
-   demonstração.
+   demonstração. Falta ainda configurar o webhook GitHub → Jenkins.
 
 ## Nota sobre o base
 
