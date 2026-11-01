@@ -335,6 +335,9 @@ evidence/phase3/pit/index.html
 - Os mutantes sem cobertura e os sobreviventes devem ser analisados na Fase 4
   para decidir quais são equivalentes e quais exigem mais testes.
 - Checkstyle/SpotBugs ainda não são gates bloqueantes.
+- O `Jenkinsfile` atualizado ainda não foi executado no Jenkins depois da Fase 3:
+  o Jenkins local estava parado e o da VM exige autenticação. A validação local
+  foi feita com `mvn clean verify` e PIT.
 
 ## Estrutura
 
