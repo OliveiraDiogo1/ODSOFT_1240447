@@ -18,7 +18,7 @@ APÓS A FASE 3
 - PIT: 301 mutantes, 152 mortos, 50% mutation score
 - PIT test strength: 79%
 - PIT line coverage: 70% (348/500 nas classes mutadas)
-- PIT: 439 testes executados durante a análise
+- PIT: 437 testes executados durante a análise
 
 GATES
 - JaCoCo: linhas >= 35%, ramos >= 9%

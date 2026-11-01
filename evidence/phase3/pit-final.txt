@@ -52,14 +52,14 @@
 [INFO] Adding org.pitest:pitest to SUT classpath
 [INFO] Auto adding org.junit.platform:junit-platform-launcher:jar:1.10.2 < central (https://repo.maven.apache.org/maven2, default, releases) to classpath.
 [INFO] Mutating from C:\Users\Diogo Oliveira\ISEP\ODSOFT\projeto_odsoft_1240447\target\classes
-01:56:08 PIT >> INFO : Verbose logging is disabled. If you encounter a problem, please enable it before reporting an issue.
-01:56:08 PIT >> INFO : Created 25 mutation test units in pre scan
-01:56:09 PIT >> INFO : Sending 14 test classes to minion
-01:56:09 PIT >> INFO : Sent tests to minion
-/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\01:56:11 PIT >> INFO : MINION : Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
-|/-\|/-\|/-\|/-\|/-\|/-01:56:13 PIT >> INFO : Calculated coverage in 4 seconds.
-01:56:13 PIT >> INFO : Created 25 mutation test units
-/-\|/-\|/-\|/-\|/-\|/-\|/01:57:48 PIT >> INFO : Completed in 100 seconds
+02:03:57 PIT >> INFO : Verbose logging is disabled. If you encounter a problem, please enable it before reporting an issue.
+02:03:58 PIT >> INFO : Created 25 mutation test units in pre scan
+02:03:58 PIT >> INFO : Sending 14 test classes to minion
+02:03:58 PIT >> INFO : Sent tests to minion
+/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\02:04:00 PIT >> INFO : MINION : Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+|/-\|/-\|/-\|/-\|/-\|/-02:04:02 PIT >> INFO : Calculated coverage in 4 seconds.
+02:04:02 PIT >> INFO : Created 25 mutation test units
+/-\|/-\|/-\|/-\|/-\|/-\|/02:05:32 PIT >> INFO : Completed in 95 seconds
 ================================================================================
 - Mutators
 ================================================================================
@@ -122,11 +122,11 @@
 ================================================================================
 > pre-scan for mutations : < 1 second
 > scan classpath : < 1 second
-> coverage and dependency analysis : 4 seconds
+> coverage and dependency analysis : 3 seconds
 > build mutation tests : < 1 second
-> run mutation analysis : 1 minutes and 34 seconds
+> run mutation analysis : 1 minutes and 29 seconds
 --------------------------------------------------------------------------------
-> Total  : 1 minutes and 39 seconds
+> Total  : 1 minutes and 34 seconds
 --------------------------------------------------------------------------------
 ================================================================================
 - Statistics
@@ -134,7 +134,7 @@
 >> Line Coverage (for mutated classes only): 348/500 (70%)
 >> Generated 301 mutations Killed 152 (50%)
 >> Mutations with no coverage 108. Test strength 79%
->> Ran 439 tests (1.46 tests per mutation)
+>> Ran 437 tests (1.45 tests per mutation)
 Enhanced functionality available at https://www.arcmutate.com/
 
 !! The following issues were detected during the run !!
@@ -142,6 +142,6 @@ Project uses Spring, but the Arcmutate Spring plugin is not present (https://doc
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:46 min
-[INFO] Finished at: 2026-11-01T01:57:48Z
+[INFO] Total time:  01:41 min
+[INFO] Finished at: 2026-11-01T02:05:32Z
 [INFO] ------------------------------------------------------------------------
