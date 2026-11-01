@@ -632,6 +632,12 @@ automático, com testes em cinco níveis, mutação, gates, deployment repetíve
 evidência rastreável. As limitações estão identificadas e não comprometem o
 âmbito entregue.
 
+### 11. Diagramas
+
+- [Pipeline](Docs/pipeline.puml)
+- [Ambientes e deployment](Docs/ambientes.puml)
+- [Estratégia de testes](Docs/testes.puml)
+
 ## Relação com a rubrica ODSOFT
 
 | Critério | Estado final |

@@ -1,0 +1,18 @@
+@startuml
+rectangle "C2.1 — caixa opaca em classes\nModelos e contratos" as C21
+rectangle "C2.2 — caixa transparente no domínio\nLimites, ramos e erros" as C22
+rectangle "C2.3 — mutação\nPIT: 301 mutantes / 50%" as C23
+rectangle "C2.4 — integração de componentes\nRepositórios + serviços Spring/H2" as C24
+rectangle "C2.5 — sistema\nSystemTest com HTTP real e login" as C25
+
+C21 --> C22
+C22 --> C23
+C23 --> C24
+C24 --> C25
+
+note right of C25
+  116 testes no total.
+  Test strength: 79%.
+end note
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+actor "Developer" as Dev
+cloud "GitHub\nODSOFT_1240447" as GitHub
+node "Jenkins\nlocal / vs264" as Jenkins
+
+rectangle "Checkout" as Checkout
+rectangle "Build" as Build
+rectangle "Static Analysis" as Static
+rectangle "Tests" as Tests
+rectangle "Coverage" as Coverage
+rectangle "Coverage Gate" as Gate
+rectangle "Mutation Testing" as Mutation
+rectangle "Package" as Package
+rectangle "Deploy opcional" as Deploy
+
+Dev --> GitHub : commit/push
+GitHub --> Jenkins : webhook POST
+Jenkins --> Checkout
+Checkout --> Build
+Build --> Static
+Static --> Tests
+Tests --> Coverage
+Coverage --> Gate
+Gate --> Mutation
+Mutation --> Package
+Package --> Deploy
+
+note right of Deploy
+  DEPLOY=false no build normal.
+  dev -> staging -> aprovação -> prod.
+end note
+
+@enduml
