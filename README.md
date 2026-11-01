@@ -166,8 +166,7 @@ O `Jenkinsfile` também pode ser validado no Jenkins em
 | Checkout | Obter o commit e a branch | `GIT_COMMIT`, `GIT_BRANCH` |
 | Build | `mvn clean compile` | log Maven |
 | Static Analysis | Checkstyle + SpotBugs | XML e HTML |
-| Unit Tests | `mvn test` | Surefire XML |
-| System Tests | `mvn -Dtest=SystemTest test` | Surefire XML |
+| Tests | `mvn test` (unitários, integração e sistema) | Surefire XML |
 | Coverage | `mvn jacoco:report` | JaCoCo HTML/XML/CSV |
 | Coverage Gate | `mvn jacoco:check` | falha se os limites não forem cumpridos |
 | Mutation Testing | `mvn pitest:mutationCoverage` | relatório PIT |
@@ -278,8 +277,8 @@ e 9 de domínio.
 | Indicador | Baseline | Após Fase 3 |
 |---|---:|---:|
 | Testes | 102 | 116 |
-| `mvn clean test` | 43,4 s | 1 min 29 s |
-| `mvn clean verify` | — | 1 min 33 s |
+| `mvn clean test` | 43,4 s | 1 min 18 s |
+| `mvn clean verify` | — | 1 min 23 s |
 | Cobertura de linhas | 19,5% | 38,6% |
 | Cobertura de ramos | 4,5% | 10,0% |
 | Mutantes PIT | — | 301 |
@@ -310,7 +309,7 @@ mvn org.pitest:pitest-maven:mutationCoverage
 
 O `Jenkinsfile` passou a ter os stages:
 
-- `System Tests`;
+- `Tests` — inclui unitários, integração e sistema;
 - `Coverage Gate`;
 - `Mutation Testing`.
 

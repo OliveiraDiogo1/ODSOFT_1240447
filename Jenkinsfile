@@ -78,18 +78,10 @@ pipeline {
             }
         }
 
-        stage('Unit Tests') {
+        stage('Tests') {
             steps {
                 script {
                     runMaven('test')
-                }
-            }
-        }
-
-        stage('System Tests') {
-            steps {
-                script {
-                    runMaven('-Dtest=SystemTest test')
                 }
             }
         }
