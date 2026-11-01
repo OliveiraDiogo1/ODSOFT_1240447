@@ -1,4 +1,4 @@
-Build #8 — SUCCESS
+Build #8 - SUCCESS
 Commit: 41a33798cd4a83db58fe4f8322e9bbc8295fe721
 Data: 2026-11-01
 Origem: automática, "Started by GitHub push by OliveiraDiogo1"

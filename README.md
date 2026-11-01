@@ -259,15 +259,15 @@ O diagrama da estratégia de testes está em
 | --- | ---: | ---: |
 | Testes | 102 | 116 |
 | *mvn clean test* | 43,4 s | 1 min 18 s |
-| *mvn clean verify* | — | 1 min 19 s |
+| *mvn clean verify* | - | 1 min 19 s |
 | Cobertura de linhas | 19,5% | 38,6% |
 | Cobertura de ramos | 4,5% | 10,0% |
-| Mutantes PIT | — | 301 |
-| Mutantes mortos | — | 152 |
-| Mutation score | — | 50% |
-| Test strength | — | 79% |
-| Cobertura PIT das classes mutadas | — | 70% (348 de 500) |
-| Testes executados pelo PIT | — | 437 |
+| Mutantes PIT | - | 301 |
+| Mutantes mortos | - | 152 |
+| Mutation score | - | 50% |
+| Test strength | - | 79% |
+| Cobertura PIT das classes mutadas | - | 70% (348 de 500) |
+| Testes executados pelo PIT | - | 437 |
 | Checkstyle | 109 avisos | 110 avisos |
 | Build automático | não | #8, commit `#41a3379` |
 
