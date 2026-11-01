@@ -1,0 +1,21 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< pt.psoft.g1:projeto-odsoft-1240447 >-----------------
+[INFO] Building projeto_odsoft_1240447 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- jacoco:0.8.12:report (default-cli) @ projeto-odsoft-1240447 ---
+[INFO] Loading execution data file C:\Users\Diogo Oliveira\ISEP\ODSOFT\projeto_odsoft_1240447\target\jacoco.exec
+[INFO] Analyzed bundle 'projeto_odsoft_1240447' with 91 classes
+[INFO] 
+[INFO] --- jacoco:0.8.12:check (default-cli) @ projeto-odsoft-1240447 ---
+[INFO] Loading execution data file C:\Users\Diogo Oliveira\ISEP\ODSOFT\projeto_odsoft_1240447\target\jacoco.exec
+[INFO] Analyzed bundle 'projeto-odsoft-1240447' with 91 classes
+[INFO] All coverage checks have been met.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.581 s
+[INFO] Finished at: 2026-11-01T14:22:41Z
+[INFO] ------------------------------------------------------------------------

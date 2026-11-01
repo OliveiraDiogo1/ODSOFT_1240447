@@ -15,7 +15,9 @@ import pt.psoft.g1.psoftg1.auth.api.AuthRequest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        properties = "spring.datasource.url=jdbc:h2:mem:systemtest;DB_CLOSE_DELAY=-1")
 @ActiveProfiles("bootstrap")
 class SystemTest {
 

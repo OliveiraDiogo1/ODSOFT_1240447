@@ -48,12 +48,12 @@
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running pt.psoft.g1.psoftg1.authormanagement.model.AuthorTest
-[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.749 s -- in pt.psoft.g1.psoftg1.authormanagement.model.AuthorTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.585 s -- in pt.psoft.g1.psoftg1.authormanagement.model.AuthorTest
 [INFO] Running pt.psoft.g1.psoftg1.authormanagement.model.BioTest
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in pt.psoft.g1.psoftg1.authormanagement.model.BioTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in pt.psoft.g1.psoftg1.authormanagement.model.BioTest
 [INFO] Running pt.psoft.g1.psoftg1.authormanagement.repository.AuthorRepositoryIntegrationTest
-02:12:39.797 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.authormanagement.repository.AuthorRepositoryIntegrationTest]: AuthorRepositoryIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-02:12:40.470 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.authormanagement.repository.AuthorRepositoryIntegrationTest
+14:23:28.249 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.authormanagement.repository.AuthorRepositoryIntegrationTest]: AuthorRepositoryIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+14:23:28.910 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.authormanagement.repository.AuthorRepositoryIntegrationTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -63,18 +63,18 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-11-01T02:12:41.558Z  INFO 29028 --- [           main] .g.p.a.r.AuthorRepositoryIntegrationTest : Starting AuthorRepositoryIntegrationTest using Java 17.0.12 with PID 29028 (started by Diogo Oliveira in C:\Users\Diogo Oliveira\ISEP\ODSOFT\projeto_odsoft_1240447)
-2026-11-01T02:12:41.562Z  INFO 29028 --- [           main] .g.p.a.r.AuthorRepositoryIntegrationTest : No active profile set, falling back to 1 default profile: "default"
-2026-11-01T02:12:43.283Z  INFO 29028 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-11-01T02:12:43.890Z  INFO 29028 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 578 ms. Found 9 JPA repository interfaces.
-2026-11-01T02:12:44.072Z  INFO 29028 --- [           main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2026-11-01T02:12:44.693Z  INFO 29028 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:d1631798-d3e5-4bbe-8a1a-4df9ecc42ada;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2026-11-01T02:12:45.415Z  INFO 29028 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-11-01T02:12:45.597Z  INFO 29028 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-11-01T02:12:45.739Z  INFO 29028 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-11-01T02:12:46.241Z  INFO 29028 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-11-01T02:12:46.403Z  WARN 29028 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-11-01T02:12:49.145Z  INFO 29028 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-01T14:23:30.251Z  INFO 21512 --- [           main] .g.p.a.r.AuthorRepositoryIntegrationTest : Starting AuthorRepositoryIntegrationTest using Java 17.0.12 with PID 21512 (started by Diogo Oliveira in C:\Users\Diogo Oliveira\ISEP\ODSOFT\projeto_odsoft_1240447)
+2026-11-01T14:23:30.258Z  INFO 21512 --- [           main] .g.p.a.r.AuthorRepositoryIntegrationTest : No active profile set, falling back to 1 default profile: "default"
+2026-11-01T14:23:31.784Z  INFO 21512 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-01T14:23:32.546Z  INFO 21512 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 739 ms. Found 9 JPA repository interfaces.
+2026-11-01T14:23:32.718Z  INFO 21512 --- [           main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2026-11-01T14:23:33.406Z  INFO 21512 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:09011339-9929-426a-a397-6b12fabc83a8;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2026-11-01T14:23:34.190Z  INFO 21512 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-11-01T14:23:34.365Z  INFO 21512 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-11-01T14:23:34.451Z  INFO 21512 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-11-01T14:23:34.976Z  INFO 21512 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-01T14:23:35.109Z  WARN 21512 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-11-01T14:23:38.021Z  INFO 21512 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: create table author (author_number bigint not null, bio varchar(4096) not null, name varchar(150), version bigint not null, photo_id bigint, primary key (author_number))
 Hibernate: create table book (pk bigint not null, description varchar(4096), isbn varchar(16), title varchar(128), version bigint, photo_id bigint, genre_pk bigint not null, primary key (pk))
 Hibernate: create table book_authors (book_pk bigint not null, authors_author_number bigint not null)
@@ -127,17 +127,17 @@ Hibernate: alter table if exists reader_details add constraint FKcwr89cy78vobvmx
 Hibernate: alter table if exists reader_details_interest_list add constraint FKs5hbn8qk95hlivueobu34p78r foreign key (interest_list_pk) references genre
 Hibernate: alter table if exists reader_details_interest_list add constraint FK4s9ktg7b14jstci1r8sspj99 foreign key (reader_details_pk) references reader_details
 Hibernate: alter table if exists user_authorities add constraint FKg3ms6twsd5wemq30u2bvhj7if foreign key (user_user_id) references t_user
-2026-11-01T02:12:49.286Z  INFO 29028 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-11-01T02:12:49.956Z  INFO 29028 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-11-01T02:12:52.067Z  INFO 29028 --- [           main] .g.p.a.r.AuthorRepositoryIntegrationTest : Started AuthorRepositoryIntegrationTest in 11.346 seconds (process running for 16.276)
+2026-11-01T14:23:38.168Z  INFO 21512 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-01T14:23:38.773Z  INFO 21512 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-11-01T14:23:40.853Z  INFO 21512 --- [           main] .g.p.a.r.AuthorRepositoryIntegrationTest : Started AuthorRepositoryIntegrationTest in 11.607 seconds (process running for 15.819)
 Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
 Hibernate: select next value for author_seq
 Hibernate: insert into author (bio,name,photo_id,version,author_number) values (?,?,?,?,?)
 Hibernate: select a1_0.author_number,a1_0.bio,a1_0.name,a1_0.photo_id,a1_0.version from author a1_0 where a1_0.name=?
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.40 s -- in pt.psoft.g1.psoftg1.authormanagement.repository.AuthorRepositoryIntegrationTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.69 s -- in pt.psoft.g1.psoftg1.authormanagement.repository.AuthorRepositoryIntegrationTest
 [INFO] Running pt.psoft.g1.psoftg1.authormanagement.services.AuthorServiceImplIntegrationTest
-2026-11-01T02:12:53.384Z  INFO 29028 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.authormanagement.services.AuthorServiceImplIntegrationTest]: AuthorServiceImplIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-11-01T02:12:53.433Z  INFO 29028 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.authormanagement.services.AuthorServiceImplIntegrationTest
+2026-11-01T14:23:42.281Z  INFO 21512 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.authormanagement.services.AuthorServiceImplIntegrationTest]: AuthorServiceImplIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-01T14:23:42.324Z  INFO 21512 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.authormanagement.services.AuthorServiceImplIntegrationTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -147,41 +147,41 @@ Hibernate: select a1_0.author_number,a1_0.bio,a1_0.name,a1_0.photo_id,a1_0.versi
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-11-01T02:12:53.555Z  INFO 29028 --- [           main] g.p.a.s.AuthorServiceImplIntegrationTest : Starting AuthorServiceImplIntegrationTest using Java 17.0.12 with PID 29028 (started by Diogo Oliveira in C:\Users\Diogo Oliveira\ISEP\ODSOFT\projeto_odsoft_1240447)
-2026-11-01T02:12:53.555Z  INFO 29028 --- [           main] g.p.a.s.AuthorServiceImplIntegrationTest : No active profile set, falling back to 1 default profile: "default"
-2026-11-01T02:12:55.584Z  INFO 29028 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-11-01T02:12:55.729Z  INFO 29028 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 143 ms. Found 9 JPA repository interfaces.
-2026-11-01T02:12:58.404Z  INFO 29028 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-11-01T02:12:58.418Z  INFO 29028 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-11-01T02:12:58.441Z  INFO 29028 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-11-01T02:12:58.449Z  INFO 29028 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-11-01T02:12:58.506Z  INFO 29028 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn5: url=jdbc:h2:mem:testdb user=MYSQLUSER
-2026-11-01T02:12:58.519Z  INFO 29028 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-11-01T02:12:58.548Z  WARN 29028 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-11-01T02:12:59.377Z  INFO 29028 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-11-01T02:12:59.433Z  INFO 29028 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-11-01T02:13:03.151Z  WARN 29028 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-11-01T02:13:05.603Z  INFO 29028 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2026-11-01T02:13:06.094Z  INFO 29028 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3ac4f33c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@362a009, org.springframework.security.web.context.SecurityContextHolderFilter@34ca4d65, org.springframework.security.web.header.HeaderWriterFilter@4b46fe0c, org.springframework.web.filter.CorsFilter@1f237f61, org.springframework.security.web.authentication.logout.LogoutFilter@12fe8576, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@3f54e4d0, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6b52b734, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a6b7e2f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@64c00712, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6e722f3c, org.springframework.security.web.session.SessionManagementFilter@3658cf2f, org.springframework.security.web.access.ExceptionTranslationFilter@3719bf1b, org.springframework.security.web.access.intercept.AuthorizationFilter@585ea099]
-2026-11-01T02:13:08.678Z  INFO 29028 --- [           main] g.p.a.s.AuthorServiceImplIntegrationTest : Started AuthorServiceImplIntegrationTest in 15.221 seconds (process running for 32.886)
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.58 s -- in pt.psoft.g1.psoftg1.authormanagement.services.AuthorServiceImplIntegrationTest
+2026-11-01T14:23:42.415Z  INFO 21512 --- [           main] g.p.a.s.AuthorServiceImplIntegrationTest : Starting AuthorServiceImplIntegrationTest using Java 17.0.12 with PID 21512 (started by Diogo Oliveira in C:\Users\Diogo Oliveira\ISEP\ODSOFT\projeto_odsoft_1240447)
+2026-11-01T14:23:42.415Z  INFO 21512 --- [           main] g.p.a.s.AuthorServiceImplIntegrationTest : No active profile set, falling back to 1 default profile: "default"
+2026-11-01T14:23:44.361Z  INFO 21512 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-01T14:23:44.516Z  INFO 21512 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 155 ms. Found 9 JPA repository interfaces.
+2026-11-01T14:23:47.040Z  INFO 21512 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-11-01T14:23:47.053Z  INFO 21512 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-11-01T14:23:47.076Z  INFO 21512 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-01T14:23:47.084Z  INFO 21512 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-01T14:23:47.137Z  INFO 21512 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn5: url=jdbc:h2:mem:testdb user=MYSQLUSER
+2026-11-01T14:23:47.147Z  INFO 21512 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-01T14:23:47.171Z  WARN 21512 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-11-01T14:23:47.890Z  INFO 21512 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-01T14:23:47.955Z  INFO 21512 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-01T14:23:51.367Z  WARN 21512 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-11-01T14:23:53.580Z  INFO 21512 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2026-11-01T14:23:54.027Z  INFO 21512 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3ac4f33c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@362a009, org.springframework.security.web.context.SecurityContextHolderFilter@4a6b7e2f, org.springframework.security.web.header.HeaderWriterFilter@4b9d63a1, org.springframework.web.filter.CorsFilter@49a58f18, org.springframework.security.web.authentication.logout.LogoutFilter@777b963e, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@3f54e4d0, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@4252bdd6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@754b87a3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2eda9f1d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6e722f3c, org.springframework.security.web.session.SessionManagementFilter@50561206, org.springframework.security.web.access.ExceptionTranslationFilter@1c63242, org.springframework.security.web.access.intercept.AuthorizationFilter@21a1e76f]
+2026-11-01T14:23:56.285Z  INFO 21512 --- [           main] g.p.a.s.AuthorServiceImplIntegrationTest : Started AuthorServiceImplIntegrationTest in 13.942 seconds (process running for 31.25)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.30 s -- in pt.psoft.g1.psoftg1.authormanagement.services.AuthorServiceImplIntegrationTest
 [INFO] Running pt.psoft.g1.psoftg1.bookmanagement.model.BookTest
-[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.081 s -- in pt.psoft.g1.psoftg1.bookmanagement.model.BookTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in pt.psoft.g1.psoftg1.bookmanagement.model.BookTest
 [INFO] Running pt.psoft.g1.psoftg1.bookmanagement.model.DescriptionTest
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in pt.psoft.g1.psoftg1.bookmanagement.model.DescriptionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in pt.psoft.g1.psoftg1.bookmanagement.model.DescriptionTest
 [INFO] Running pt.psoft.g1.psoftg1.bookmanagement.model.IsbnTest
-[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in pt.psoft.g1.psoftg1.bookmanagement.model.IsbnTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in pt.psoft.g1.psoftg1.bookmanagement.model.IsbnTest
 [INFO] Running pt.psoft.g1.psoftg1.bookmanagement.model.TitleTest
-[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in pt.psoft.g1.psoftg1.bookmanagement.model.TitleTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in pt.psoft.g1.psoftg1.bookmanagement.model.TitleTest
 [INFO] Running pt.psoft.g1.psoftg1.genremanagement.model.GenreTest
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in pt.psoft.g1.psoftg1.genremanagement.model.GenreTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in pt.psoft.g1.psoftg1.genremanagement.model.GenreTest
 [INFO] Running pt.psoft.g1.psoftg1.lendingmanagement.model.LendingNumberTest
-[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in pt.psoft.g1.psoftg1.lendingmanagement.model.LendingNumberTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in pt.psoft.g1.psoftg1.lendingmanagement.model.LendingNumberTest
 [INFO] Running pt.psoft.g1.psoftg1.lendingmanagement.model.LendingTest
-[INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.137 s -- in pt.psoft.g1.psoftg1.lendingmanagement.model.LendingTest
+[INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.174 s -- in pt.psoft.g1.psoftg1.lendingmanagement.model.LendingTest
 [INFO] Running pt.psoft.g1.psoftg1.lendingmanagement.repositories.LendingRepositoryIntegrationTest
-2026-11-01T02:13:09.303Z  INFO 29028 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.lendingmanagement.repositories.LendingRepositoryIntegrationTest]: LendingRepositoryIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-11-01T02:13:09.352Z  INFO 29028 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.lendingmanagement.repositories.LendingRepositoryIntegrationTest
+2026-11-01T14:23:56.884Z  INFO 21512 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.lendingmanagement.repositories.LendingRepositoryIntegrationTest]: LendingRepositoryIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-01T14:23:56.942Z  INFO 21512 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.lendingmanagement.repositories.LendingRepositoryIntegrationTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -191,45 +191,45 @@ Hibernate: select a1_0.author_number,a1_0.bio,a1_0.name,a1_0.photo_id,a1_0.versi
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-11-01T02:13:09.433Z  INFO 29028 --- [           main] g.p.l.r.LendingRepositoryIntegrationTest : Starting LendingRepositoryIntegrationTest using Java 17.0.12 with PID 29028 (started by Diogo Oliveira in C:\Users\Diogo Oliveira\ISEP\ODSOFT\projeto_odsoft_1240447)
-2026-11-01T02:13:09.434Z  INFO 29028 --- [           main] g.p.l.r.LendingRepositoryIntegrationTest : No active profile set, falling back to 1 default profile: "default"
-2026-11-01T02:13:10.352Z  INFO 29028 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-11-01T02:13:10.543Z  INFO 29028 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 191 ms. Found 9 JPA repository interfaces.
-2026-11-01T02:13:10.884Z  INFO 29028 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-11-01T02:13:10.893Z  INFO 29028 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-11-01T02:13:10.912Z  INFO 29028 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-11-01T02:13:10.914Z  INFO 29028 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
-2026-11-01T02:13:10.916Z  INFO 29028 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn15: url=jdbc:h2:mem:testdb user=MYSQLUSER
-2026-11-01T02:13:10.917Z  INFO 29028 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
-2026-11-01T02:13:10.918Z  WARN 29028 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-11-01T02:13:11.415Z  INFO 29028 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-11-01T02:13:11.543Z  INFO 29028 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-11-01T02:13:12.466Z  WARN 29028 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-11-01T02:13:13.013Z  INFO 29028 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2026-11-01T02:13:13.119Z  INFO 29028 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@59e12d9d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@67b8553, org.springframework.security.web.context.SecurityContextHolderFilter@20d090d9, org.springframework.security.web.header.HeaderWriterFilter@326e74ba, org.springframework.web.filter.CorsFilter@4dea222b, org.springframework.security.web.authentication.logout.LogoutFilter@3711ff00, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@55715684, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@21c60504, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@71342578, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1bc35478, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@367dfc48, org.springframework.security.web.session.SessionManagementFilter@196c1669, org.springframework.security.web.access.ExceptionTranslationFilter@4ef8b2da, org.springframework.security.web.access.intercept.AuthorizationFilter@2aecdd59]
-2026-11-01T02:13:13.745Z  INFO 29028 --- [           main] g.p.l.r.LendingRepositoryIntegrationTest : Started LendingRepositoryIntegrationTest in 4.388 seconds (process running for 37.953)
-[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.656 s -- in pt.psoft.g1.psoftg1.lendingmanagement.repositories.LendingRepositoryIntegrationTest
+2026-11-01T14:23:57.035Z  INFO 21512 --- [           main] g.p.l.r.LendingRepositoryIntegrationTest : Starting LendingRepositoryIntegrationTest using Java 17.0.12 with PID 21512 (started by Diogo Oliveira in C:\Users\Diogo Oliveira\ISEP\ODSOFT\projeto_odsoft_1240447)
+2026-11-01T14:23:57.036Z  INFO 21512 --- [           main] g.p.l.r.LendingRepositoryIntegrationTest : No active profile set, falling back to 1 default profile: "default"
+2026-11-01T14:23:57.880Z  INFO 21512 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-01T14:23:58.033Z  INFO 21512 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 152 ms. Found 9 JPA repository interfaces.
+2026-11-01T14:23:58.297Z  INFO 21512 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-11-01T14:23:58.312Z  INFO 21512 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-11-01T14:23:58.343Z  INFO 21512 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-01T14:23:58.349Z  INFO 21512 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-11-01T14:23:58.352Z  INFO 21512 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn15: url=jdbc:h2:mem:testdb user=MYSQLUSER
+2026-11-01T14:23:58.354Z  INFO 21512 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-11-01T14:23:58.355Z  WARN 21512 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-11-01T14:23:58.885Z  INFO 21512 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-01T14:23:58.962Z  INFO 21512 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-01T14:23:59.993Z  WARN 21512 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-11-01T14:24:00.524Z  INFO 21512 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2026-11-01T14:24:00.626Z  INFO 21512 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@367dfc48, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1bdfa7ad, org.springframework.security.web.context.SecurityContextHolderFilter@2f8081fe, org.springframework.security.web.header.HeaderWriterFilter@326d84e8, org.springframework.web.filter.CorsFilter@1bafa92c, org.springframework.security.web.authentication.logout.LogoutFilter@2124780e, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@499c9278, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1971338d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15a2db45, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3bd89e70, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4b82fc8e, org.springframework.security.web.session.SessionManagementFilter@71342578, org.springframework.security.web.access.ExceptionTranslationFilter@7e0f6a1a, org.springframework.security.web.access.intercept.AuthorizationFilter@ad8c28d]
+2026-11-01T14:24:01.218Z  INFO 21512 --- [           main] g.p.l.r.LendingRepositoryIntegrationTest : Started LendingRepositoryIntegrationTest in 4.271 seconds (process running for 36.186)
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.659 s -- in pt.psoft.g1.psoftg1.lendingmanagement.repositories.LendingRepositoryIntegrationTest
 [INFO] Running pt.psoft.g1.psoftg1.lendingmanagement.services.LendingServiceImplTest
-2026-11-01T02:13:14.959Z  INFO 29028 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.lendingmanagement.services.LendingServiceImplTest]: LendingServiceImplTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-11-01T02:13:14.991Z  INFO 29028 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.lendingmanagement.services.LendingServiceImplTest
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.370 s -- in pt.psoft.g1.psoftg1.lendingmanagement.services.LendingServiceImplTest
+2026-11-01T14:24:02.541Z  INFO 21512 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.lendingmanagement.services.LendingServiceImplTest]: LendingServiceImplTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-01T14:24:02.582Z  INFO 21512 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.lendingmanagement.services.LendingServiceImplTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.407 s -- in pt.psoft.g1.psoftg1.lendingmanagement.services.LendingServiceImplTest
 [INFO] Running pt.psoft.g1.psoftg1.PsoftG1ApplicationTests
-2026-11-01T02:13:15.330Z  INFO 29028 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.PsoftG1ApplicationTests]: PsoftG1ApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-11-01T02:13:15.352Z  INFO 29028 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.PsoftG1ApplicationTests
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in pt.psoft.g1.psoftg1.PsoftG1ApplicationTests
+2026-11-01T14:24:02.948Z  INFO 21512 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.PsoftG1ApplicationTests]: PsoftG1ApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-01T14:24:02.972Z  INFO 21512 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.PsoftG1ApplicationTests
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s -- in pt.psoft.g1.psoftg1.PsoftG1ApplicationTests
 [INFO] Running pt.psoft.g1.psoftg1.readermanagement.model.BirthDateTest
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in pt.psoft.g1.psoftg1.readermanagement.model.BirthDateTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in pt.psoft.g1.psoftg1.readermanagement.model.BirthDateTest
 [INFO] Running pt.psoft.g1.psoftg1.readermanagement.model.PhoneNumberTest
 [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in pt.psoft.g1.psoftg1.readermanagement.model.PhoneNumberTest
 [INFO] Running pt.psoft.g1.psoftg1.readermanagement.model.ReaderTest
-[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.341 s -- in pt.psoft.g1.psoftg1.readermanagement.model.ReaderTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.340 s -- in pt.psoft.g1.psoftg1.readermanagement.model.ReaderTest
 [INFO] Running pt.psoft.g1.psoftg1.shared.model.NameTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in pt.psoft.g1.psoftg1.shared.model.NameTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in pt.psoft.g1.psoftg1.shared.model.NameTest
 [INFO] Running pt.psoft.g1.psoftg1.shared.model.PhotoTest
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in pt.psoft.g1.psoftg1.shared.model.PhotoTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in pt.psoft.g1.psoftg1.shared.model.PhotoTest
 [INFO] Running pt.psoft.g1.psoftg1.system.SystemTest
-2026-11-01T02:13:15.808Z  INFO 29028 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.system.SystemTest]: SystemTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-11-01T02:13:15.861Z  INFO 29028 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.system.SystemTest
+2026-11-01T14:24:03.410Z  INFO 21512 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pt.psoft.g1.psoftg1.system.SystemTest]: SystemTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-01T14:24:03.452Z  INFO 21512 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pt.psoft.g1.psoftg1.PsoftG1Application for test class pt.psoft.g1.psoftg1.system.SystemTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -239,33 +239,33 @@ Hibernate: select a1_0.author_number,a1_0.bio,a1_0.name,a1_0.photo_id,a1_0.versi
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-11-01T02:13:16.024Z  INFO 29028 --- [           main] pt.psoft.g1.psoftg1.system.SystemTest    : Starting SystemTest using Java 17.0.12 with PID 29028 (started by Diogo Oliveira in C:\Users\Diogo Oliveira\ISEP\ODSOFT\projeto_odsoft_1240447)
-2026-11-01T02:13:16.025Z  INFO 29028 --- [           main] pt.psoft.g1.psoftg1.system.SystemTest    : The following 1 profile is active: "bootstrap"
-2026-11-01T02:13:17.653Z  INFO 29028 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-11-01T02:13:17.882Z  INFO 29028 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 230 ms. Found 9 JPA repository interfaces.
-2026-11-01T02:13:19.344Z  INFO 29028 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
-2026-11-01T02:13:19.424Z  INFO 29028 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-11-01T02:13:19.424Z  INFO 29028 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-11-01T02:13:19.870Z  INFO 29028 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-11-01T02:13:19.871Z  INFO 29028 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3837 ms
-2026-11-01T02:13:20.466Z  INFO 29028 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-11-01T02:13:20.491Z  INFO 29028 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-11-01T02:13:20.528Z  INFO 29028 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-11-01T02:13:20.535Z  INFO 29028 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
-2026-11-01T02:13:20.537Z  INFO 29028 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection conn25: url=jdbc:h2:mem:testdb user=MYSQLUSER
-2026-11-01T02:13:20.539Z  INFO 29028 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
-2026-11-01T02:13:20.539Z  WARN 29028 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-11-01T02:13:21.359Z  INFO 29028 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-11-01T02:13:21.381Z  INFO 29028 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-11-01T02:13:23.350Z  WARN 29028 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-11-01T02:13:24.095Z  INFO 29028 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2026-11-01T02:13:24.273Z  INFO 29028 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5701680c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7dc9cabe, org.springframework.security.web.context.SecurityContextHolderFilter@20ca31c8, org.springframework.security.web.header.HeaderWriterFilter@33679d93, org.springframework.web.filter.CorsFilter@76da4a8d, org.springframework.security.web.authentication.logout.LogoutFilter@7dada7ed, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@1eb69a88, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1f9eed19, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@694fe9cd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@63dd94c8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4986e43f, org.springframework.security.web.session.SessionManagementFilter@2561d3ba, org.springframework.security.web.access.ExceptionTranslationFilter@1a1a108f, org.springframework.security.web.access.intercept.AuthorizationFilter@6ae8768d]
-2026-11-01T02:13:25.247Z  INFO 29028 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 49221 (http) with context path ''
-2026-11-01T02:13:25.281Z  INFO 29028 --- [           main] pt.psoft.g1.psoftg1.system.SystemTest    : Started SystemTest in 9.41 seconds (process running for 49.488)
-2026-11-01T02:13:27.787Z  INFO 29028 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-11-01T02:13:27.787Z  INFO 29028 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-11-01T02:13:27.790Z  INFO 29028 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.40 s -- in pt.psoft.g1.psoftg1.system.SystemTest
+2026-11-01T14:24:03.588Z  INFO 21512 --- [           main] pt.psoft.g1.psoftg1.system.SystemTest    : Starting SystemTest using Java 17.0.12 with PID 21512 (started by Diogo Oliveira in C:\Users\Diogo Oliveira\ISEP\ODSOFT\projeto_odsoft_1240447)
+2026-11-01T14:24:03.588Z  INFO 21512 --- [           main] pt.psoft.g1.psoftg1.system.SystemTest    : The following 1 profile is active: "bootstrap"
+2026-11-01T14:24:04.797Z  INFO 21512 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-01T14:24:04.955Z  INFO 21512 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 157 ms. Found 9 JPA repository interfaces.
+2026-11-01T14:24:06.049Z  INFO 21512 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-11-01T14:24:06.108Z  INFO 21512 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-01T14:24:06.109Z  INFO 21512 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-11-01T14:24:06.395Z  INFO 21512 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-01T14:24:06.396Z  INFO 21512 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2799 ms
+2026-11-01T14:24:06.916Z  INFO 21512 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-11-01T14:24:06.932Z  INFO 21512 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-11-01T14:24:06.958Z  INFO 21512 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-01T14:24:06.962Z  INFO 21512 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2026-11-01T14:24:06.966Z  INFO 21512 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection conn25: url=jdbc:h2:mem:systemtest user=MYSQLUSER
+2026-11-01T14:24:06.968Z  INFO 21512 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2026-11-01T14:24:06.970Z  WARN 21512 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-11-01T14:24:07.540Z  INFO 21512 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-01T14:24:07.587Z  INFO 21512 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-01T14:24:09.212Z  WARN 21512 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-11-01T14:24:09.871Z  INFO 21512 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2026-11-01T14:24:10.050Z  INFO 21512 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@22990339, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@708665a3, org.springframework.security.web.context.SecurityContextHolderFilter@82aab11, org.springframework.security.web.header.HeaderWriterFilter@4d4d7432, org.springframework.web.filter.CorsFilter@c19d45a, org.springframework.security.web.authentication.logout.LogoutFilter@45e8dbda, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@62b60f76, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5ed69d68, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7d635fce, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7657b1c5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@777c5d6d, org.springframework.security.web.session.SessionManagementFilter@6166c0e7, org.springframework.security.web.access.ExceptionTranslationFilter@3bd8b718, org.springframework.security.web.access.intercept.AuthorizationFilter@495a4afc]
+2026-11-01T14:24:10.873Z  INFO 21512 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 60750 (http) with context path ''
+2026-11-01T14:24:10.915Z  INFO 21512 --- [           main] pt.psoft.g1.psoftg1.system.SystemTest    : Started SystemTest in 7.458 seconds (process running for 45.882)
+2026-11-01T14:24:12.962Z  INFO 21512 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-01T14:24:12.962Z  INFO 21512 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-01T14:24:12.964Z  INFO 21512 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.59 s -- in pt.psoft.g1.psoftg1.system.SystemTest
 [INFO] 
 [INFO] Results:
 [INFO] 
@@ -290,6 +290,6 @@ Hibernate: select a1_0.author_number,a1_0.bio,a1_0.name,a1_0.photo_id,a1_0.versi
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:23 min
-[INFO] Finished at: 2026-11-01T02:13:35Z
+[INFO] Total time:  01:19 min
+[INFO] Finished at: 2026-11-01T14:24:20Z
 [INFO] ------------------------------------------------------------------------

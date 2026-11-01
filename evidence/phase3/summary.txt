@@ -12,7 +12,7 @@ BASELINE (evidence/baseline)
 APÃ“S A FASE 3
 - Testes: 116 (102 + 5 de sistema + 9 de domÃ­nio)
 - mvn clean test: 1 min 18 s
-- mvn clean verify: 1 min 23 s
+- mvn clean verify: 1 min 19 s
 - Cobertura de linhas: 38,6% (1108/2871)
 - Cobertura de ramos: 10,0% (258/2579)
 - PIT: 301 mutantes, 152 mortos, 50% mutation score
@@ -31,6 +31,8 @@ COMANDOS
 - mvn org.pitest:pitest-maven:mutationCoverage
 
 FICHEIROS
+- evidence/phase3/mvn-test-reverse.txt
+- evidence/phase3/coverage-gate.txt
 - evidence/phase3/mvn-verify.txt
 - evidence/phase3/mvn-test-final.txt
 - evidence/phase3/jacoco-final.csv

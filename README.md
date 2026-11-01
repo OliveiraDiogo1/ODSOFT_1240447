@@ -270,7 +270,9 @@ A Fase 3 cobre os cinco níveis da rubrica C2:
   autenticada e acesso sem token.
 
 A suite passou de 102 para **116 testes**. Os testes novos incluem 5 de sistema
-e 9 de domínio.
+e 9 de domínio. O `SystemTest` usa uma base H2 própria
+(`jdbc:h2:mem:systemtest`) para não partilhar dados com os testes de empréstimos
+e ser independente da ordem de execução.
 
 ### Resultados
 
@@ -278,7 +280,7 @@ e 9 de domínio.
 |---|---:|---:|
 | Testes | 102 | 116 |
 | `mvn clean test` | 43,4 s | 1 min 18 s |
-| `mvn clean verify` | — | 1 min 23 s |
+| `mvn clean verify` | — | 1 min 19 s |
 | Cobertura de linhas | 19,5% | 38,6% |
 | Cobertura de ramos | 4,5% | 10,0% |
 | Mutantes PIT | — | 301 |
