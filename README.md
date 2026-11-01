@@ -31,6 +31,9 @@ Implementado:
   90,4 s), com evidências em `evidence/jenkins/`;
 - build **#6 na VM com sucesso**: 116 testes, `Coverage Gate` e `Mutation
   Testing`, commit `75acc4e`, com evidências em `evidence/jenkins-vm/`;
+- build **#8 automático via webhook**: “Started by GitHub push”, commit
+  `41a3379`, 116 testes, `Coverage Gate` e PIT, com evidências em
+  `evidence/jenkins-vm/`;
 - deployment local para `dev`, `staging` e `prod` em contentores Docker
   separados, com health checks e evidências em `evidence/deploy/`;
 - deployment na VM DEI (`vs264`) com JAR + systemd, validado em `dev`,
@@ -43,8 +46,6 @@ Implementado:
 
 Ainda não implementado:
 
-- trigger automático do Jenkins; o webhook GitHub já entrega `push` e `ping` com
-  `200`, mas o Jenkins ainda não tem o trigger ativo;
 - relatório final de avaliação antes/depois e rastreabilidade completa (Fase 4).
 
 ## Baseline medido
@@ -335,6 +336,8 @@ evidence/phase3/mvn-test-reverse.txt
 evidence/phase3/coverage-gate.txt
 evidence/jenkins-vm/build-6-console.txt
 evidence/jenkins-vm/build-6-summary.txt
+evidence/jenkins-vm/build-8-console.txt
+evidence/jenkins-vm/build-8-summary.txt
 ```
 
 ### Limitações
@@ -344,9 +347,8 @@ evidence/jenkins-vm/build-6-summary.txt
 - Os mutantes sem cobertura e os sobreviventes devem ser analisados na Fase 4
   para decidir quais são equivalentes e quais exigem mais testes.
 - Checkstyle/SpotBugs ainda não são gates bloqueantes.
-- O build #6 foi iniciado manualmente no Jenkins da VM. O webhook GitHub já
-  entrega `push` e `ping` com `200`, mas o trigger automático do Jenkins ainda
-  não está ativo; é a única pendência de C1.2.
+- O build #6 foi manual; o build #8 foi automático via webhook. C1.2 está
+  validado.
 
 ## Estrutura
 
@@ -523,7 +525,7 @@ memória disponível.
 2. **Fase 3 (concluída)** — testes de sistema, mutação PIT, cobertura, gates e
    comparação com o baseline.
 3. **Fase 4** — relatório final, diagramas, rastreabilidade, evidências e
-   demonstração. Falta ativar o trigger do webhook no Jenkins.
+   demonstração.
 
 ## Nota sobre o base
 

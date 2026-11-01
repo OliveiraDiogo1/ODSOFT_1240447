@@ -1,0 +1,17 @@
+Build #8 — SUCCESS
+Commit: 41a33798cd4a83db58fe4f8322e9bbc8295fe721
+Data: 2026-11-01
+Origem: automática, "Started by GitHub push by OliveiraDiogo1"
+Credencial SCM: github-pat
+URL SCM: https://github.com/OliveiraDiogo1/ODSOFT_1240447
+
+Resultados:
+- Tests: 116, Failures: 0, Errors: 0, Skipped: 0
+- Coverage Gate: passou
+- Mutation Testing: 301 mutantes, 152 mortos, 50% mutation score, 79% test strength
+- Package: sucesso
+- Deploy: ignorado (DEPLOY=false)
+- Checkstyle: 110 avisos, em modo de relatório
+- Webhook GitHub -> Jenkins validado
+
+Console: evidence/jenkins-vm/build-8-console.txt
