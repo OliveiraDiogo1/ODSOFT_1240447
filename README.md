@@ -15,7 +15,7 @@ Repositório remoto:
 https://github.com/OliveiraDiogo1/ODSOFT_1240447
 ```
 
-## Estado atual — Fases 1, 2 e 3 (contexto local)
+## Estado atual — Fases 1, 2 e 3 (local + VM)
 
 Implementado:
 
@@ -29,6 +29,8 @@ Implementado:
   pipeline;
 - job `odsoft-p1` criado por SCM e build **#4 com sucesso** (102 testes,
   90,4 s), com evidências em `evidence/jenkins/`;
+- build **#6 na VM com sucesso**: 116 testes, `Coverage Gate` e `Mutation
+  Testing`, commit `75acc4e`, com evidências em `evidence/jenkins-vm/`;
 - deployment local para `dev`, `staging` e `prod` em contentores Docker
   separados, com health checks e evidências em `evidence/deploy/`;
 - deployment na VM DEI (`vs264`) com JAR + systemd, validado em `dev`,
@@ -41,7 +43,8 @@ Implementado:
 
 Ainda não implementado:
 
-- webhook automático do GitHub para o Jenkins;
+- trigger automático do Jenkins; o webhook GitHub já entrega `push` e `ping` com
+  `200`, mas o Jenkins ainda não tem o trigger ativo;
 - relatório final de avaliação antes/depois e rastreabilidade completa (Fase 4).
 
 ## Baseline medido
@@ -106,7 +109,8 @@ docker compose up -d
 
 O job `odsoft-p1` já foi criado e executado com sucesso contra o repositório
 montado em `/workspace`. O build #4 demorou 90,4 s e produziu os relatórios de
-testes, cobertura e Checkstyle. As evidências estão em:
+testes, cobertura e Checkstyle. O build #6 foi executado na VM com o pipeline da
+Fase 3. As evidências locais estão em:
 
 ```
 evidence/jenkins/build-summary.txt
@@ -327,6 +331,10 @@ evidence/phase3/jacoco-final.csv
 evidence/phase3/pit-final.txt
 evidence/phase3/pit/mutations.xml
 evidence/phase3/pit/index.html
+evidence/phase3/mvn-test-reverse.txt
+evidence/phase3/coverage-gate.txt
+evidence/jenkins-vm/build-6-console.txt
+evidence/jenkins-vm/build-6-summary.txt
 ```
 
 ### Limitações
@@ -336,9 +344,9 @@ evidence/phase3/pit/index.html
 - Os mutantes sem cobertura e os sobreviventes devem ser analisados na Fase 4
   para decidir quais são equivalentes e quais exigem mais testes.
 - Checkstyle/SpotBugs ainda não são gates bloqueantes.
-- O `Jenkinsfile` atualizado ainda não foi executado no Jenkins depois da Fase 3:
-  o Jenkins local estava parado e o da VM exige autenticação. A validação local
-  foi feita com `mvn clean verify` e PIT.
+- O build #6 foi iniciado manualmente no Jenkins da VM. O webhook GitHub já
+  entrega `push` e `ping` com `200`, mas o trigger automático do Jenkins ainda
+  não está ativo; é a única pendência de C1.2.
 
 ## Estrutura
 
@@ -515,7 +523,7 @@ memória disponível.
 2. **Fase 3 (concluída)** — testes de sistema, mutação PIT, cobertura, gates e
    comparação com o baseline.
 3. **Fase 4** — relatório final, diagramas, rastreabilidade, evidências e
-   demonstração. Falta ainda configurar o webhook GitHub → Jenkins.
+   demonstração. Falta ativar o trigger do webhook no Jenkins.
 
 ## Nota sobre o base
 

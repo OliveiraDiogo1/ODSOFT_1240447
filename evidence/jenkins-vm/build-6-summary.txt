@@ -1,0 +1,15 @@
+Build #6 — SUCCESS
+Commit: 75acc4efbfbb933fca1e860d5a28351d64ad8464
+Data: 2026-11-01
+Origem: execução manual no Jenkins da VM (vs264)
+
+Resultados:
+- Tests: 116, Failures: 0, Errors: 0, Skipped: 0
+- Coverage Gate: passou (JaCoCo linhas >=35%, ramos >=9%)
+- Mutation Testing: 301 mutantes, 152 mortos, 50% mutation score, 79% test strength
+- PIT line coverage: 70% nas classes mutadas
+- Package: sucesso
+- Deploy Dev/Staging/Prod: ignorados (DEPLOY=false), como esperado
+- Checkstyle: 110 avisos, em modo de relatório (não bloqueante)
+
+Console completo: evidence/jenkins-vm/build-6-console.txt
