@@ -15,7 +15,7 @@ Repositório remoto:
 https://github.com/OliveiraDiogo1/ODSOFT_1240447
 ```
 
-## Estado atual — Fases 1, 2 e 3 (local + VM)
+## Estado atual — Fases 1, 2, 3 e 4 (local + VM)
 
 Implementado:
 
@@ -42,11 +42,8 @@ Implementado:
 - 5 testes de sistema com login, pesquisa autenticada e acesso sem token;
 - PIT sobre as classes de domínio, com 301 mutantes e 50% mutation score;
 - gates de cobertura JaCoCo (linhas 35%, ramos 9%) e PIT (mutação 45%,
-  cobertura 65%).
-
-Ainda não implementado:
-
-- relatório final de avaliação antes/depois e rastreabilidade completa (Fase 4).
+  cobertura 65%);
+- relatório final, análise crítica e matriz de rastreabilidade (Fase 4).
 
 ## Baseline medido
 
@@ -503,28 +500,161 @@ A VM está operacional; o deployment por JAR + systemd está preparado na secç�
 anterior. O Docker não é usado na VM por causa das limitações do LXC e da
 memória disponível.
 
+## Fase 4 — Relatório final e rastreabilidade
+
+### 1. System-as-is
+
+O LMS base tinha:
+
+- build Maven manual, sem pipeline versionado;
+- testes unitários e de integração (102), mas sem mutação nem testes de sistema;
+- cobertura de linhas 19,5% e de ramos 4,5%;
+- Checkstyle e SpotBugs sem quality gates;
+- deployment não repetível entre ambientes;
+- ausência de webhook e de execução automática do pipeline;
+- evidências dispersas e sem comparação antes/depois.
+
+### 2. System-to-be
+
+O processo alvo é um pipeline Jenkins declarativo, versionado no repositório e
+executado em dois contextos:
+
+1. Jenkins local em Docker;
+2. Jenkins na VM DEI `vs264`.
+
+O pipeline executa checkout SCM, build, análise estática, testes, cobertura,
+mutation testing, packaging e deployment opcional para dev/staging/prod. O
+webhook GitHub dispara o job automaticamente. O deployment usa Docker local e
+JAR + systemd na VM.
+
+### 3. Estratégia de testes
+
+| Nível | Implementação | Evidência |
+|---|---|---|
+| C2.1 — caixa opaca em classes | testes dos modelos e contratos | testes `*Test` |
+| C2.2 — caixa transparente no domínio | limites, ramos e erros | testes de domínio |
+| C2.3 — mutação | PIT nas classes de domínio | `evidence/phase3/pit.txt` |
+| C2.4 — integração de componentes | repositórios e serviços com Spring/H2 | testes de integração |
+| C2.5 — sistema | `SystemTest` com servidor HTTP real | `evidence/phase3/mvn-test-reverse.txt` |
+
+### 4. Resultados
+
+| Indicador | Baseline | Final |
+|---|---:|---:|
+| Testes | 102 | 116 |
+| `mvn clean test` | 43,4 s | 1 min 18 s |
+| `mvn clean verify` | — | 1 min 19 s |
+| Cobertura de linhas | 19,5% | 38,6% |
+| Cobertura de ramos | 4,5% | 10,0% |
+| Mutantes PIT | — | 301 |
+| Mutation score | — | 50% |
+| Test strength | — | 79% |
+| Build automático | não | #8, commit `41a3379` |
+| Checkstyle | 109 avisos | 110 avisos |
+
+### 5. Análise crítica
+
+O que melhorou:
+
+- a suite passou a cobrir testes de sistema e mutação;
+- a cobertura de linhas quase duplicou e a de ramos mais do que duplicou;
+- o pipeline passou a falhar perante cobertura ou mutação abaixo dos gates;
+- o webhook foi validado com um build automático;
+- os ambientes e o deployment passaram a ter evidência reproduzível.
+
+O que ainda limita o processo:
+
+- a cobertura global continua baixa porque a maior parte do código base não foi
+  alterada neste projeto;
+- o PIT tem 50% e incide apenas nas classes de domínio; mutantes sem cobertura e
+  sobreviventes precisam de análise;
+- Checkstyle e SpotBugs continuam em relatório, sem gate;
+- o build #8 não executou deployment (`DEPLOY=false`); o deployment foi
+  validado na Fase 2;
+- a VM tem 1,9 GB, o que limita execução concorrente e aumenta o tempo do PIT;
+- não há SonarQube nem Kubernetes; a solução usa ferramentas suficientes para o
+  âmbito.
+
+Causas dos tempos:
+
+- os testes de sistema arrancam um contexto Spring e um servidor HTTP;
+- o PIT executa a suite várias vezes;
+- o custo adicional é aceitável para o feedback de qualidade obtido.
+
+### 6. Evidência CI/CD
+
+- Jenkins local: build #4, 102 testes, evidências em `evidence/jenkins/`.
+- Jenkins VM: build #6 manual, 116 testes.
+- Jenkins VM: build #8 automático, commit `41a3379`, 116 testes, Coverage Gate,
+  PIT e package; evidências em `evidence/jenkins-vm/`.
+- GitHub webhook: `push` e `ping` com `200`; build #8 “Started by GitHub push”.
+- Relatórios: JUnit, Checkstyle, JaCoCo e PIT publicados no Jenkins.
+
+### 7. Deployment
+
+- Docker local: dev 8091, staging 8092, prod 8093.
+- VM: JAR + systemd, portas 2224/2225/2228, URLs públicas validadas.
+- O mesmo JAR é promovido entre ambientes; o `odsoft-deploy` atualiza o link,
+  reinicia o serviço, valida `/actuator/health` e faz rollback em caso de falha.
+- Evidências: `evidence/deploy/` e `evidence/vm/`.
+
+### 8. Matriz de rastreabilidade
+
+| Critério | Objetivo / decisão | Alteração / execução | Evidência |
+|---|---|---|---|
+| C1.1 | Jenkins em dois contextos | local Docker + VM `vs264` | builds #4, #6, #8 |
+| C1.2 | SCM e execução automática | `Jenkinsfile` + webhook + `github-pat` | build #8 “Started by GitHub push” |
+| C1.3 | Build, análise, packaging e testes | stages + 116 testes + gates | `evidence/phase3/` |
+| C1.4 | Deployment em destinos distintos | Docker local + JAR/systemd VM | `evidence/deploy/`, `evidence/vm/` |
+| C1.5 | dev/staging/prod | perfis, portas e dados separados | health checks e login |
+| C2.1/C2.2 | Testes de classes e domínio | testes unitários e domínio | suite de 116 testes |
+| C2.3 | Mutação | PIT | 301 mutantes, 50% |
+| C2.4 | Integração de componentes | testes Spring/H2 | testes de repositório/serviço |
+| C2.5 | Sistema | `SystemTest` | 5 testes de sistema |
+| C3.1 | System-as-is | baseline | `evidence/baseline/` |
+| C3.2 | System-to-be | pipeline e decisões | `Jenkinsfile`, README |
+| C3.3 | Análise crítica | comparação baseline/final | tabela desta secção |
+| C4.1 | Consistência | requisitos → pipeline → testes | esta matriz |
+| C4.2 | Rastreabilidade | commit → build → evidência | `41a3379`, build #8 |
+
+### 9. Limitações e trabalhos futuros
+
+- PIT mais amplo e análise dos sobreviventes;
+- gates de Checkstyle/SpotBugs depois de reduzir a dívida;
+- deployment automático no pipeline (#8 usou `DEPLOY=false`);
+- análise de estabilidade e duração em execuções repetidas;
+- credenciais reais para notificações, se o âmbito evoluir.
+
+### 10. Conclusão
+
+O ODSOFT passou de um processo manual para um pipeline CI/CD versionado,
+automático, com testes em cinco níveis, mutação, gates, deployment repetível e
+evidência rastreável. As limitações estão identificadas e não comprometem o
+âmbito entregue.
+
 ## Relação com a rubrica ODSOFT
 
-| Critério | Estado na Fase 1 |
+| Critério | Estado final |
 |---|---|
-| C1.1 Jenkins em dois contextos | Local implementado; VM DEI com Jenkins e build do pipeline validado |
-| C1.2 Integração SCM e execução automática | `Jenkinsfile` versionado; job `odsoft-p1` por SCM executado na VM |
+| C1.1 Jenkins em dois contextos | Local (build #4) e VM DEI (builds #6/#8) validados |
+| C1.2 Integração SCM e execução automática | Webhook validado; build #8 “Started by GitHub push” |
 | C1.3 Build, análise estática, packaging e testes | Pipeline com 116 testes, testes de sistema, mutação e gates |
 | C1.4 Deployment em destinos distintos | Validado em Docker local e na VM com JAR + systemd |
 | C1.5 Ambientes dev/staging/prod | Validado nos três ambientes, com health checks públicos |
 | C2.1–C2.5 Testes | 116 testes; C2.1/C2.2, C2.4 e C2.5 cobertos; PIT em C2.3 |
 | C3.1 System-as-is | Baseline, logs e métricas iniciais |
 | C3.2 System-to-be | Pipeline, testes e decisões documentados |
-| C3.3 Análise crítica e melhoria | Comparação antes/depois feita; relatório final na Fase 4 |
-| C4.1–C4.2 Consistência e rastreabilidade | A fechar na Fase 4 |
+| C3.3 Análise crítica e melhoria | Comparação antes/depois e análise de causas |
+| C4.1–C4.2 Consistência e rastreabilidade | Matriz de rastreabilidade e evidências por critério |
 
-## Próximas fases
+## Fases concluídas
 
-1. **Fase 2 (concluída)** — deployment para dev/staging/prod, artefactos
-   versionados, promoção, smoke tests e rollback, local e na VM DEI.
-2. **Fase 3 (concluída)** — testes de sistema, mutação PIT, cobertura, gates e
-   comparação com o baseline.
-3. **Fase 4** — relatório final, diagramas, rastreabilidade, evidências e
+1. **Fase 1** — repositório, baseline, Maven, plugins e pipeline Jenkins.
+2. **Fase 2** — deployment para dev/staging/prod, artefactos, promoção, smoke
+   tests e rollback, local e na VM DEI.
+3. **Fase 3** — testes de sistema, mutação PIT, cobertura, gates e comparação
+   com o baseline.
+4. **Fase 4** — relatório final, análise crítica, rastreabilidade, evidências e
    demonstração.
 
 ## Nota sobre o base
