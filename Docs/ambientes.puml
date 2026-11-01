@@ -7,7 +7,7 @@ node "Máquina local" {
   }
 }
 
-node "VM DEI vs264\nLXC 1,9 GB" as VM {
+node "VM DEI vs264\n LXC 1,9 GB" as VM {
   rectangle "Jenkins :2226" as Jenkins
   rectangle "odsoft-dev :2224" as Dev
   rectangle "odsoft-staging :2225" as Staging
@@ -24,8 +24,8 @@ Staging --> Gate : http
 Prod --> Gate : https
 Jenkins --> Gate : https
 
-note bottom of VM
-  JAR + systemd, não Docker,
+note left of VM
+  JAR + systemd; o Docker não é usado
   por causa da memória e do LXC.
 end note
 

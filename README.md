@@ -1,71 +1,42 @@
-# projeto_odsoft_1240447
+# P1 ODSOFT (2026/2027)
 
-Projeto 1 da unidade curricular de Organização do Desenvolvimento de Software
-(ODSOFT), 2026-2027.
+## Contexto e âmbito
 
-O ponto de partida é o serviço REST de gestão de biblioteca desenvolvido em
-PSOFT (`psoft-project-2024-g1`). Este repositório é independente do projeto de
-ARQSOFT: o código base é o mesmo, mas o âmbito é diferente. O ODSOFT não pede
-novas funcionalidades de biblioteca; pede a evolução do processo de build,
-testes, integração, entrega e deployment.
+Este repositório possui o Projeto 1 de Organização do Desenvolvimento de
+Software. O ponto de partida é o mesmo serviço REST de gestão de biblioteca
+usado em ARQSOFT (psoft-project-2024-g1). O objetivo é o processo de build,
+testes, integração, entrega e deplou, sem introduzir funcionalidades de
+biblioteca.
+
+O repositório é independente do projeto de ARQSOFT. Foi usado como base a branch
+main, sem as extensões de políticas de empréstimo e não foi copiado código de
+ARQSOFT para este repositório.
 
 Repositório remoto:
 
-```
-https://github.com/OliveiraDiogo1/ODSOFT_1240447
-```
+<https://github.com/OliveiraDiogo1/ODSOFT_1240447>
 
-## Estado atual — Fases 1, 2, 3 e 4 (local + VM)
+O estado final está na branch main. O build automático (#8) foi executado
+no commit #41a3379; os commits posteriores possuem apenas evidências e
+documentação.
 
-Implementado:
+## Baseline
 
-- repositório independente com o baseline do LMS;
-- baseline de testes e de build medido e guardado;
-- Maven com JaCoCo, Checkstyle, SpotBugs, Maven Enforcer e PIT;
-- `Jenkinsfile` declarativo com checkout, build, análise estática, testes,
-  testes de sistema, cobertura, mutation testing e packaging;
-- Jenkins local em Docker (`jenkins/`);
-- relatórios de testes, cobertura, análise estática e mutação arquivados pelo
-  pipeline;
-- job `odsoft-p1` criado por SCM e build **#4 com sucesso** (102 testes,
-  90,4 s), com evidências em `evidence/jenkins/`;
-- build **#6 na VM com sucesso**: 116 testes, `Coverage Gate` e `Mutation
-  Testing`, commit `75acc4e`, com evidências em `evidence/jenkins-vm/`;
-- build **#8 automático via webhook**: “Started by GitHub push”, commit
-  `41a3379`, 116 testes, `Coverage Gate` e PIT, com evidências em
-  `evidence/jenkins-vm/`;
-- deployment local para `dev`, `staging` e `prod` em contentores Docker
-  separados, com health checks e evidências em `evidence/deploy/`;
-- deployment na VM DEI (`vs264`) com JAR + systemd, validado em `dev`,
-  `staging` e `prod`, com health checks públicos e login em staging;
-- Jenkins na VM com job `odsoft-p1` por SCM, com build do pipeline concluído;
-- 5 testes de sistema com login, pesquisa autenticada e acesso sem token;
-- PIT sobre as classes de domínio, com 301 mutantes e 50% mutation score;
-- gates de cobertura JaCoCo (linhas 35%, ramos 9%) e PIT (mutação 45%,
-  cobertura 65%);
-- relatório final, análise crítica e matriz de rastreabilidade (Fase 4).
-
-## Baseline medido
-
-O baseline foi medido antes de acrescentar os plugins de qualidade, para servir
-de comparação à rubrica C3.3.
+O baseline foi medido antes de acrescentar os plugins de qualidade e serve de
+comparação para a análise de resultados.
 
 | Indicador | Valor inicial |
-|---|---:|
+| --- | ---: |
 | Testes executados | 102 |
 | Falhas | 0 |
-| Tempo de `mvn clean test` | 43,4 s |
-| Tempo de `mvn -DskipTests package` | 14,5 s |
+| mvn clean test | 43,4 s |
+| mvn -DskipTests package | 14,5 s |
 | Cobertura de linhas | 19,5% (558 de 2 868) |
 | Cobertura de ramos | 4,5% (117 de 2 579) |
 | Avisos Checkstyle | 109 |
 | Avisos SpotBugs | 226 |
 
-Estes valores são o ponto de partida; não são a qualidade final. A Fase 3
-melhorou a suite e voltou a medir com as mesmas condições; os resultados estão
-na secção seguinte e em `evidence/phase3/`.
-
-Os logs estão em:
+Os registos estão em:
 
 ```
 evidence/baseline/mvn-test.txt
@@ -75,40 +46,53 @@ evidence/baseline/quality-metrics.txt
 evidence/baseline/jacoco.csv
 ```
 
-## Como validar localmente
+O projeto base tinha testes unitários e de integração. Não tinha mutação,
+testes de sistema, webhook, quality gates de cobertura e mutação, nem deployment
+repetível entre ambientes.
 
-```bash
-mvn -B clean test
-mvn -B clean verify
-mvn -B -Dtest=SystemTest test
-mvn -B org.pitest:pitest-maven:mutationCoverage
-mvn -B clean test jacoco:report checkstyle:checkstyle spotbugs:spotbugs
-```
+## Processo CI/CD
 
-Relatórios gerados:
+### Jenkins em dois contextos
 
-```
-target/surefire-reports/
-target/site/jacoco/index.html
-target/checkstyle-result.xml
-target/spotbugsXml.xml
-target/*.jar
-```
+Foram usados dois contextos de execução:
 
-## Jenkins local em Docker
+1. Jenkins local em Docker, em `jenkins/`;
+2. Jenkins na VM DEI (vs264).
 
-O Jenkins local está preparado em `jenkins/`:
+O job odsoft-p1 é um Pipeline script from SCM, com o Jenkinsfile
+no repositório e a branch main. Na Virtual Machine, o checkout usa HTTPS e a credencial
+github-pat (access key criada nas definições pessoais do github); o webhook GitHub entrega os eventos ao Jenkins.
 
-```bash
-cd jenkins
-docker compose build
-docker compose up -d
-```
+O Jenkins local executou o build #4 com 102 testes em 90,4 s. Na Virtual Machine, o build #6
+foi executado manualmente, no commit `#75acc4e`, com 116 testes. O build #8 foi
+iniciado , automáticamente, por um push no GitHub, no commit `#41a3379` e terminou, também, com sucesso. O push
+e ping do webhook devolveram **200**.
 
-O job `odsoft-p1` já foi criado e executado com sucesso contra o repositório
-montado em `/workspace`. O build #4 demorou 90,4 s e produziu os relatórios de
-testes, cobertura e Checkstyle. O build #6 foi executado na VM com o pipeline da
-Fase 3. As evidências locais estão em:
+Com *DEPLOY=false*, a build #8 correu testes, cobertura, mutação e packaging,
+mas não executou deployment. O deployment foi validado separadamente na Fase 2.
+
+### Pipeline
+
+| Stage | Operação | Resultado ou relatório |
+| --- | --- | --- |
+| Checkout | obtém o commit do GitHub | GIT_COMMIT e GIT_BRANCH |
+| Build | *mvn clean compile* | log Maven |
+| Static Analysis | Checkstyle e SpotBugs | XML e HTML |
+| Tests | *mvn test*, incluindo testes de sistema | Surefire XML |
+| Coverage | *mvn jacoco:report* | JaCoCo HTML/XML/CSV |
+| Coverage Gate | *mvn jacoco:check* | falha se os limites não forem cumpridos |
+| Mutation Testing | *mvn pitest:mutationCoverage* | relatório PIT |
+| Package | *mvn -DskipTests package* | JAR em target/ |
+| Deploy/Smoke Dev, Staging, Prod | apenas com *DEPLOY=true* | logs e health checks |
+
+A pipeline publica os relatórios JUnit, Checkstyle, JaCoCo e PIT e arquiva o JAR.
+O parâmetro *DEPLOY* é false por omissão. O *DEPLOY_MODE* permite escolher
+vm (JAR + systemd) ou docker.
+
+O diagrama do pipeline
+está em [Docs/pipeline.puml](Docs/pipeline.puml).
+
+### Evidências de execução
 
 ```
 evidence/jenkins/build-summary.txt
@@ -117,244 +101,300 @@ evidence/jenkins/build-api.json
 evidence/jenkins/jenkinsfile-validation.txt
 evidence/jenkins/version.txt
 evidence/jenkins/plugins.txt
-```
-
-Abrir:
-
-```
-http://localhost:8080
-```
-
-Credenciais iniciais do contexto local:
-
-```
-utilizador: admin
-password: odsoft
-```
-
-Estas credenciais são apenas para desenvolvimento local. Devem ser alteradas
-antes de qualquer utilização fora da máquina pessoal.
-
-O contentor inclui:
-
-- Jenkins LTS com JDK 17;
-- Maven e Git;
-- plugins de Git/GitHub, Pipeline, JUnit, JaCoCo, Checkstyle, Warnings NG,
-  HTML Publisher, credenciais, timestamps e limpeza de workspace;
-- o repositório montado em `/workspace`;
-- um utilizador administrador criado por `init.groovy.d/01-security.groovy`.
-
-### Criar o job do pipeline
-
-No Jenkins:
-
-1. **New Item** → **Pipeline** → nome `odsoft-p1`.
-2. Em **Pipeline**, escolher **Pipeline script from SCM**.
-3. SCM: **Git**.
-4. URL:
-   - local: `file:///workspace` (o repositório está montado no contentor);
-   - GitHub: URL do repositório ODSOFT, quando existir.
-5. Branch: `*/main`.
-6. Script Path: `Jenkinsfile`.
-7. Guardar e executar **Build Now**.
-
-O `Jenkinsfile` também pode ser validado no Jenkins em
-**Manage Jenkins → Script Console** ou através do validador de pipeline.
-
-## Pipeline atual
-
-| Stage | Objetivo | Relatórios |
-|---|---|---|
-| Checkout | Obter o commit e a branch | `GIT_COMMIT`, `GIT_BRANCH` |
-| Build | `mvn clean compile` | log Maven |
-| Static Analysis | Checkstyle + SpotBugs | XML e HTML |
-| Tests | `mvn test` (unitários, integração e sistema) | Surefire XML |
-| Coverage | `mvn jacoco:report` | JaCoCo HTML/XML/CSV |
-| Coverage Gate | `mvn jacoco:check` | falha se os limites não forem cumpridos |
-| Mutation Testing | `mvn pitest:mutationCoverage` | relatório PIT |
-| Package | `mvn package` | JAR em `target/` |
-| Deploy/Smoke Dev, Staging, Prod | Só com `DEPLOY=true` | logs e health checks |
-
-O parâmetro `DEPLOY` é `false` por defeito. O deployment a partir do Jenkins
-requer um agente com Docker; o Jenkins local em contentor não tem o socket do
-Docker montado. Por isso, a validação local do deployment foi feita a partir do
-host com os scripts de `deploy/`.
-
-## Fase 2 — Deployment local
-
-Foram criados três ambientes lógicos, cada um com o seu contentor, volume e
-configuração:
-
-| Ambiente | URL local | Perfil Spring | Dados | Uso |
-|---|---|---|---|---|
-| dev | `http://localhost:8091` | `bootstrap,dev` | volume `lms-dev-data` | desenvolvimento e demonstração |
-| staging | `http://localhost:8092` | `bootstrap,staging` | volume `lms-staging-data` | pré-produção e testes |
-| prod | `http://localhost:8093` | `prod` | volume `lms-prod-data` | produção local, sem dados de bootstrap |
-
-Os portos 8091/8092/8093 foram escolhidos para não colidir com o Adminer
-(8081) e com o Jenkins (8080).
-
-### Comandos
-
-```powershell
-powershell -ExecutionPolicy Bypass -File deploy\deploy.ps1 -Env dev -Tag local
-powershell -ExecutionPolicy Bypass -File deploy\deploy.ps1 -Env staging -Tag local
-powershell -ExecutionPolicy Bypass -File deploy\deploy.ps1 -Env prod -Tag local
-```
-
-Em Linux/VM:
-
-```bash
-bash deploy/deploy.sh dev local
-bash deploy/deploy.sh staging local
-bash deploy/deploy.sh prod local
-```
-
-Cada deployment:
-
-1. constrói a imagem `odsoft-lms:<tag>`;
-2. sobe o contentor do ambiente;
-3. espera pelo `/actuator/health`;
-4. guarda a tag anterior em `.deploy/<ambiente>.previous`;
-5. se o health check falhar, tenta reverter para a tag anterior.
-
-Validação rápida:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File deploy\smoke.ps1 -Env dev
-powershell -ExecutionPolicy Bypass -File deploy\smoke.ps1 -Env staging
-powershell -ExecutionPolicy Bypass -File deploy\smoke.ps1 -Env prod
-```
-
-Evidências locais:
-
-```
-evidence/deploy/summary.txt
-evidence/deploy/health-dev.json
-evidence/deploy/health-staging.json
-evidence/deploy/health-prod.json
-evidence/deploy/login-staging.json
-evidence/deploy/docker-compose-ps-final.txt
-```
-
-Resultado observado:
-
-- `dev`, `staging` e `prod` responderam `200` em `/actuator/health`;
-- o login de bibliotecário em staging respondeu `200`.
-
-O `prod` não usa o perfil `bootstrap`, por isso arranca sem dados de
-demonstração. `dev` e `staging` usam `bootstrap` para permitir testar a
-aplicação com os dados iniciais.
-
-### Configuração
-
-- `application-dev.properties`, `application-staging.properties` e
-  `application-prod.properties`;
-- chaves JWT externalizáveis por `JWT_PRIVATE_KEY`/`JWT_PUBLIC_KEY`;
-- chave Api Ninjas externalizada por `NINJAS_KEY`;
-- Actuator exposto apenas em `health` e `info`;
-- `/actuator/health` é público para o health check de deployment;
-- `spring.jpa.open-in-view=false`; as authorities do utilizador passaram a
-  `EAGER` para a autenticação funcionar sem sessão aberta.
-
-## Fase 3 — Testes, mutação e quality gates
-
-### Estratégia
-
-A Fase 3 cobre os cinco níveis da rubrica C2:
-
-- **C2.1 — caixa opaca em classes**: testes dos modelos e contratos públicos;
-- **C2.2 — caixa transparente no domínio**: casos de limites, ramos e erros;
-- **C2.3 — mutação**: PIT sobre as classes de domínio;
-- **C2.4 — integração de componentes**: testes de repositórios e serviços com
-  Spring e H2;
-- **C2.5 — sistema**: `SystemTest` com servidor HTTP real, login, pesquisa
-  autenticada e acesso sem token.
-
-A suite passou de 102 para **116 testes**. Os testes novos incluem 5 de sistema
-e 9 de domínio. O `SystemTest` usa uma base H2 própria
-(`jdbc:h2:mem:systemtest`) para não partilhar dados com os testes de empréstimos
-e ser independente da ordem de execução.
-
-### Resultados
-
-| Indicador | Baseline | Após Fase 3 |
-|---|---:|---:|
-| Testes | 102 | 116 |
-| `mvn clean test` | 43,4 s | 1 min 18 s |
-| `mvn clean verify` | — | 1 min 19 s |
-| Cobertura de linhas | 19,5% | 38,6% |
-| Cobertura de ramos | 4,5% | 10,0% |
-| Mutantes PIT | — | 301 |
-| Mutation score | — | 50% |
-| Test strength PIT | — | 79% |
-| PIT line coverage | — | 70% (classes mutadas) |
-
-O aumento do tempo de teste deve-se sobretudo ao contexto Spring dos testes de
-sistema e ao arranque da aplicação com o perfil `bootstrap`.
-
-### Gates
-
-- **JaCoCo**: linhas ≥35%, ramos ≥9%;
-- **PIT**: mutation score ≥45%, coverage ≥65%;
-- **Checkstyle/SpotBugs**: continuam em modo de relatório. O baseline tinha 109
-  e 226 avisos; não foram usados como gate para não bloquear a entrega por
-  dívida pré-existente. A dívida fica identificada para a Fase 4.
-
-### Comandos
-
-```bash
-mvn clean verify
-mvn -Dtest=SystemTest test
-mvn org.pitest:pitest-maven:mutationCoverage
-```
-
-### Jenkins
-
-O `Jenkinsfile` passou a ter os stages:
-
-- `Tests` — inclui unitários, integração e sistema;
-- `Coverage Gate`;
-- `Mutation Testing`.
-
-Os relatórios PIT e JaCoCo são arquivados e publicados como HTML.
-
-### Evidências
-
-```
-evidence/phase3/summary.txt
-evidence/phase3/mvn-verify.txt
-evidence/phase3/mvn-test-final.txt
-evidence/phase3/jacoco-final.csv
-evidence/phase3/pit-final.txt
-evidence/phase3/pit/mutations.xml
-evidence/phase3/pit/index.html
-evidence/phase3/mvn-test-reverse.txt
-evidence/phase3/coverage-gate.txt
 evidence/jenkins-vm/build-6-console.txt
 evidence/jenkins-vm/build-6-summary.txt
 evidence/jenkins-vm/build-8-console.txt
 evidence/jenkins-vm/build-8-summary.txt
 ```
 
-### Limitações
+Os logs do build #8 mostram o commit **#41a3379**, 116 testes, a passagem do
+*Coverage Gate*, o PIT e o package. O build #8 não é prova de que os ambientes
+estão atualmente disponíveis; os health checks foram registados nas execuções
+indicadas em evidence/.
 
-- PIT incide apenas nas classes de domínio; serviços e controllers não são
-  mutados nesta fase.
-- Os mutantes sem cobertura e os sobreviventes devem ser analisados na Fase 4
-  para decidir quais são equivalentes e quais exigem mais testes.
-- Checkstyle/SpotBugs ainda não são gates bloqueantes.
-- O build #6 foi manual; o build #8 foi automático via webhook. C1.2 está
-  validado.
+## Deployment e ambientes
 
-## Estrutura
+### Docker local
+
+Foram criados três ambientes locais com containeres, volumes e perfis distintos:
+
+| Ambiente | URL local | Perfil Spring | Dados |
+| --- | --- | --- | --- |
+| dev | `http://localhost:8091` | *bootstrap,dev* | volume lms-dev-data |
+| staging | `http://localhost:8092` | *bootstrap,staging* | volume lms-staging-data |
+| prod | `http://localhost:8093` | *prod* | volume lms-prod-data |
+
+Os ports 8091, 8092 e 8093 não colidem com o Adminer (8081) nem com o Jenkins
+local (8080). O *prod* não usa o perfil *bootstrap*. *Dev* e *staging* usam-no
+para ter dados de demo.
+
+Os scripts de deployment constroem a imagem `odsoft-lms:<tag>`, sobem o
+container do ambiente, esperam pelo `/actuator/health`, guardam a tag anterior em
+`.deploy/<ambiente>.previous` e tentam reverter se o health check falhar.
 
 ```
+powershell -ExecutionPolicy Bypass -File deploy\deploy.ps1 -Env dev -Tag local
+powershell -ExecutionPolicy Bypass -File deploy\deploy.ps1 -Env staging -Tag local
+powershell -ExecutionPolicy Bypass -File deploy\deploy.ps1 -Env prod -Tag local
+```
+
+Em Linux (Virtual Machine):
+
+```
+bash deploy/deploy.sh dev local
+bash deploy/deploy.sh staging local
+bash deploy/deploy.sh prod local
+```
+
+Os smoke tests locais estão em deploy/smoke.ps1 e deploy/smoke.sh.
+
+As
+evidências registadas em `evidence/deploy/` mostram health **200** nos três
+ambientes e login **200** em staging. Estes valores são históricos e não foram
+verificados novamente nesta revisão.
+
+### Virtual Machine
+
+A Virtual Machine é um container LXC com 1,9 GB de RAM. Por isso, o deployment na VM usa JAR
+e systemd e não Docker.
+
+| Ambiente | Porta interna | URL pública |
+| --- | ---: | --- |
+| dev | 2224 | `http://vsgate-http.dei.isep.ipp.pt:10264` |
+| staging | 2225 | `http://vsgate-s2.dei.isep.ipp.pt:10264` |
+| prod | 2228 | `https://vs-gate.dei.isep.ipp.pt:30264` |
+| Jenkins | 2226 | `https://vs-gate.dei.isep.ipp.pt:10264` |
+
+O setup em /opt/odsoft/repo é feito com:
+
+```
+git pull
+sudo bash deploy/vm/setup.sh
+```
+
+O setup cria o utilizador odsoft, os diretórios
+`/opt/odsoft/{releases,data,logs}`, os serviços odsoft-dev/staging e prod, o comando `/usr/local/bin/odsoft-deploy` e a permissão de sudo para o utilizador *jenkins* executar apenas esse comando.
+
+O deployment de um JAR é feito com:
+
+```
+JAR=/var/lib/jenkins/workspace/odsoft-p1/target/projeto-odsoft-1240447-0.0.1-SNAPSHOT.jar
+sudo /usr/local/bin/odsoft-deploy dev <tag> "$JAR"
+sudo /usr/local/bin/odsoft-deploy staging <tag> "$JAR"
+sudo /usr/local/bin/odsoft-deploy prod <tag> "$JAR"
+```
+
+O comando copia o JAR para `/opt/odsoft/releases/<tag>`, atualiza o link
+`current-<ambiente>`, reinicia o serviço, valida `/actuator/health` e volta ao
+link anterior se a validação falhar. O mesmo jar é passado entre
+ambiente ,não é reconstruído por ambiente.
+
+Verificação:
+
+```
+systemctl status odsoft-dev odsoft-staging odsoft-prod --no-pager
+bash deploy/vm/smoke.sh dev
+bash deploy/vm/smoke.sh staging
+bash deploy/vm/smoke.sh prod
+```
+
+Os resultados de health e login em `evidence/vm/` foram registados nas execuções
+de deployment; não comprovam disponibilidade atual. O diagrama dos ambientes
+está em [Docs/ambientes.puml](Docs/ambientes.puml).
+
+### Jenkins na VM
+
+A instalação base usada na VM foi:
+
+```
+sudo apt update
+sudo apt install -y openjdk-21-jdk maven git curl
+curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key \
+  | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/" \
+  | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt update
+sudo apt install -y jenkins
+sudo sed -i 's/JENKINS_PORT=8080/JENKINS_PORT=2226/' /lib/systemd/system/jenkins.service
+sudo systemctl daemon-reload
+sudo systemctl restart jenkins
+```
+
+Foram instalados os plugins de `jenkins/plugins.txt`, configurado JDK 17 e
+Maven, criado o job `odsoft-p1` por SCM e guardados os logs em
+`evidence/jenkins-vm/`. A última execução local registada é o build #4. O
+container local não foi consultado nesta revisão.
+
+## Testes
+
+A suite foi organizada segundo os cinco níveis da rubrica C2:
+
+| Nível | Implementação |
+| --- | --- |
+| C2.1: caixa opaca em classes | testes dos modelos e contratos públicos |
+| C2.2: caixa transparente no domínio | limites, ramos, erros e getters |
+| C2.3: mutação | PIT nas classes de domínio |
+| C2.4: integração de componentes | repositórios e serviços com Spring/H2 |
+| C2.5: sistema | SystemTest com servidor HTTP real, login, pesquisa e acesso sem token |
+
+A suite passou de 102 para 116 testes: 5 de sistema e 9 de domínio. O
+SystemTest usa uma base H2 própria (`jdbc:h2:mem:systemtest`) para não
+partilhar dados com os testes de empréstimos e ser independente da ordem de
+execução. A execução com ordem inversa também foi validada com 116 testes.
+
+Comandos:
+
+```
+mvn clean verify
+mvn -Dtest=SystemTest test
+mvn org.pitest:pitest-maven:mutationCoverage
+```
+
+O diagrama da estratégia de testes está em
+[Docs/testes.puml](Docs/testes.puml).
+
+## Resultados e análise
+
+| Indicador | Baseline | Final |
+| --- | ---: | ---: |
+| Testes | 102 | 116 |
+| *mvn clean test* | 43,4 s | 1 min 18 s |
+| *mvn clean verify* | — | 1 min 19 s |
+| Cobertura de linhas | 19,5% | 38,6% |
+| Cobertura de ramos | 4,5% | 10,0% |
+| Mutantes PIT | — | 301 |
+| Mutantes mortos | — | 152 |
+| Mutation score | — | 50% |
+| Test strength | — | 79% |
+| Cobertura PIT das classes mutadas | — | 70% (348 de 500) |
+| Testes executados pelo PIT | — | 437 |
+| Checkstyle | 109 avisos | 110 avisos |
+| Build automático | não | #8, commit `#41a3379` |
+
+A cobertura de 38,6% vem do JaCoCo e abrange o projeto. A de 70% refere-se apenas
+às classes analisadas pelo PIT. Os gates configurados são 35% de linhas e 9% de
+ramos no JaCoCo, 45% de mutação e 65% de cobertura no PIT.
+
+Os valores de testes, cobertura e mutação da tabela são de execuções locais. Os
+builds #6 e #8 correram na VM e registaram 116 testes; os resultados de
+deployment na VM estão em evidence/vm/.
+
+O que melhorou:
+
+- A suite passou a incluir testes de sistema e mutação;
+- A cobertura de linhas e de ramos aumentou;
+- O pipeline passou a falhar quando a cobertura ou a mutação ficam abaixo dos gates;
+- O webhook foi validado com o build automático #8;
+- O deployment passou a ter um procedimento repetível e evidências por ambiente.
+
+O que continua limitado:
+
+- A cobertura global é baixa porque a maior parte do código base não foi
+  alterada neste projeto;
+- O PIT tem 50% e incide apenas nas classes de domínio; os mutantes sem cobertura
+  e os sobreviventes não foram analisados nem classificados como equivalentes;
+- Checkstyle e SpotBugs continuam em modo de relatório; os 109 e 226 avisos
+  iniciais não são gates;
+- A build #8 não executou deployment, porque `DEPLOY=false`. O deployment foi
+  validado na Fase 2;
+- A VM tem 1,9 GB, o que limita a execução concorrente de builds e testes;
+- Não foram usados SonarQube nem Kubernetes; a solução ficou limitada às
+  ferramentas necessárias ao âmbito.
+
+O tempo de `mvn clean test` passou de 43,4 s para 1 min 18 s. A diferença
+coincide com a introdução dos testes de sistema com contexto Spring e com a
+execução do PIT, que corre a suite várias vezes. Não foi feita uma decomposição
+formal do tempo por stage.
+
+As evidências de testes e qualidade estão em:
+
+```
+evidence/phase3/mvn-test-final.txt
+evidence/phase3/summary.txt
+evidence/phase3/mvn-test-reverse.txt
+evidence/phase3/mvn-verify.txt
+evidence/phase3/jacoco-final.csv
+evidence/phase3/pit-final.txt
+evidence/phase3/pit/mutations.xml
+evidence/phase3/pit/index.html
+evidence/phase3/coverage-gate.txt
+```
+
+## Rastreabilidade
+
+| Critério | Objetivo ou decisão | Alteração ou execução | Evidência |
+| --- | --- | --- | --- |
+| C1.1 | Jenkins em dois contextos | Docker local e Virtual Machine | builds #4, #6 e #8 |
+| C1.2 | SCM e execução automática | Jenkinsfile, webhook e github-pat (credencial) | build #8 |
+| C1.3 | Build, análise, packaging e testes | stages e 116 testes | evidence/phase3/ |
+| C1.4 | Deployment em destinos distintos | Docker local e JAR/systemd na VM | evidence/deploy/ e evidence/vm/ |
+| C1.5 | dev, staging e prod | perfis, portas e dados separados | health checks e login registados |
+| C2.1/C2.2 | Classes e domínio | testes unitários e de domínio | suite de 116 testes |
+| C2.3 | Mutação | PIT | 301 mutantes, 152 mortos, 50% |
+| C2.4 | Integração de componentes | testes Spring/H2 | testes de repositório e serviço |
+| C2.5 | Sistema | SystemTest | 5 testes de sistema |
+| C3.1 | System-as-is | baseline | evidence/baseline/ |
+| C3.2 | System-to-be | pipeline e decisões | Jenkinsfile e README |
+| C3.3 | Análise crítica | comparação baseline/final | tabela da secção 6 |
+| C4.1 | Consistência | requisitos, pipeline e testes | esta matriz |
+| C4.2 | Rastreabilidade | commits, builds e evidências | `#41a3379`, build #8 |
+
+## Limitações e trabalho futuro
+
+- Ampliar o PIT a serviços e controllers e analisar os mutantes sobreviventes.
+- Reduzir os avisos de Checkstyle e SpotBugs antes de os transformar em gates.
+- Executar deployment a partir do pipeline com `DEPLOY=true`; o build #8 não o
+  fez.
+- Repetir builds para avaliar estabilidade e variabilidade dos tempos.
+- Rever a necessidade de SonarQube ou outra ferramenta de análise contínua.
+- Confirmar que os ambientes continuam disponíveis antes de uma demonstração;
+  os health checks existentes são históricos.
+
+## Reprodução e demonstração
+
+Build local:
+
+```
+mvn -B clean verify
+mvn -B -Dtest=SystemTest test
+mvn -B org.pitest:pitest-maven:mutationCoverage
+```
+
+Jenkins local:
+
+```
+cd jenkins
+docker compose build
+docker compose up -d
+```
+
+O Jenkins local fica em <http://localhost:8080>. Depois do arranque, é necessário
+instalar os plugins de jenkins/plugins.txt, configurar JDK 17 e Maven e criar o
+job `odsoft-p1` como Pipeline script from SCM, apontado para a branch **main** e
+com Jenkinsfile como script path. O ficheiro **jenkins/odsoft-p1-job.xml** documenta a configuração usada. A password inicial e as credenciais locais não
+são documentadas.
+
+Para o deployment na VM, os comandos de setup, deployment e verificação estão
+na secção 4.2. Para uma demonstração, devem abrir-se os ambientes e confirmar o
+health no momento; os valores registados nas evidências não substituem essa
+verificação.
+
+A build #8 foi registada em:
+
+<https://vs-gate.dei.isep.ipp.pt:10264/job/odsoft-p1/8/>
+
+## Estrutura do Projeto
+
+```text
 projeto_odsoft_1240447/
 ├── Jenkinsfile
 ├── Dockerfile
 ├── docker-compose.yml
 ├── config/checkstyle/checkstyle.xml
+├── Docs/
+│   ├── pipeline.puml
+│   ├── ambientes.puml
+│   └── testes.puml
 ├── deploy/
 │   ├── deploy.sh
 │   ├── deploy.ps1
@@ -377,294 +417,10 @@ projeto_odsoft_1240447/
 │   ├── baseline/
 │   ├── deploy/
 │   ├── jenkins/
+│   ├── jenkins-vm/
 │   ├── phase3/
 │   └── vm/
 ├── src/
 │   └── test/java/.../system/SystemTest.java
 └── README.md
 ```
-
-## Fase 2 na VM — JAR + systemd
-
-Como a VM é um contentor LXC com 1,9 GB de RAM, o deployment na VM usa JARs
-com `systemd`, não Docker.
-
-O deployment foi validado na VM `vs264`:
-
-| Ambiente | URL pública | Resultado |
-|---|---|---|
-| dev | `http://vsgate-http.dei.isep.ipp.pt:10264` | `/actuator/health` = 200 |
-| staging | `http://vsgate-s2.dei.isep.ipp.pt:10264` | `/actuator/health` = 200; login = 200 |
-| prod | `https://vs-gate.dei.isep.ipp.pt:30264` | `/actuator/health` = 200 |
-| Jenkins | `https://vs-gate.dei.isep.ipp.pt:10264` | login = 200 |
-
-Evidências:
-
-```
-evidence/vm/summary.txt
-evidence/vm/health-dev.json
-evidence/vm/health-staging.json
-evidence/vm/health-prod.json
-evidence/vm/login-staging.json
-```
-
-### Instalar os serviços
-
-No VS, a partir de `/opt/odsoft/repo`:
-
-```bash
-git pull
-sudo bash deploy/vm/setup.sh
-```
-
-O setup cria:
-
-- utilizador de sistema `odsoft`;
-- `/opt/odsoft/{releases,data,logs}`;
-- serviços `odsoft-dev`, `odsoft-staging` e `odsoft-prod`;
-- comando `/usr/local/bin/odsoft-deploy`;
-- permissão `sudo` para o utilizador `jenkins` executar apenas esse comando.
-
-### Deploy manual
-
-```bash
-sudo /usr/local/bin/odsoft-deploy dev 1 \
-  /var/lib/jenkins/workspace/odsoft-p1/target/projeto-odsoft-1240447-0.0.1-SNAPSHOT.jar
-
-sudo /usr/local/bin/odsoft-deploy staging 1 \
-  /var/lib/jenkins/workspace/odsoft-p1/target/projeto-odsoft-1240447-0.0.1-SNAPSHOT.jar
-
-sudo /usr/local/bin/odsoft-deploy prod 1 \
-  /var/lib/jenkins/workspace/odsoft-p1/target/projeto-odsoft-1240447-0.0.1-SNAPSHOT.jar
-```
-
-### Verificar
-
-```bash
-systemctl status odsoft-dev odsoft-staging odsoft-prod --no-pager
-bash deploy/vm/smoke.sh dev
-bash deploy/vm/smoke.sh staging
-bash deploy/vm/smoke.sh prod
-```
-
-Portas internas:
-
-| Ambiente | Porta | URL pública |
-|---|---:|---|
-| dev | 2224 | `http://vsgate-http.dei.isep.ipp.pt:10264` |
-| staging | 2225 | `http://vsgate-s2.dei.isep.ipp.pt:10264` |
-| prod | 2228 | `https://vs-gate.dei.isep.ipp.pt:30264` |
-
-No Jenkins, o job pode fazer o deployment com:
-
-- `DEPLOY = true`;
-- `DEPLOY_MODE = vm`.
-
-O stage usa `sudo /usr/local/bin/odsoft-deploy`, que copia o JAR para
-`/opt/odsoft/releases/<build>`, atualiza o link do ambiente, reinicia o serviço
-e valida `/actuator/health`.
-
-## Segundo contexto — VM DEI
-
-O Jenkins está instalado no `vs264` e o build do pipeline já passou na VM.
-Para repetir a instalação base, seguindo o material da unidade curricular, os
-comandos são:
-
-```bash
-sudo apt update
-sudo apt install -y openjdk-21-jdk maven git curl
-
-curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key \
-  | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/" \
-  | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
-sudo apt update
-sudo apt install -y jenkins
-
-# Ajustar a porta, se for necessario (o material usa 2226)
-sudo sed -i 's/JENKINS_PORT=8080/JENKINS_PORT=2226/' /lib/systemd/system/jenkins.service
-sudo systemctl daemon-reload
-sudo systemctl restart jenkins
-```
-
-Depois:
-
-1. instalar os mesmos plugins de `jenkins/plugins.txt`;
-2. configurar JDK 17 e Maven;
-3. criar o job `odsoft-p1` por SCM, com a URL do repositório ODSOFT;
-4. executar o pipeline e guardar os logs em `evidence/jenkins-vm/`;
-5. comparar os dois contextos (versão, plugins, permissões, conectividade,
-   tempo de build e limitações).
-
-A VM está operacional; o deployment por JAR + systemd está preparado na secção
-anterior. O Docker não é usado na VM por causa das limitações do LXC e da
-memória disponível.
-
-## Fase 4 — Relatório final e rastreabilidade
-
-### 1. System-as-is
-
-O LMS base tinha:
-
-- build Maven manual, sem pipeline versionado;
-- testes unitários e de integração (102), mas sem mutação nem testes de sistema;
-- cobertura de linhas 19,5% e de ramos 4,5%;
-- Checkstyle e SpotBugs sem quality gates;
-- deployment não repetível entre ambientes;
-- ausência de webhook e de execução automática do pipeline;
-- evidências dispersas e sem comparação antes/depois.
-
-### 2. System-to-be
-
-O processo alvo é um pipeline Jenkins declarativo, versionado no repositório e
-executado em dois contextos:
-
-1. Jenkins local em Docker;
-2. Jenkins na VM DEI `vs264`.
-
-O pipeline executa checkout SCM, build, análise estática, testes, cobertura,
-mutation testing, packaging e deployment opcional para dev/staging/prod. O
-webhook GitHub dispara o job automaticamente. O deployment usa Docker local e
-JAR + systemd na VM.
-
-### 3. Estratégia de testes
-
-| Nível | Implementação | Evidência |
-|---|---|---|
-| C2.1 — caixa opaca em classes | testes dos modelos e contratos | testes `*Test` |
-| C2.2 — caixa transparente no domínio | limites, ramos e erros | testes de domínio |
-| C2.3 — mutação | PIT nas classes de domínio | `evidence/phase3/pit.txt` |
-| C2.4 — integração de componentes | repositórios e serviços com Spring/H2 | testes de integração |
-| C2.5 — sistema | `SystemTest` com servidor HTTP real | `evidence/phase3/mvn-test-reverse.txt` |
-
-### 4. Resultados
-
-| Indicador | Baseline | Final |
-|---|---:|---:|
-| Testes | 102 | 116 |
-| `mvn clean test` | 43,4 s | 1 min 18 s |
-| `mvn clean verify` | — | 1 min 19 s |
-| Cobertura de linhas | 19,5% | 38,6% |
-| Cobertura de ramos | 4,5% | 10,0% |
-| Mutantes PIT | — | 301 |
-| Mutation score | — | 50% |
-| Test strength | — | 79% |
-| Build automático | não | #8, commit `41a3379` |
-| Checkstyle | 109 avisos | 110 avisos |
-
-### 5. Análise crítica
-
-O que melhorou:
-
-- a suite passou a cobrir testes de sistema e mutação;
-- a cobertura de linhas quase duplicou e a de ramos mais do que duplicou;
-- o pipeline passou a falhar perante cobertura ou mutação abaixo dos gates;
-- o webhook foi validado com um build automático;
-- os ambientes e o deployment passaram a ter evidência reproduzível.
-
-O que ainda limita o processo:
-
-- a cobertura global continua baixa porque a maior parte do código base não foi
-  alterada neste projeto;
-- o PIT tem 50% e incide apenas nas classes de domínio; mutantes sem cobertura e
-  sobreviventes precisam de análise;
-- Checkstyle e SpotBugs continuam em relatório, sem gate;
-- o build #8 não executou deployment (`DEPLOY=false`); o deployment foi
-  validado na Fase 2;
-- a VM tem 1,9 GB, o que limita execução concorrente e aumenta o tempo do PIT;
-- não há SonarQube nem Kubernetes; a solução usa ferramentas suficientes para o
-  âmbito.
-
-Causas dos tempos:
-
-- os testes de sistema arrancam um contexto Spring e um servidor HTTP;
-- o PIT executa a suite várias vezes;
-- o custo adicional é aceitável para o feedback de qualidade obtido.
-
-### 6. Evidência CI/CD
-
-- Jenkins local: build #4, 102 testes, evidências em `evidence/jenkins/`.
-- Jenkins VM: build #6 manual, 116 testes.
-- Jenkins VM: build #8 automático, commit `41a3379`, 116 testes, Coverage Gate,
-  PIT e package; evidências em `evidence/jenkins-vm/`.
-- GitHub webhook: `push` e `ping` com `200`; build #8 “Started by GitHub push”.
-- Relatórios: JUnit, Checkstyle, JaCoCo e PIT publicados no Jenkins.
-
-### 7. Deployment
-
-- Docker local: dev 8091, staging 8092, prod 8093.
-- VM: JAR + systemd, portas 2224/2225/2228, URLs públicas validadas.
-- O mesmo JAR é promovido entre ambientes; o `odsoft-deploy` atualiza o link,
-  reinicia o serviço, valida `/actuator/health` e faz rollback em caso de falha.
-- Evidências: `evidence/deploy/` e `evidence/vm/`.
-
-### 8. Matriz de rastreabilidade
-
-| Critério | Objetivo / decisão | Alteração / execução | Evidência |
-|---|---|---|---|
-| C1.1 | Jenkins em dois contextos | local Docker + VM `vs264` | builds #4, #6, #8 |
-| C1.2 | SCM e execução automática | `Jenkinsfile` + webhook + `github-pat` | build #8 “Started by GitHub push” |
-| C1.3 | Build, análise, packaging e testes | stages + 116 testes + gates | `evidence/phase3/` |
-| C1.4 | Deployment em destinos distintos | Docker local + JAR/systemd VM | `evidence/deploy/`, `evidence/vm/` |
-| C1.5 | dev/staging/prod | perfis, portas e dados separados | health checks e login |
-| C2.1/C2.2 | Testes de classes e domínio | testes unitários e domínio | suite de 116 testes |
-| C2.3 | Mutação | PIT | 301 mutantes, 50% |
-| C2.4 | Integração de componentes | testes Spring/H2 | testes de repositório/serviço |
-| C2.5 | Sistema | `SystemTest` | 5 testes de sistema |
-| C3.1 | System-as-is | baseline | `evidence/baseline/` |
-| C3.2 | System-to-be | pipeline e decisões | `Jenkinsfile`, README |
-| C3.3 | Análise crítica | comparação baseline/final | tabela desta secção |
-| C4.1 | Consistência | requisitos → pipeline → testes | esta matriz |
-| C4.2 | Rastreabilidade | commit → build → evidência | `41a3379`, build #8 |
-
-### 9. Limitações e trabalhos futuros
-
-- PIT mais amplo e análise dos sobreviventes;
-- gates de Checkstyle/SpotBugs depois de reduzir a dívida;
-- deployment automático no pipeline (#8 usou `DEPLOY=false`);
-- análise de estabilidade e duração em execuções repetidas;
-- credenciais reais para notificações, se o âmbito evoluir.
-
-### 10. Conclusão
-
-O ODSOFT passou de um processo manual para um pipeline CI/CD versionado,
-automático, com testes em cinco níveis, mutação, gates, deployment repetível e
-evidência rastreável. As limitações estão identificadas e não comprometem o
-âmbito entregue.
-
-### 11. Diagramas
-
-- [Pipeline](Docs/pipeline.puml)
-- [Ambientes e deployment](Docs/ambientes.puml)
-- [Estratégia de testes](Docs/testes.puml)
-
-## Relação com a rubrica ODSOFT
-
-| Critério | Estado final |
-|---|---|
-| C1.1 Jenkins em dois contextos | Local (build #4) e VM DEI (builds #6/#8) validados |
-| C1.2 Integração SCM e execução automática | Webhook validado; build #8 “Started by GitHub push” |
-| C1.3 Build, análise estática, packaging e testes | Pipeline com 116 testes, testes de sistema, mutação e gates |
-| C1.4 Deployment em destinos distintos | Validado em Docker local e na VM com JAR + systemd |
-| C1.5 Ambientes dev/staging/prod | Validado nos três ambientes, com health checks públicos |
-| C2.1–C2.5 Testes | 116 testes; C2.1/C2.2, C2.4 e C2.5 cobertos; PIT em C2.3 |
-| C3.1 System-as-is | Baseline, logs e métricas iniciais |
-| C3.2 System-to-be | Pipeline, testes e decisões documentados |
-| C3.3 Análise crítica e melhoria | Comparação antes/depois e análise de causas |
-| C4.1–C4.2 Consistência e rastreabilidade | Matriz de rastreabilidade e evidências por critério |
-
-## Fases concluídas
-
-1. **Fase 1** — repositório, baseline, Maven, plugins e pipeline Jenkins.
-2. **Fase 2** — deployment para dev/staging/prod, artefactos, promoção, smoke
-   tests e rollback, local e na VM DEI.
-3. **Fase 3** — testes de sistema, mutação PIT, cobertura, gates e comparação
-   com o baseline.
-4. **Fase 4** — relatório final, análise crítica, rastreabilidade, evidências e
-   demonstração.
-
-## Nota sobre o base
-
-O `pom.xml` é o mesmo do LMS usado em ARQSOFT. O código de ARQSOFT não foi
-copiado para este repositório; foi usado o baseline `main`, sem as extensões de
-políticas de empréstimo, para manter o âmbito ODSOFT isolado.

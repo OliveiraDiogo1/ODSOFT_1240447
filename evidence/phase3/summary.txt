@@ -1,4 +1,4 @@
-﻿ODSOFT â€” Fase 3: evidÃªncias de testes e qualidade
+﻿ODSOFT Fase 3: evidências de testes e qualidade
 
 BASELINE (evidence/baseline)
 - Testes: 102
@@ -9,7 +9,7 @@ BASELINE (evidence/baseline)
 - Checkstyle: 109 avisos
 - SpotBugs: 226 avisos
 
-APÃ“S A FASE 3
+FASE 3
 - Testes: 116 (102 + 5 de sistema + 9 de domÃ­nio)
 - mvn clean test: 1 min 18 s
 - mvn clean verify: 1 min 19 s
@@ -18,12 +18,12 @@ APÃ“S A FASE 3
 - PIT: 301 mutantes, 152 mortos, 50% mutation score
 - PIT test strength: 79%
 - PIT line coverage: 70% (348/500 nas classes mutadas)
-- PIT: 437 testes executados durante a anÃ¡lise
+- PIT: 437 testes executados durante a análise
 
 GATES
 - JaCoCo: linhas >= 35%, ramos >= 9%
 - PIT: mutation score >= 45%, coverage >= 65%
-- Checkstyle e SpotBugs: relatÃ³rio; ainda nÃ£o bloqueiam por causa da dÃ­vida do baseline
+- Checkstyle e SpotBugs: relatório; ainda não bloqueiam por causa da dúvida do baseline
 
 COMANDOS
 - mvn clean verify

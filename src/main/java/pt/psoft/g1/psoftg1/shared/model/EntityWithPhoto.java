@@ -18,8 +18,7 @@ public abstract class EntityWithPhoto {
     @JoinColumn(name="photo_id")
     protected Photo photo;
 
-    //This method is used by the mapper in order to set the photo. This will call the setPhotoInternal method that
-    //will contain all the logic to set the photo
+    // O mapper usa este método para definir a fotografia; setPhotoInternal aplica a alteração.
     public void setPhoto(String photoUri) {
         this.setPhotoInternal(photoUri);
     }
@@ -29,10 +28,10 @@ public abstract class EntityWithPhoto {
             this.photo = null;
         } else {
             try {
-                //If the Path object instantiation succeeds, it means that we have a valid Path
+                // A construção de Path com sucesso significa que o URI é válido.
                 this.photo = new Photo(Path.of(photoURI));
             } catch (InvalidPathException e) {
-                //For some reason it failed, let's set to null to avoid invalid references to photos
+                // Um caminho inválido deixa a entidade sem fotografia.
                 this.photo = null;
             }
         }

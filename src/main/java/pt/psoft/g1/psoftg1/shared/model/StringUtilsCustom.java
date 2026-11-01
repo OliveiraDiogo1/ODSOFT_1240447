@@ -12,14 +12,15 @@ public class StringUtilsCustom {
     private static final PolicyFactory sanitizer = Sanitizers.FORMATTING.and(Sanitizers.LINKS);
 
     /**
-     * Returns {@code true} if every character is a letter (capitalized or not), or a number, or a white space.
-     * <p>In this pattern:
+     * Devolve {@code true} se todos os caracteres forem letras (maiúsculas ou minúsculas), números
+     * ou espaços.
+     * <p>Neste padrão:
      *
-     *     <p>- '{@code \\p{L}}' matches any Unicode letter, including letters with diacritics (accents) in various languages.
-     *     <p>- '{@code 0-9}' matches any digit from 0 to 9.
-     *     <p>- '{@code \\s}' matches any whitespace character.
-     * <p>Adapted from <a href="https://www.baeldung.com/java-check-string-contains-only-letters-numbers">baeldung.com</a>
-     * @param str string to be compared
+     *     <p>- '{@code \\p{L}}' corresponde a qualquer letra Unicode, incluindo letras com diacríticos.
+     *     <p>- '{@code 0-9}' corresponde a qualquer dígito entre 0 e 9.
+     *     <p>- '{@code \\s}' corresponde a qualquer espaço.
+     * <p>Adaptado de <a href="https://www.baeldung.com/java-check-string-contains-only-letters-numbers">baeldung.com</a>
+     * @param str string a comparar
      */
     public static boolean isAlphanumeric(String str){
         String pattern = "^[\\p{L}0-9\\s'-]*$";
@@ -31,14 +32,12 @@ public class StringUtilsCustom {
     }
 
     /**
-     * Sanitizes the provided HTML content to remove potentially harmful elements and attributes,
-     * ensuring that only safe HTML is retained.
-     * <p>This method is intended for use in sanitizing user-generated HTML content before persisting
-     * it in a database or rendering it in a web application. By sanitizing the HTML content, the
-     * risk of Cross-Site Scripting (XSS) attacks is mitigated, as potentially malicious code or
-     * scripts are removed from the input.</p>
-     * @param str The HTML content to be sanitized.
-     * @return A sanitized version of the HTML content, with potentially harmful elements and attributes removed.
+     * Remove elementos e atributos que possam introduzir scripts, mantendo a formatação e as
+     * hiperligações permitidas pelo sanitizador OWASP.
+     * <p>Usar este método antes de guardar ou apresentar HTML gerado pelo utilizador; o valor
+     * sanitizado reduz o risco de Cross-Site Scripting (XSS).</p>
+     * @param str O conteúdo HTML a sanitizar.
+     * @return Uma versão sanitizada do conteúdo HTML, sem elementos e atributos potencialmente perigosos.
      * @see <a href="https://owasp.org/www-project-java-html-sanitizer/">OWASP Java HTML Sanitizer</a>
      * @see <a href="https://github.com/OWASP/java-html-sanitizer/">OWASP Java HTML Sanitizer GitHub</a>
      */
